@@ -1,0 +1,29 @@
+{
+  "name": "webpack-boilerplate",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "scripts.js",
+  "author": "Hannah Hudson",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "css-loader": "^5.2.6",
+    "eslint": "^7.27.0",
+    "file-loader": "^6.2.0",
+    "mocha": "^8.4.0",
+    "mochapack": "^2.1.2",
+    "sass": "^1.34.0",
+    "sass-loader": "^12.0.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "scripts": {
+    "start": "webpack serve",
+    "build": "webpack",
+    "test": "mochapack 'test/**/*.js'",
+    "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'"
+  }
+}
