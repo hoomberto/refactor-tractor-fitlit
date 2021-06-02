@@ -1,6 +1,6 @@
 import './css/base.scss';
 import './css/styles.scss';
-
+import apiCalls from './apiCalls'
 import userData from './data/users';
 import activityData from './data/activity';
 import sleepData from './data/sleep';
@@ -12,6 +12,12 @@ import Activity from './Activity';
 import Hydration from './Hydration';
 import Sleep from './Sleep';
 
+let fetchUserData, fetchSleepData, fetchActivityData, fetchHydrationData
+
+// window.onload = fetchApiData('users').then(promise => {
+//   fetchUserData = promise;
+//
+// }).then(console.log('in onload', fetchUserData))
 
 
 let userRepository = new UserRepository();
@@ -106,6 +112,25 @@ mainPage.addEventListener('click', showInfo);
 profileButton.addEventListener('click', showDropdown);
 stairsTrendingButton.addEventListener('click', updateTrendingStairsDays());
 stepsTrendingButton.addEventListener('click', updateTrendingStepDays());
+
+window.addEventListener('load', function() {
+
+  apiCalls.getData()
+    .then(data => {
+      fetchUserData = data[0]
+      fetchSleepData = data[1];
+      fetchActivityData = data[2];
+      fetchHydrationData = data[3];
+      // console.log('userData', fetchUserData.userData[1])
+      // console.log('sleepData', fetchSleepData.sleepData[1])
+      // console.log('activityData', fetchActivityData.activityData[1])
+      // console.log('hydrationData', fetchHydrationData.hydrationData[1])
+    })
+})
+
+
+
+
 
 function flipCard(cardToHide, cardToShow) {
   cardToHide.classList.add('hide');
@@ -251,7 +276,7 @@ stairsCalendarFlightsAverageWeekly.innerText = user.calculateAverageFlightsThisW
 
 stairsCalendarStairsAverageWeekly.innerText = (user.calculateAverageFlightsThisWeek(todayDate) * 12).toFixed(0);
 
-stairsTrendingButton.addEventListener('click', function () {
+stairsTrendingButton.addEventListener('click', function() {
   user.findTrendingStairsDays();
   trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
 });
@@ -260,7 +285,7 @@ stepsCalendarTotalActiveMinutesWeekly.innerText = user.calculateAverageMinutesAc
 
 stepsCalendarTotalStepsWeekly.innerText = user.calculateAverageStepsThisWeek(todayDate);
 
-stepsTrendingButton.addEventListener('click', function () {
+stepsTrendingButton.addEventListener('click', function() {
   user.findTrendingStepDays();
   trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
 });
