@@ -12,7 +12,7 @@ import Activity from './Activity';
 import Hydration from './Hydration';
 import Sleep from './Sleep';
 
-let fetchUserData;
+let fetchUserData, fetchSleepData, fetchActivityData, fetchHydrationData
 
 // window.onload = fetchApiData('users').then(promise => {
 //   fetchUserData = promise;
@@ -113,23 +113,21 @@ profileButton.addEventListener('click', showDropdown);
 stairsTrendingButton.addEventListener('click', updateTrendingStairsDays());
 stepsTrendingButton.addEventListener('click', updateTrendingStepDays());
 
-headerName.addEventListener('click', clickMe)
-const setUpUser = () => {
+window.addEventListener('load', function() {
+
   apiCalls.getData()
     .then(data => {
       fetchUserData = data[0]
-
+      fetchSleepData = data[1];
+      fetchActivityData = data[2];
+      fetchHydrationData = data[3];
+      // console.log('userData', fetchUserData.userData[1])
+      // console.log('sleepData', fetchSleepData.sleepData[1])
+      // console.log('activityData', fetchActivityData.activityData[1])
+      // console.log('hydrationData', fetchHydrationData.hydrationData[1])
     })
+})
 
-}
-
-window.onload = setUpUser()
-
-
-function clickMe() {
-  setUpUser()
-  console.log('in click me', fetchUserData)
-}
 
 
 

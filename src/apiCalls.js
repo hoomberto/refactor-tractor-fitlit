@@ -22,9 +22,5 @@ const getData = () => {
   return Promise.all([fetchUsersData(), fetchSleepData(), fetchActivityData(), fetchHydrationData()])
 }
 export default {
-  // fetchUsersData,
-  // fetchSleepData,
-  // fetchActivityData,
-  // fetchHydrationData,
   getData
 }
