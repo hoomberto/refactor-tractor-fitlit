@@ -1,10 +1,12 @@
-import { expect } from 'chai';
+import {
+  expect
+} from 'chai';
 
 import Hydration from '../src/Hydration';
 import UserRepository from '../src/UserRepository';
 import User from '../src/User';
 
-describe('Hydration', function() {
+describe.only('Hydration', function() {
   let hydration;
   let user1;
   let user2;
@@ -44,10 +46,10 @@ describe('Hydration', function() {
     userRepository = new UserRepository();
     userRepository.users.push(user1, user2);
     hydrate1 = new Hydration({
-        "userID": 1,
-        "date": "2019/06/15",
-        "numOunces": 37
-      }, userRepository);
+      "userID": 1,
+      "date": "2019/06/15",
+      "numOunces": 37
+    }, userRepository);
     hydrate2 = new Hydration({
       "userID": 2,
       "date": "2019/06/15",
@@ -74,12 +76,14 @@ describe('Hydration', function() {
   it('should have an amount of ounces drank', function() {
     expect(hydrate3.ounces).to.equal(91);
   });
-  describe('drink', function () {
+  describe('drink', function() {
     it('should update the average number of ounces over all time', function() {
       expect(user2.ouncesAverage).to.equal(83);
     })
     it('should add the date and amount to the object record', function() {
-      expect(user1.ouncesRecord).to.deep.equal([{"2019/06/15": 37}])
+      expect(user1.ouncesRecord).to.deep.equal([{
+        "2019/06/15": 37
+      }])
       expect(user2.ouncesRecord.length).to.equal(2)
     })
   });
