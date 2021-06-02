@@ -28,7 +28,7 @@ describe.only('Hydration', function() {
         4,
         8
       ]
-    })
+    });
     user2 = new User({
       "id": 2,
       "name": "Jarvis Considine",
@@ -42,24 +42,25 @@ describe.only('Hydration', function() {
         24,
         19
       ]
-    })
-    userRepository = new UserRepository();
-    userRepository.users.push(user1, user2);
+    });
+
     hydrate1 = new Hydration({
       "userID": 1,
       "date": "2019/06/15",
       "numOunces": 37
-    }, userRepository);
+    });
     hydrate2 = new Hydration({
       "userID": 2,
       "date": "2019/06/15",
       "numOunces": 75
-    }, userRepository)
+    })
     hydrate3 = new Hydration({
       "userID": 2,
       "date": "2019/06/16",
       "numOunces": 91
-    }, userRepository)
+    })
+    userRepository = new UserRepository();
+    userRepository.users.push(user1, user2);
   })
   it('should be a function', function() {
     expect(Hydration).to.be.a('function');
