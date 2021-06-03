@@ -5,7 +5,7 @@ import Hydration from '../src/Hydration';
 import User from '../src/User';
 
 describe('User', function() {
-  let user1, user2, sleep, activity, hydration, analytics;
+  let user, user2, sleep, activity, hydration;
   beforeEach(() => {
 
     sleep = new Sleep({
@@ -29,7 +29,7 @@ describe('User', function() {
       "numOunces": 75
     })
 
-    user1 = new User({
+    user = new User({
       'id': 1,
       'name': 'Luisa Hane',
       'address': '15195 Nakia Tunnel, Erdmanport VA 19901-1697',

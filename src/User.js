@@ -1,12 +1,12 @@
  class User {
-  constructor(userData, sleep, hydration, activity) {
-    this.id = userData.id;
-    this.name = userData.name;
-    this.address = userData.address;
-    this.email = userData.email;
-    this.strideLength = userData.strideLength;
-    this.dailyStepGoal = userData.dailyStepGoal;
-    this.friends = userData.friends;
+  constructor(user, sleep, hydration, activity) {
+    this.id = user.id;
+    this.name = user.name;
+    this.address = user.address;
+    this.email = user.email;
+    this.strideLength = user.strideLength;
+    this.dailyStepGoal = user.dailyStepGoal;
+    this.friends = user.friends;
     this.sleep = sleep;
     this.hydration = hydration;
     this.activity = activity;
@@ -25,8 +25,8 @@
     this.friendsActivityRecords = []
   }
   getFirstName() {
-    var names = this.name.split(' ');
-    return names[0].toUpperCase();
+    var name = this.name.split(' ');
+    return name.toUpperCase();
   }
 
   updateHydration(date, amount) {
