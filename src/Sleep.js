@@ -22,18 +22,20 @@ class Sleep { // instance for the user's sleep each day
     })
     return totalHoursSlept
   };
-}
-     
 
+  getSleepQualityOverWeek(sleep) {
+    let totalQualityHours = 0
+
+    sleep.map((sleepQual) => {
+      let allHours = totalQualityHours += sleepQual.sleepQuality
+      return allHours
+    })
+    return totalQualityHours
+  }
+}
 
 export default Sleep;
 /*
-
--Calculate how many hours a user slept each day over the course of a given week - 
-  should be able to calculate this for any week
-
-- Possible: .filter() days that fall between given week, 
-  then reduce/sum hours a user slept over the course of a week
 
 -For a user (identified by their userID),
   the average number of hours slept per day
