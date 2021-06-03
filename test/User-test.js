@@ -596,11 +596,16 @@ describe.only('User', function() {
   it('should hold users hydration data', function() {
     user.hydration = []
     expect(user.hydration.length).to.deep.equal(0)
-  })
+  });
+
   it('should have a method that returns average fluid oz consumption for all time for a user', function() {
-    user.hydration = []
     user.hydration.push(hydration, hydration1)
     expect(user.hydration.length).to.deep.equal(2)
     expect(user.findTotalWaterConsumption()).to.equal(53);
   });
+
+  it('should have method that returns how many fluid ounces they consumed for a specific day (identified by a date)', function() {
+    user.hydration.push(hydration)
+    expect(user.findTotalWaterConsumptionDay("2019/06/15")).to.equal(37)
+  })
 });
