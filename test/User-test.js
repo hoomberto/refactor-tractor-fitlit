@@ -605,7 +605,7 @@ describe.only('User', function() {
   });
 
   it('should have method that returns how many fluid ounces they consumed for a specific day (identified by a date)', function() {
-    user.hydration.push(hydration)
+    user.hydration.push(hydration, hydration1)
     expect(user.findTotalWaterConsumptionDay("2019/06/15")).to.equal(37)
   })
 });
