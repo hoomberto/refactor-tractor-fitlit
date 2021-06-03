@@ -1,6 +1,7 @@
 import {
   expect
 } from 'chai';
+import dayjs from 'dayjs';
 import Sleep from '../src/Sleep';
 import Activity from '../src/Activity';
 import Hydration from '../src/Hydration';
@@ -607,6 +608,80 @@ describe.only('User', function() {
 
   it('should have method that returns how many fluid ounces they consumed for a specific day (identified by a date)', function() {
     user.hydration.push(hydration, hydration1)
+    console.log(user.hydration)
     expect(user.findTotalWaterConsumptionDay("2019/06/15")).to.equal(37)
+  })
+  it('should have method that returns average consumed ounces over week', function() {
+    // user.hydration.push(hydration, hydration1)
+
+
+    let data = [{
+      "userID": 1,
+      "date": "2019/06/15",
+      "numOunces": 66
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/16",
+      "numOunces": 69
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/17",
+      "numOunces": 91
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/18",
+      "numOunces": 99
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/19",
+      "numOunces": 95
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/20",
+      "numOunces": 79
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/21",
+      "numOunces": 57
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/22",
+      "numOunces": 49
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/23",
+      "numOunces": 26
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/24",
+      "numOunces": 98
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/25",
+      "numOunces": 68
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/26",
+      "numOunces": 21
+    }]
+
+
+    data.forEach(d => {
+      user.hydration.push(new Hydration(d))
+    })
+    // user.hydration.push(data)
+
+    expect(user.consumedWaterOverWeek("2019/06/16").length).to.equal(7);
   })
 });
