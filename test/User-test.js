@@ -5,8 +5,30 @@ import Hydration from '../src/Hydration';
 import User from '../src/User';
 
 describe('User', function() {
-  let user1, user2;
+  let user1, user2, sleep, activity, hydration, analytics;
   beforeEach(() => {
+
+    sleep = new Sleep({
+      "userID": 2,
+      "date": "2019/06/25",
+      "hoursSlept": 7.3,
+      "sleepQuality": 3.2
+    })
+
+    activity = new Activity({
+      "userID": 2,
+      "date": "2019/06/20",
+      "numSteps": 2856,
+      "minutesActive": 280,
+      "flightsOfStairs": 22
+    })
+
+    hydration = new Hydration({
+      "userID": 2,
+      "date": "2019/06/15",
+      "numOunces": 75
+    })
+
     user1 = new User({
       'id': 1,
       'name': 'Luisa Hane',
@@ -19,7 +41,7 @@ describe('User', function() {
         4,
         8
       ]
-    }, analytics),
+    }, sleep, hydration, activity),
     user2 = new User ({
       "id": 2,
       "name": "Jarvis Considine",
@@ -33,11 +55,7 @@ describe('User', function() {
         24,
         19
       ]
-    }, analytics);
-
-
-
-
+    }, sleep, hydration, activity);
 
   })
   it('should be a function', function() {
