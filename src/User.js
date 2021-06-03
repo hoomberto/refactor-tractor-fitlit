@@ -205,6 +205,17 @@
      }, 0)
      return Math.round(hydrationAvg / this.hydration.length)
    }
+
+   findTotalWaterConsumptionDay(date) {
+     const ouncesInDay = this.hydration.reduce((ounces, currentDate) => {
+       // console.log('currentdate', currentDate)
+       currentDate === date ? true : false;
+       ounces = currentDate.ounces
+       return ounces
+     }, 0)
+     // console.log(ouncesInDay)
+     return ouncesInDay;
+   }
  }
 
  export default User;
