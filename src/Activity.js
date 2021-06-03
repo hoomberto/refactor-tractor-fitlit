@@ -7,7 +7,6 @@ class Activity {
     this.flightsOfStairs = data.flightsOfStairs;
     this.milesWalked = 0;
     this.reachedStepGoal = null;
-    this.doActivity(userRepository);
   }
   doActivity(userRepo) {
     var activity = this;

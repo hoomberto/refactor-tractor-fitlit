@@ -10,7 +10,7 @@ describe('Activity', function() {
       "numSteps": 3684,
       "minutesActive": 140,
       "flightsOfStairs": 16
-    }, userRepository);
+    });
     activity2 = new Activity({
       "userID": 2,
       "date": "2019/06/20",

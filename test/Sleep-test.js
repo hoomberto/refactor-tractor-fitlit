@@ -4,7 +4,7 @@ import Sleep from '../src/Sleep';
 // import UserRepository from '../src/UserRepository';
 import User from '../src/User';
 
-describe.only('Sleep', function() {
+describe('Sleep', function() {
   let sleep1,sleep2,sleep3,user1,user2//,userRepository
   beforeEach(() => {
     user1 = new User({
