@@ -1,12 +1,35 @@
 import { expect } from 'chai';
-
+import Sleep from '../src/Sleep';
+import Activity from '../src/Activity';
+import Hydration from '../src/Hydration';
 import User from '../src/User';
 
-
 describe('User', function() {
-  let user;
+  let user1, user2, sleep, activity, hydration, analytics;
   beforeEach(() => {
-    user = new User({
+
+    sleep = new Sleep({
+      "userID": 2,
+      "date": "2019/06/25",
+      "hoursSlept": 7.3,
+      "sleepQuality": 3.2
+    })
+
+    activity = new Activity({
+      "userID": 2,
+      "date": "2019/06/20",
+      "numSteps": 2856,
+      "minutesActive": 280,
+      "flightsOfStairs": 22
+    })
+
+    hydration = new Hydration({
+      "userID": 2,
+      "date": "2019/06/15",
+      "numOunces": 75
+    })
+
+    user1 = new User({
       'id': 1,
       'name': 'Luisa Hane',
       'address': '15195 Nakia Tunnel, Erdmanport VA 19901-1697',
@@ -18,7 +41,22 @@ describe('User', function() {
         4,
         8
       ]
-    })
+    }, sleep, hydration, activity),
+    user2 = new User ({
+      "id": 2,
+      "name": "Jarvis Considine",
+      "address": "30086 Kathryn Port, Ciceroland NE 07273",
+      "email": "Dimitri.Bechtelar11@gmail.com",
+      "strideLength": 4.5,
+      "dailyStepGoal": 5000,
+      "friends": [
+        9,
+        18,
+        24,
+        19
+      ]
+    }, sleep, hydration, activity);
+
   })
   it('should be a function', function() {
     expect(User).to.be.a('function');

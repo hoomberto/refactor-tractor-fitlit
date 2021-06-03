@@ -1,13 +1,16 @@
  class User {
-  constructor(userData) {
+  constructor(userData, sleep, hydration, activity) {
     this.id = userData.id;
     this.name = userData.name;
     this.address = userData.address;
     this.email = userData.email;
     this.strideLength = userData.strideLength;
     this.dailyStepGoal = userData.dailyStepGoal;
-    this.totalStepsThisWeek = 0;
     this.friends = userData.friends;
+    this.sleep = sleep;
+    this.hydration = hydration;
+    this.activity = activity;
+    this.totalStepsThisWeek = 0;
     this.ouncesAverage = 0;
     this.ouncesRecord = [];
     this.hoursSleptAverage = 0;
@@ -25,6 +28,7 @@
     var names = this.name.split(' ');
     return names[0].toUpperCase();
   }
+
   updateHydration(date, amount) {
     this.ouncesRecord.unshift({[date]: amount});
     if (this.ouncesRecord.length) {
