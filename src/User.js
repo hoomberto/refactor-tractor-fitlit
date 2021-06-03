@@ -227,19 +227,14 @@ dayjs.extend(weekOfYear)
          return item
        }
      })
-     console.log(filteredDays)
-     let sum = filteredDays.reduce((acc, currentVal) => {
-       acc += currentVal.numOunces
-       return acc
-     }, 0)
-
-     console.log('SUM', sum, 'AVERAGE', sum/7)
-     // let averageOverWeek = this.hydration.reduce((acc, currentVal) => {
-     //   if (curren)
+     let ouncesOverWeek = filteredDays.map(day => day.numOunces)
+     return ouncesOverWeek;
+     // let sum = filteredDays.reduce((acc, currentVal) => {
+     //   acc += currentVal.numOunces
      //   return acc
      // }, 0)
-     // let test = dayjs(date, "YYYY-MM-DD").week()
-     // console.log(test)
+     //
+     // console.log('SUM', sum, 'AVERAGE', sum/7)
    }
  }
 

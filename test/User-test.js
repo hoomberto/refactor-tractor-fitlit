@@ -682,8 +682,6 @@ describe.only('User', function() {
     })
     // user.hydration.push(data)
 
-    user.consumedWaterOverWeek("2019/06/16")
-    // user.consumedWaterOverWeek("2019/09/22")
-    // expect(user.findTotalWaterConsumptionDay("2019/06/15")).to.equal(37)
+    expect(user.consumedWaterOverWeek("2019/06/16").length).to.equal(7);
   })
 });
