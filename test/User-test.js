@@ -593,6 +593,7 @@ describe.only('User', function() {
   //   user.findFriendsTotalStepsForWeek(users, '2019/06/29');
   //   expect(user.friendsActivityRecords).to.deep.equal([{"id": 4, "totalWeeklySteps": 734}, {"id": 16, "totalWeeklySteps": 248}, {"id": 8, "totalWeeklySteps": 34}]);
   // });
+
   it('should hold users hydration data', function() {
     user.hydration = []
     expect(user.hydration.length).to.deep.equal(0)
