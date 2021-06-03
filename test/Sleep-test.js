@@ -83,7 +83,7 @@ describe('Sleep', function() {
     expect(sleep2.sleepQuality).to.equal(3.2);
   });
 
-  it.only('should calculate how many hours a user slept each day over the course of a week' , function () {
+  it('should calculate how many hours a user slept each day over the course of a week' , function () {
     let sleepArr = [sleep1, sleep3]
     
     let totalHours = sleep1.getHoursSleptOverWeek(sleepArr)
@@ -91,19 +91,27 @@ describe('Sleep', function() {
     expect(totalHours).to.equal(10.2)
   });
 
-  it('should update user\'s slept hours record', function() {
-      expect(user1.sleepHoursRecord.length).to.equal(2);
-  });
+  it.only('should get sleep quality over week', function() {
+    let sleepArr = [sleep1, sleep3]
+    
+    let totalQualityHours = sleep1.getSleepQualityOverWeek(sleepArr)
+    
+    expect(totalQualityHours).to.equal(6);
+  })
 
-  it('should update user\'s slept hours record', function() {
-      expect(user2.sleepQualityRecord.length).to.equal(1);
-  });
+  // it('should update user\'s slept hours record', function() {
+  //     expect(user1.sleepHoursRecord.length).to.equal(2);
+  // });
 
-  it('should update user\'s slept hours average', function() {
-      expect(user1.hoursSleptAverage).to.equal('7.7');
-  });
+  // it('should update user\'s slept hours record', function() {
+  //     expect(user2.sleepQualityRecord.length).to.equal(1);
+  // });
 
-  it('should update user\'s sleep quality average', function() {
-      expect(user1.sleepQualityAverage).to.equal('1.8');
-  });
+  // it('should update user\'s slept hours average', function() {
+  //     expect(user1.hoursSleptAverage).to.equal('7.7');
+  // });
+
+  // it('should update user\'s sleep quality average', function() {
+  //     expect(user1.sleepQualityAverage).to.equal('1.8');
+  // });
 });
