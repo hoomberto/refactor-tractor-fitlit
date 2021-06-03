@@ -1,3 +1,7 @@
+import dayjs from 'dayjs';
+import weekOfYear from 'dayjs/plugin/weekOfYear'
+// var weekOfYear = require('dayjs/plugin/weekOfYear')
+dayjs.extend(weekOfYear)
  class User {
    constructor(user, sleep, hydration, activity) {
      this.id = user.id;
@@ -200,8 +204,9 @@
    // }
 
    findTotalWaterConsumption() {
+     console.log(this.hydration)
      let hydrationAvg = this.hydration.reduce((total, userHydration) => {
-       return total + userHydration.ounces
+       return total + userHydration.numOunces
      }, 0)
      return Math.round(hydrationAvg / this.hydration.length)
    }
@@ -210,8 +215,31 @@
      const ouncesInDay = this.hydration.find(currentDate => currentDate.date === date)
      // console.log('currentdate', currentDate)
 
-     // console.log(ouncesInDay)
-     return ouncesInDay.ounces;
+     console.log(ouncesInDay)
+     return ouncesInDay.numOunces;
+   }
+
+   consumedWaterOverWeek(inputDate) {
+     let inputToWeek = dayjs(inputDate, "YYYY-MM-DD").week()
+     let filteredDays = this.hydration.filter(item => {
+       let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
+       if (convertedToWeek === inputToWeek) {
+         return item
+       }
+     })
+     console.log(filteredDays)
+     let sum = filteredDays.reduce((acc, currentVal) => {
+       acc += currentVal.numOunces
+       return acc
+     }, 0)
+
+     console.log('SUM', sum, 'AVERAGE', sum/7)
+     // let averageOverWeek = this.hydration.reduce((acc, currentVal) => {
+     //   if (curren)
+     //   return acc
+     // }, 0)
+     // let test = dayjs(date, "YYYY-MM-DD").week()
+     // console.log(test)
    }
  }
 
