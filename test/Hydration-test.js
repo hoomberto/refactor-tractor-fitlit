@@ -29,12 +29,13 @@ describe.only('Hydration', function() {
     expect(hydrate1).to.be.an.instanceof(Hydration);
   });
   it('should have an id', function() {
+    expect(hydrate1.userId).to.equal(1);
     expect(hydrate2.userId).to.equal(2);
   });
   it('should have a date', function() {
-    expect(hydrate2.date).to.equal('2019/06/16');
+    expect(hydrate2.date).to.equal("2019/06/15");
   });
   it('should have an amount of ounces drank', function() {
-    expect(hydrate3.ounces).to.equal(91);
+    expect(hydrate2.ounces).to.equal(75);
   });
 });
