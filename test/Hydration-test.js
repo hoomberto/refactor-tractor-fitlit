@@ -33,9 +33,11 @@ describe.only('Hydration', function() {
     expect(hydrate2.userId).to.equal(2);
   });
   it('should have a date', function() {
+    expect(hydrate1.date).to.equal("2019/06/15");
     expect(hydrate2.date).to.equal("2019/06/15");
   });
   it('should have an amount of ounces drank', function() {
+    expect(hydrate1.ounces).to.equal(37);
     expect(hydrate2.ounces).to.equal(75);
   });
 });
