@@ -1,14 +1,11 @@
 import { expect } from 'chai';
 
 import Sleep from '../src/Sleep';
-import UserRepository from '../src/UserRepository';
+// import UserRepository from '../src/UserRepository';
 import User from '../src/User';
 
-describe('Sleep', function() {
-  let sleep;
-  let user1;
-  let user2;
-  let userRepository;
+describe.only('Sleep', function() {
+  let sleep1,sleep2,sleep3,user1,user2//,userRepository
   beforeEach(() => {
     user1 = new User({
       'id': 1,
@@ -37,26 +34,26 @@ describe('Sleep', function() {
         19
       ]
     })
-    userRepository = new UserRepository();
-    userRepository.users.push(user1, user2);
+    // userRepository = new UserRepository();
+    // userRepository.users.push(user1, user2);
     sleep1 = new Sleep({
       "userID": 1,
       "date": "2019/06/15",
       "hoursSlept": 6.1,
       "sleepQuality": 2.2
-    }, userRepository);
+    });//, userRepository);
     sleep2 = new Sleep({
       "userID": 2,
       "date": "2019/06/25",
       "hoursSlept": 7.3,
       "sleepQuality": 3.2
-    }, userRepository);
+    });//, userRepository);
     sleep3 = new Sleep({
       "userID": 1,
       "date": "2019/07/17",
       "hoursSlept": 9.3,
       "sleepQuality": 1.4
-    }, userRepository);
+    });//, userRepository);
   });
   it('should be a function', function() {
     expect(Sleep).to.be.a('function');
@@ -76,7 +73,7 @@ describe('Sleep', function() {
   it('should hold sleep quality', function() {
     expect(sleep3.sleepQuality).to.equal(1.4);
   });
-  describe('sleep', function() {
+  // describe('sleep', function() {
     it('should update user\'s slept hours record', function() {
       expect(user1.sleepHoursRecord.length).to.equal(2);
     });
@@ -89,5 +86,5 @@ describe('Sleep', function() {
     it('should update user\'s sleep quality average', function() {
       expect(user1.sleepQualityAverage).to.equal('1.8');
     });
-  })
+  // })
 });
