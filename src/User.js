@@ -9,7 +9,7 @@
      this.dailyStepGoal = user.dailyStepGoal;
      this.friends = user.friends;
      this.sleep = sleep;
-     this.hydration = hydration || [];
+     this.hydration = [];
      this.activity = activity;
      // this.totalStepsThisWeek = 0;
      // this.ouncesAverage = 0;
