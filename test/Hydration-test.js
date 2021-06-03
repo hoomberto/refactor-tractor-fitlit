@@ -4,7 +4,7 @@ import {
 
 import Hydration from '../src/Hydration';
 
-describe.only('Hydration', function() {
+describe('Hydration', function() {
   let hydrate1;
   let hydrate2;
 
