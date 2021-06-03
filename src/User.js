@@ -9,7 +9,7 @@
      this.dailyStepGoal = user.dailyStepGoal;
      this.friends = user.friends;
      this.sleep = sleep;
-     this.hydration = hydration || [];
+     this.hydration = [];
      this.activity = activity;
      // this.totalStepsThisWeek = 0;
      // this.ouncesAverage = 0;
@@ -204,6 +204,14 @@
        return total + userHydration.ounces
      }, 0)
      return Math.round(hydrationAvg / this.hydration.length)
+   }
+
+   findTotalWaterConsumptionDay(date) {
+     const ouncesInDay = this.hydration.find(currentDate => currentDate.date === date)
+     // console.log('currentdate', currentDate)
+
+     // console.log(ouncesInDay)
+     return ouncesInDay.ounces;
    }
  }
 
