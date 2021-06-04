@@ -8,17 +8,24 @@ import Hydration from '../src/Hydration';
 import User from '../src/User';
 
 describe.only('User', function() {
-  let user, user2, sleep, activity, hydration, hydration1;
+  let user, user2, sleep1, sleep2, activity1, activity2, hydration1, hydration2, sleepArray, activityArray, hydrationArray;
   beforeEach(() => {
 
-    sleep = new Sleep({
+    sleep1 = new Sleep({
       "userID": 2,
       "date": "2019/06/25",
-      "hoursSlept": 7.3,
-      "sleepQuality": 3.2
+      "hoursSlept": 8,
+      "sleepQuality": 3
     })
 
-    activity = new Activity({
+    sleep2 = new Sleep({
+      "userID": 2,
+      "date": "2019/06/26",
+      "hoursSlept": 7,
+      "sleepQuality": 3
+    })
+
+    activity1 = new Activity({
       "userID": 2,
       "date": "2019/06/20",
       "numSteps": 2856,
@@ -26,17 +33,33 @@ describe.only('User', function() {
       "flightsOfStairs": 22
     })
 
-    hydration = new Hydration({
+    activity2 = new Activity({
+      "userID": 2,
+      "date": "2019/06/21",
+      "numSteps": 4400,
+      "minutesActive": 280,
+      "flightsOfStairs": 22
+    })
+
+    hydration1 = new Hydration({
       "userID": 1,
       "date": "2019/06/15",
       "numOunces": 37
     })
 
-    hydration1 = new Hydration({
+    hydration2 = new Hydration({
       "userID": 1,
       "date": "2019/06/16",
       "numOunces": 69
     })
+
+    sleepArray = [];
+    hydrationArray = [];
+    activityArray = [];
+
+    sleepArray.push(sleep1, sleep2)
+    hydrationArray.push(hydration1, hydration2)
+    activityArray.push(activity1, activity2)
 
     user = new User({
       'id': 1,
@@ -50,7 +73,7 @@ describe.only('User', function() {
         4,
         8
       ]
-    }, sleep, hydration, activity)
+    }, sleepArray, hydrationArray, activityArray)
 
     user2 = new User({
       "id": 2,
@@ -65,7 +88,7 @@ describe.only('User', function() {
         24,
         19
       ]
-    }, sleep, hydration, activity);
+    }, sleepArray, hydrationArray, activityArray);
   });
 
   it('should be a function', function() {
@@ -145,6 +168,15 @@ describe.only('User', function() {
   //     expect(user.sleepQualityAverage).to.equal('4.7');
   //   });
   // })
+  it('should calculate the average hours slept per day' , function () {
+    expect(user.getAverageSleepPerDay()).to.equal(7.5)
+    //
+    // let totalHours = sleep1.getHoursSleptOverWeek(sleepArr)
+    //
+    // expect(totalHours).to.equal(10.2)
+  });
+
+
   it.skip('calculateAverageHoursThisWeek should calculate average sleep hours for week before given date', function() {
     user.sleepHoursRecord = [{
       date: "2019/09/22",
@@ -182,43 +214,9 @@ describe.only('User', function() {
     }];
     expect(user.calculateAverageHoursThisWeek('2019/09/21')).to.equal('7.9');
   });
-  it.skip('calculateAverageQualityThisWeek should calculate average quality of sleep for week before a given date', function() {
-    user.sleepQualityRecord = [{
-      date: "2019/09/22",
-      quality: 9.6
-    }, {
-      date: "2019/09/21",
-      quality: 8.2
-    }, {
-      date: "2019/09/20",
-      quality: 9.9
-    }, {
-      date: "2019/09/19",
-      quality: 4.2
-    }, {
-      date: "2019/09/18",
-      quality: 9.5
-    }, {
-      date: "2019/09/17",
-      quality: 7.8
-    }, {
-      date: "2019/09/16",
-      quality: 10.2
-    }, {
-      date: "2019/09/15",
-      quality: 5.7
-    }, {
-      date: "2019/09/14",
-      quality: 8.8
-    }, {
-      date: "2019/09/13",
-      quality: 4.6
-    }, {
-      date: "2019/09/12",
-      quality: 5.3
-    }];
-    expect(user.calculateAverageQualityThisWeek('2019/09/22')).to.equal('8.5')
-  });
+  // it.only('calculateAverageQualityThisWeek should calculate average quality of sleep for week before a given date', function() {
+  //   expect(user.calculateAverageQualityThisWeek('2019/06/25')).to.equal(3)
+  // });
   it.skip('should have a method that return the highest climbing record', function() {
     user.activityRecord = [{
       flightsOfStairs: 10
@@ -604,6 +602,10 @@ describe.only('User', function() {
     user.hydration.push(hydration, hydration1)
     expect(user.hydration.length).to.deep.equal(2)
     expect(user.findTotalWaterConsumption()).to.equal(53);
+  });
+
+  it('calculateAverageQualityThisWeek should calculate average quality of sleep for week before a given date', function() {
+    expect(user.calculateAverageQualityThisWeek('2019/06/25')).to.equal(3)
   });
 
   it('should have method that returns how many fluid ounces they consumed for a specific day (identified by a date)', function() {
