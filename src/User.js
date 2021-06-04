@@ -12,9 +12,9 @@ dayjs.extend(weekOfYear)
      this.strideLength = user.strideLength;
      this.dailyStepGoal = user.dailyStepGoal;
      this.friends = user.friends;
-     this.sleep = sleep;
-     this.hydration = [];
-     this.activity = activity;
+     this.sleep = sleep || [];
+     this.hydration = hydration || [];
+     this.activity = activity || [];
      // this.totalStepsThisWeek = 0;
      // this.ouncesAverage = 0;
      // this.ouncesRecord = [];
@@ -91,15 +91,6 @@ dayjs.extend(weekOfYear)
    //     return sum;
    //   }, 0) / 7).toFixed(1);
    // }
-   // calculateAverageQualityThisWeek(todayDate) {
-   //   return (this.sleepQualityRecord.reduce((sum, sleepAct) => {
-   //     let index = this.sleepQualityRecord.indexOf(this.sleepQualityRecord.find(sleep => sleep.date === todayDate));
-   //     if (index <= this.sleepQualityRecord.indexOf(sleepAct) && this.sleepQualityRecord.indexOf(sleepAct) <= (index + 6)) {
-   //       sum += sleepAct.quality;
-   //     }
-   //     return sum;
-   //   }, 0) / 7).toFixed(1);
-   // }
    // updateActivities(activity) {
    //   this.activityRecord.unshift(activity);
    //   if (activity.numSteps >= this.dailyStepGoal) {
@@ -137,6 +128,15 @@ dayjs.extend(weekOfYear)
    //     return sum;
    //   }, 0) / 7).toFixed(0);
    // }
+   // calculateAverageQualityThisWeek(todayDate) {
+     //   return (this.sleepQualityRecord.reduce((sum, sleepAct) => {
+       //     let index = this.sleepQualityRecord.indexOf(this.sleepQualityRecord.find(sleep => sleep.date === todayDate));
+       //     if (index <= this.sleepQualityRecord.indexOf(sleepAct) && this.sleepQualityRecord.indexOf(sleepAct) <= (index + 6)) {
+         //       sum += sleepAct.quality;
+         //     }
+         //     return sum;
+         //   }, 0) / 7).toFixed(1);
+         // }
    // calculateAverageFlightsThisWeek(todayDate) {
    //   return (this.activityRecord.reduce((sum, activity) => {
    //     let index = this.activityRecord.indexOf(this.activityRecord.find(activity => activity.date === todayDate));
@@ -236,6 +236,35 @@ dayjs.extend(weekOfYear)
      //
      // console.log('SUM', sum, 'AVERAGE', sum/7)
    }
+
+   getAverageHoursSleepAllDays(){
+     let total = this.sleep.reduce((total, currentVal) => {
+       total += currentVal.hoursSlept
+       return total
+     }, 0)
+     console.log('total>>>', total, 'AVG>>>', total/this.sleep.length)
+     return total / this.sleep.length
+   }
+
+
+   calculateAverageQualityThisWeek(inputDate) {
+     let inputToWeek = dayjs(inputDate, "YYYY-MM-DD").week()
+     let filteredDays = this.sleep.filter(item => {
+       let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
+       if (convertedToWeek === inputToWeek) {
+         return item
+       }
+     })
+     console.log(filteredDays)
+     let total = filteredDays.reduce((total, currentVal) => {
+       total += currentVal.sleepQuality
+       return total
+     }, 0)
+     return total / filteredDays.length
+   }
+
  }
+
+
 
  export default User;
