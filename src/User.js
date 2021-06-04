@@ -267,6 +267,16 @@ dayjs.extend(weekOfYear)
 
      return averageMinutesOverWeek / filteredDays.length
    }
+
+   userGoalReached(date) {
+     let activityOnDay = this.activity.find(activity => activity.date === date)
+     if (activityOnDay.steps >= this.dailyStepGoal) {
+       return true
+     }
+     else {
+       return  `You're so close to your goal of ${this.dailyStepGoal} steps!`
+     }
+   }
  }
 
 
