@@ -100,6 +100,11 @@ describe('UserRepository', function() {
 
     expect(userRepository.getAverageStairsClimbedOnDay('2019/06/21')).to.equal(27)
   })
+  it.only('should return average stairs climbed on that day', function() {
+
+    expect(userRepository.getAverageStepsTakenOnDay('2019/06/21')).to.equal(4128)
+  })
+
 });
 // userData = [user, user2]
 // userRepository.users.push(user1, user2, user3);
@@ -217,4 +222,10 @@ describe('UserRepository', function() {
 //   user1.activityRecord = [{date: "2019/09/17", minutesActive: 100}, {date: "2019/09/17", minutesActive: 20}];
 //   user2.activityRecord = [{date: "2019/09/16", minutesActive: 78}, {date: "2019/09/17", minutesActive: 12}];
 //   expect(userRepository.calculateAverageMinutesActive("2019/09/17")).to.equal(44);
+
+//
+// it.only('should return average stairs climbed on that day', function() {
+//
+//   expect(userRepository.getAverageStepsTakenOnDay('2019/06/21')).to.equal(13656)
+// })
 // })
