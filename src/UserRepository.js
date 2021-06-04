@@ -118,6 +118,18 @@ class UserRepository {
     }, 0) / averageStepsWalked.length
   }
 
+  getAverageMinutesActiveOnDay(date) {
+    let averageStepsWalked = []
+    this.users.forEach(user => {
+      let stepsWalked = user.activity.filter(activity => activity.date === date).map((activity) => activity.minutesActive)
+      stepsWalked.forEach(value => averageStepsWalked.push(value))
+    })
+    return averageStepsWalked.reduce((total, currentVal) => {
+      total += currentVal
+      return total
+    }, 0) / averageStepsWalked.length
+  }
+
 }
 
 

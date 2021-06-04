@@ -100,9 +100,13 @@ describe('UserRepository', function() {
 
     expect(userRepository.getAverageStairsClimbedOnDay('2019/06/21')).to.equal(27)
   })
-  it.only('should return average stairs climbed on that day', function() {
+  it.only('should return average steps taken on that day', function() {
 
     expect(userRepository.getAverageStepsTakenOnDay('2019/06/21')).to.equal(4128)
+  })
+  it.only('should return average minutes active on that day', function() {
+
+    expect(userRepository.getAverageMinutesActiveOnDay('2019/06/21')).to.equal(280)
   })
 
 });
