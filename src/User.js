@@ -263,6 +263,19 @@ dayjs.extend(weekOfYear)
      return total / filteredDays.length
    }
 
+   getHoursSleptByDay(date) {
+    let foundData = this.sleep.find(data => {
+      return data.date === date;
+    });
+    return foundData.hoursSlept;
+   };
+
+   getSleepQualityBydate(date) {
+    let foundData = this.sleep.find(data => {
+      return data.date === date;
+    });
+    return foundData.sleepQuality;
+   };
  }
 
 
