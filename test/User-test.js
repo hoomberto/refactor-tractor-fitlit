@@ -696,4 +696,14 @@ describe.only('User', function() {
 
     expect(user.getSleepQualityBydate('2019/06/26')).to.equal(3);
   });
+
+  it('should calculate average hours sleep of all days', () => {
+
+    expect(user.getAverageHoursSleepAllDays()).to.equal(7.5)
+  })
+
+  it('should calculate average quality of sleep of all days', () => {
+
+    expect(user.getAverageQualitySleepAllDays()).to.equal(3)
+  })
 });
