@@ -7,7 +7,7 @@ import Activity from '../src/Activity';
 import Hydration from '../src/Hydration';
 import User from '../src/User';
 
-describe.only('User', function() {
+describe('User', function() {
   let user, user2, sleep1, sleep2, activity1, activity2, hydration1, hydration2, sleepArray, activityArray, hydrationArray;
   beforeEach(() => {
 

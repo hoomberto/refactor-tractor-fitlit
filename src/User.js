@@ -289,6 +289,11 @@ dayjs.extend(weekOfYear)
       this.activity.sort((a ,b) => a.flightsOfStairs > b.flightsOfStairs ? -1 : 1);
       return highestStairCount[0].flightsOfStairs;
   };
+
+  getStairsClimbedOnDate(date) {
+    let stairsClimbDate = this.activity.find(activity => activity.date === date)
+    return stairsClimbDate.flightsOfStairs
+  }
  };
 
 

@@ -1,7 +1,9 @@
-import sleepData from './data/sleep';
+// import sleepData from './data/sleep';
+// import User from '../src/User';
+ 
 class UserRepository {
-  constructor() {
-    this.users = [];
+  constructor(userData) {
+    this.users = userData
   }
   getUser(id) {
     return this.users.find(user => user.id === id)
@@ -90,6 +92,33 @@ class UserRepository {
     }).sort((a, b) => {
       return a.hoursSlept - b.hoursSlept;
     })[0].userID;
+  };
+
+  getAverageStairsClimbedOnDay(date) {
+
+    // console.log('this.users[0].activity[0].flightsOfStairs: ', this.users[0].activity[0].flightsOfStairs)
+    // let averagedClimbedStairs = []
+    // this.users.forEach(user => {
+    //   let stairsClimbed = user.activity.filter(activity => activity.date === date)
+    //   .map((activity) => activity.flightsOfStairs)
+    //   stairsClimbed.forEach(step => averagedClimbedStairs.push(step))
+    //   console.log('>>>>>', averagedClimbedStairs[0] / averagedClimbedStairs.length);
+  // })
+    const findUser = 
+      this.users.filter(user => {
+        user.activity.reduce((userArr, cumVal) => {
+          console.log('cumVal.date: ', cumVal.date)
+          if(cumVal.date === date){
+            userArr += cumVal.flightsOfStairs
+            console.log('userAArr;<<<<<', userArr);
+          }
+          return userArr
+        }, 0)
+      })
+      console.log('look here>>>> ', findUser)
+      // console.log('finderUser: ', findUser);
+
+    //end answer of 27<<<<<
   }
 }
 
