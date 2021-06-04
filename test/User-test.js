@@ -717,15 +717,20 @@ describe.only('User', function() {
     expect(user.getMinutesActiveOnDay("2019/06/20")).to.equal(280)
   })
 
-  it.only('should get the miles a user has walked on a specific day', () => {
+  it('should get the miles a user has walked on a specific day', () => {
 
     expect(user.averageMinutesActiveByWeek("2019/06/20")).to.equal(280)
   })
 
-  it.only('should get the miles a user has walked on a specific day', () => {
+  it('should get the miles a user has walked on a specific day', () => {
 
-    expect(user2.userGoalReached("2019/06/20")).to.equal(`You're so close to your goal of 5000 steps!`);
+    expect(user2.userGoalReached("2019/06/20")).to.be.false;
     expect(user2.userGoalReached("2019/06/21")).to.be.true;
+  })
+
+  it.only('should get the all the the days of user where they reached thier daily step goals', () => {
+
+    expect(user2.allDaysGoalReached("2019/06/20").length).to.equal(1)
   })
 
 });

@@ -274,9 +274,17 @@ dayjs.extend(weekOfYear)
        return true
      }
      else {
-       return  `You're so close to your goal of ${this.dailyStepGoal} steps!`
+       return  false
      }
    }
+
+   allDaysGoalReached() {
+    let daysGoalReached = 
+      this.activity.filter(act => {
+        return this.userGoalReached(act.date)
+      })
+     return daysGoalReached;
+  }
  }
 
 
