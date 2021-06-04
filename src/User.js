@@ -274,10 +274,27 @@ dayjs.extend(weekOfYear)
        return true
      }
      else {
-       return  `You're so close to your goal of ${this.dailyStepGoal} steps!`
+       return  false
      }
    }
- }
+
+   allDaysGoalReached() {
+    let daysGoalReached = 
+      this.activity.filter(act => this.userGoalReached(act.date));
+     return daysGoalReached;
+  };
+
+  getAllTimeHigh() {
+    let highestStairCount = 
+      this.activity.sort((a ,b) => a.flightsOfStairs > b.flightsOfStairs ? -1 : 1);
+      return highestStairCount[0].flightsOfStairs;
+  };
+
+  getStairsClimbedOnDate(date) {
+    let stairsClimbDate = this.activity.find(activity => activity.date === date)
+    return stairsClimbDate.flightsOfStairs
+  }
+ };
 
 
  export default User;

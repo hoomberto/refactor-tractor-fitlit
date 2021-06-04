@@ -7,7 +7,7 @@ import Activity from '../src/Activity';
 import Hydration from '../src/Hydration';
 import User from '../src/User';
 
-describe.only('User', function() {
+describe('User', function() {
   let user, user2, sleep1, sleep2, activity1, activity2, hydration1, hydration2, sleepArray, activityArray, hydrationArray;
   beforeEach(() => {
 
@@ -38,7 +38,7 @@ describe.only('User', function() {
       "date": "2019/06/21",
       "numSteps": 5400,
       "minutesActive": 280,
-      "flightsOfStairs": 22
+      "flightsOfStairs": 32
     })
 
     hydration1 = new Hydration({
@@ -717,15 +717,23 @@ describe.only('User', function() {
     expect(user.getMinutesActiveOnDay("2019/06/20")).to.equal(280)
   })
 
-  it.only('should get the miles a user has walked on a specific day', () => {
+  it('should get the miles a user has walked on a specific day', () => {
 
     expect(user.averageMinutesActiveByWeek("2019/06/20")).to.equal(280)
   })
 
-  it.only('should get the miles a user has walked on a specific day', () => {
+  it('should get the miles a user has walked on a specific day', () => {
 
-    expect(user2.userGoalReached("2019/06/20")).to.equal(`You're so close to your goal of 5000 steps!`);
+    expect(user2.userGoalReached("2019/06/20")).to.be.false;
     expect(user2.userGoalReached("2019/06/21")).to.be.true;
   })
 
+  it('should get the all the the days of user where they reached thier daily step goals', () => {
+
+    expect(user2.allDaysGoalReached("2019/06/20").length).to.equal(1)
+  })
+  it('should get the highest stair count of user', () => {
+
+    expect(user2.getAllTimeHigh()).to.equal(32)
+  })
 });
