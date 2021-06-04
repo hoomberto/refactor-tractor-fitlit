@@ -688,7 +688,7 @@ describe.only('User', function() {
   })
 
   it('should return hours slept by date', () => {
-    
+
     expect(user.getHoursSleptByDay('2019/06/26')).to.equal(7);
   });
 
@@ -705,5 +705,10 @@ describe.only('User', function() {
   it('should calculate average quality of sleep of all days', () => {
 
     expect(user.getAverageQualitySleepAllDays()).to.equal(3)
+  })
+
+  it.only('should get the miles a user has walked on a specific day', () => {
+
+    expect(user.getMilesWalkedOnDay("2019/06/20")).to.equal(2.3)
   })
 });
