@@ -686,4 +686,9 @@ describe.only('User', function() {
 
     expect(user.consumedWaterOverWeek("2019/06/16").length).to.equal(7);
   })
+
+  it('should return hours slept by day', () => {
+    
+    expect(user.getHoursSleptByDay('2019/06/26')).to.equal(7);
+  });
 });

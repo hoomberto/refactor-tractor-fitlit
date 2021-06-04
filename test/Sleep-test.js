@@ -99,7 +99,7 @@ describe('Sleep', function() {
     expect(totalQualityHours).to.equal(6);
   })
   
-  it.only('should update user\'s slept hours average', function() {
+  it('should update user\'s slept hours average', function() {
     let sleepArr = [sleep1, sleep3]
     
     let averageQualityHours = sleep1.getAverageSleepQuality(sleepArr)
