@@ -38,7 +38,7 @@ describe.only('User', function() {
       "date": "2019/06/21",
       "numSteps": 5400,
       "minutesActive": 280,
-      "flightsOfStairs": 22
+      "flightsOfStairs": 32
     })
 
     hydration1 = new Hydration({
@@ -728,9 +728,12 @@ describe.only('User', function() {
     expect(user2.userGoalReached("2019/06/21")).to.be.true;
   })
 
-  it.only('should get the all the the days of user where they reached thier daily step goals', () => {
+  it('should get the all the the days of user where they reached thier daily step goals', () => {
 
     expect(user2.allDaysGoalReached("2019/06/20").length).to.equal(1)
   })
+  it('should get the highest stair count of user', () => {
 
+    expect(user2.getAllTimeHigh()).to.equal(32)
+  })
 });

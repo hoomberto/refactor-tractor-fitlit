@@ -280,12 +280,16 @@ dayjs.extend(weekOfYear)
 
    allDaysGoalReached() {
     let daysGoalReached = 
-      this.activity.filter(act => {
-        return this.userGoalReached(act.date)
-      })
+      this.activity.filter(act => this.userGoalReached(act.date));
      return daysGoalReached;
-  }
- }
+  };
+
+  getAllTimeHigh() {
+    let highestStairCount = 
+      this.activity.sort((a ,b) => a.flightsOfStairs > b.flightsOfStairs ? -1 : 1);
+      return highestStairCount[0].flightsOfStairs;
+  };
+ };
 
 
  export default User;
