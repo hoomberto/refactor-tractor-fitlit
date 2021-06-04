@@ -36,7 +36,7 @@ describe.only('User', function() {
     activity2 = new Activity({
       "userID": 2,
       "date": "2019/06/21",
-      "numSteps": 4400,
+      "numSteps": 5400,
       "minutesActive": 280,
       "flightsOfStairs": 22
     })
@@ -688,7 +688,7 @@ describe.only('User', function() {
   })
 
   it('should return hours slept by date', () => {
-    
+
     expect(user.getHoursSleptByDay('2019/06/26')).to.equal(7);
   });
 
@@ -706,4 +706,26 @@ describe.only('User', function() {
 
     expect(user.getAverageQualitySleepAllDays()).to.equal(3)
   })
+
+  it('should get the miles a user has walked on a specific day', () => {
+
+    expect(user.getMilesWalkedOnDay("2019/06/20")).to.equal(2.3)
+  })
+
+  it('should get the miles a user has walked on a specific day', () => {
+
+    expect(user.getMinutesActiveOnDay("2019/06/20")).to.equal(280)
+  })
+
+  it.only('should get the miles a user has walked on a specific day', () => {
+
+    expect(user.averageMinutesActiveByWeek("2019/06/20")).to.equal(280)
+  })
+
+  it.only('should get the miles a user has walked on a specific day', () => {
+
+    expect(user2.userGoalReached("2019/06/20")).to.equal(`You're so close to your goal of 5000 steps!`);
+    expect(user2.userGoalReached("2019/06/21")).to.be.true;
+  })
+
 });

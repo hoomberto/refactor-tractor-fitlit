@@ -5,16 +5,15 @@ dayjs.extend(weekOfYear)
  class User {
    constructor(user, sleep, hydration, activity) {
      this.id = user.id;
-     // console.log('user id', this.id)
      this.name = user.name;
      this.address = user.address;
      this.email = user.email;
      this.strideLength = user.strideLength;
      this.dailyStepGoal = user.dailyStepGoal;
      this.friends = user.friends;
-     this.sleep = sleep || [];
-     this.hydration = hydration || [];
-     this.activity = activity || [];
+     this.sleep = sleep;
+     this.hydration = [];
+     this.activity = activity;
      // this.totalStepsThisWeek = 0;
      // this.ouncesAverage = 0;
      // this.ouncesRecord = [];
@@ -91,6 +90,15 @@ dayjs.extend(weekOfYear)
    //     return sum;
    //   }, 0) / 7).toFixed(1);
    // }
+   // calculateAverageQualityThisWeek(todayDate) {
+   //   return (this.sleepQualityRecord.reduce((sum, sleepAct) => {
+   //     let index = this.sleepQualityRecord.indexOf(this.sleepQualityRecord.find(sleep => sleep.date === todayDate));
+   //     if (index <= this.sleepQualityRecord.indexOf(sleepAct) && this.sleepQualityRecord.indexOf(sleepAct) <= (index + 6)) {
+   //       sum += sleepAct.quality;
+   //     }
+   //     return sum;
+   //   }, 0) / 7).toFixed(1);
+   // }
    // updateActivities(activity) {
    //   this.activityRecord.unshift(activity);
    //   if (activity.numSteps >= this.dailyStepGoal) {
@@ -128,15 +136,6 @@ dayjs.extend(weekOfYear)
    //     return sum;
    //   }, 0) / 7).toFixed(0);
    // }
-   // calculateAverageQualityThisWeek(todayDate) {
-     //   return (this.sleepQualityRecord.reduce((sum, sleepAct) => {
-       //     let index = this.sleepQualityRecord.indexOf(this.sleepQualityRecord.find(sleep => sleep.date === todayDate));
-       //     if (index <= this.sleepQualityRecord.indexOf(sleepAct) && this.sleepQualityRecord.indexOf(sleepAct) <= (index + 6)) {
-         //       sum += sleepAct.quality;
-         //     }
-         //     return sum;
-         //   }, 0) / 7).toFixed(1);
-         // }
    // calculateAverageFlightsThisWeek(todayDate) {
    //   return (this.activityRecord.reduce((sum, activity) => {
    //     let index = this.activityRecord.indexOf(this.activityRecord.find(activity => activity.date === todayDate));
@@ -237,54 +236,48 @@ dayjs.extend(weekOfYear)
      // console.log('SUM', sum, 'AVERAGE', sum/7)
    }
 
-   getAverageHoursSleepAllDays(){
-     let total = this.sleep.reduce((total, currentVal) => {
-       total += currentVal.hoursSlept
-       return total
-     }, 0)
-     return total / this.sleep.length
+
+
+   // Return How many minutes active a user averaged for a given week
+   // Possible: .filter() days between a week then .reduce() and average a user’s minutesActive
+
+   getMilesWalkedOnDay(date) {
+     let activityOnDay = this.activity.find(activity => activity.date === date)
+     return parseFloat(((activityOnDay.steps * this.strideLength) / 5280).toFixed(1))
    }
 
-   getAverageQualitySleepAllDays(){
-     let total = this.sleep.reduce((total, currentVal) => {
-       total += currentVal.sleepQuality
-       return total
-     }, 0)
-     return total / this.sleep.length
+   getMinutesActiveOnDay(date) {
+     let activityOnDay = this.activity.find(activity => activity.date === date)
+     return activityOnDay.minutesActive;
    }
 
 
-   calculateAverageQualityThisWeek(inputDate) {
+   averageMinutesActiveByWeek(inputDate) {
      let inputToWeek = dayjs(inputDate, "YYYY-MM-DD").week()
-     let filteredDays = this.sleep.filter(item => {
+     let filteredDays = this.activity.filter(item => {
        let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
        if (convertedToWeek === inputToWeek) {
          return item
        }
      })
-     console.log(filteredDays)
-     let total = filteredDays.reduce((total, currentVal) => {
-       total += currentVal.sleepQuality
+     let averageMinutesOverWeek = filteredDays.reduce((total, currentVal) => {
+       total += currentVal.minutesActive
        return total
      }, 0)
-     return total / filteredDays.length
+
+     return averageMinutesOverWeek / filteredDays.length
    }
 
-   getHoursSleptByDay(date) {
-    let foundData = this.sleep.find(data => {
-      return data.date === date;
-    });
-    return foundData.hoursSlept;
-   };
-
-   getSleepQualityBydate(date) {
-    let foundData = this.sleep.find(data => {
-      return data.date === date;
-    });
-    return foundData.sleepQuality;
-   };
+   userGoalReached(date) {
+     let activityOnDay = this.activity.find(activity => activity.date === date)
+     if (activityOnDay.steps >= this.dailyStepGoal) {
+       return true
+     }
+     else {
+       return  `You're so close to your goal of ${this.dailyStepGoal} steps!`
+     }
+   }
  }
-
 
 
  export default User;
