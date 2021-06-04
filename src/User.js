@@ -245,14 +245,13 @@ dayjs.extend(weekOfYear)
      return total / this.sleep.length
    }
 
-  //  getAverageQualitySleepAllDays(){
-  //    let total = this.sleep.reduce((total, currentVal) => {
-  //      total += currentVal.sleepQuality
-  //      return total
-  //    }, 0)
-  //    console.log('total>>>', total, 'AVG>>>', total/this.sleep.length)
-  //    return total / this.sleep.length
-  //  }
+   getAverageQualitySleepAllDays(){
+     let total = this.sleep.reduce((total, currentVal) => {
+       total += currentVal.sleepQuality
+       return total
+     }, 0)
+     return total / this.sleep.length
+   }
 
 
    calculateAverageQualityThisWeek(inputDate) {
