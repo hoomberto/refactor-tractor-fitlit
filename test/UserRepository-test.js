@@ -57,10 +57,10 @@ describe('UserRepository', function() {
     expect(userRepository.users).to.deep.equal([user1, user2, user3]);
     expect(userRepository.users.length).to.equal(3);
   });
-  it('getUser should return user object when given a user id', function() {
+  it.only('getUser should return user object when given a user id', function() {
     expect(userRepository.getUser(2)).to.equal(user2);
   })
-  it('calculateAverageStepGoal should return average step goal for all users', function() {
+  it.only('calculateAverageStepGoal should return average step goal for all users', function() {
     expect(userRepository.calculateAverageStepGoal()).to.equal(10000);
   })
   it('calculateAverageSleepQuality should return average sleep quality for all users', function() {
