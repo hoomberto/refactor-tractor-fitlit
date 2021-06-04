@@ -32,6 +32,18 @@ class Sleep { // instance for the user's sleep each day
     })
     return totalQualityHours
   }
+
+  getAverageSleepQuality(sleep) {
+    let totalQualityHours = 0
+    let averageHours = 0
+
+    sleep.map((sleepQual) => {
+      let allHours = totalQualityHours += sleepQual.sleepQuality
+      averageHours = allHours / sleep.length
+      return averageHours
+    })
+    return averageHours
+  }
 }
 
 export default Sleep;
