@@ -236,24 +236,17 @@ dayjs.extend(weekOfYear)
      // console.log('SUM', sum, 'AVERAGE', sum/7)
    }
 
-//    Return the miles a user has walked based on their number of steps for a specific day
-// Possible: .find() a user’s milesWalked by a given date
 
    getMilesWalkedOnDay(date) {
      let activityOnDay = this.activity.find(activity => activity.date === date)
      return parseFloat(((activityOnDay.steps * this.strideLength) / 5280).toFixed(1))
    }
+
+   getMinutesActiveOnDay(date) {
+     let activityOnDay = this.activity.find(activity => activity.date === date)
+     return activityOnDay.minutesActive;
+   }
  }
 
-
-
- // calculateMiles(userRepository) {
- //   let walkingUser = userRepository.users.find(user => {
- //     return user.id === this.userId;
- //   });
- //   return Math.round(this.steps * walkingUser.strideLength / 5280).toFixed(1);
- // }
- //
- //
 
  export default User;
