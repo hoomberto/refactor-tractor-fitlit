@@ -237,6 +237,10 @@ dayjs.extend(weekOfYear)
    }
 
 
+
+   // Return How many minutes active a user averaged for a given week
+   // Possible: .filter() days between a week then .reduce() and average a user’s minutesActive
+
    getMilesWalkedOnDay(date) {
      let activityOnDay = this.activity.find(activity => activity.date === date)
      return parseFloat(((activityOnDay.steps * this.strideLength) / 5280).toFixed(1))
@@ -245,6 +249,23 @@ dayjs.extend(weekOfYear)
    getMinutesActiveOnDay(date) {
      let activityOnDay = this.activity.find(activity => activity.date === date)
      return activityOnDay.minutesActive;
+   }
+
+
+   averageMinutesActiveByWeek(inputDate) {
+     let inputToWeek = dayjs(inputDate, "YYYY-MM-DD").week()
+     let filteredDays = this.activity.filter(item => {
+       let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
+       if (convertedToWeek === inputToWeek) {
+         return item
+       }
+     })
+     let averageMinutesOverWeek = filteredDays.reduce((total, currentVal) => {
+       total += currentVal.minutesActive
+       return total
+     }, 0)
+
+     return averageMinutesOverWeek / filteredDays.length
    }
  }
 

@@ -707,13 +707,19 @@ describe.only('User', function() {
     expect(user.getAverageQualitySleepAllDays()).to.equal(3)
   })
 
-  it.only('should get the miles a user has walked on a specific day', () => {
+  it('should get the miles a user has walked on a specific day', () => {
 
     expect(user.getMilesWalkedOnDay("2019/06/20")).to.equal(2.3)
   })
-  it.only('should get the miles a user has walked on a specific day', () => {
+
+  it('should get the miles a user has walked on a specific day', () => {
 
     expect(user.getMinutesActiveOnDay("2019/06/20")).to.equal(280)
+  })
+
+  it.only('should get the miles a user has walked on a specific day', () => {
+
+    expect(user.averageMinutesActiveByWeek("2019/06/20")).to.equal(280)
   })
 
 });
