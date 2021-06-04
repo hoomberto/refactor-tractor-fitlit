@@ -1,6 +1,6 @@
 // import sleepData from './data/sleep';
 // import User from '../src/User';
- 
+
 class UserRepository {
   constructor(userData) {
     this.users = userData
@@ -95,30 +95,15 @@ class UserRepository {
   };
 
   getAverageStairsClimbedOnDay(date) {
-
-    // console.log('this.users[0].activity[0].flightsOfStairs: ', this.users[0].activity[0].flightsOfStairs)
-    // let averagedClimbedStairs = []
-    // this.users.forEach(user => {
-    //   let stairsClimbed = user.activity.filter(activity => activity.date === date)
-    //   .map((activity) => activity.flightsOfStairs)
-    //   stairsClimbed.forEach(step => averagedClimbedStairs.push(step))
-    //   console.log('>>>>>', averagedClimbedStairs[0] / averagedClimbedStairs.length);
-  // })
-    const findUser = 
-      this.users.filter(user => {
-        user.activity.reduce((userArr, cumVal) => {
-          console.log('cumVal.date: ', cumVal.date)
-          if(cumVal.date === date){
-            userArr += cumVal.flightsOfStairs
-            console.log('userAArr;<<<<<', userArr);
-          }
-          return userArr
-        }, 0)
-      })
-      console.log('look here>>>> ', findUser)
-      // console.log('finderUser: ', findUser);
-
-    //end answer of 27<<<<<
+    let averagedClimbedStairs = []
+    this.users.forEach(user => {
+      let stairsClimbed = user.activity.filter(activity => activity.date === date).map((activity) => activity.flightsOfStairs)
+      stairsClimbed.forEach(value => averagedClimbedStairs.push(value))
+    })
+    return averagedClimbedStairs.reduce((total, currentVal) => {
+      total += currentVal
+      return total
+    }, 0) / averagedClimbedStairs.length
   }
 }
 
@@ -154,8 +139,30 @@ class UserRepository {
 // )
 
 
+// let averagedClimbedStairs = []
+// this.users.forEach(user => {
+//   let stairsClimbed = user.activity.filter(activity => activity.date === date).map((activity) => activity.flightsOfStairs)
+//   stairsClimbed.forEach(value => averagedClimbedStairs.push(value))
+// })
+// let sum = averagedClimbedStairs.reduce((total, currentVal) => {
+//   total += currentVal
+//
+//   return total
+// }, 0)
+// return sum / averagedClimbedStairs.length
 
-
+// console.log('this.users[0].activity[0].flightsOfStairs: ', this.users[0].activity[0].flightsOfStairs)
+// let averagedClimbedStairs = []
+// let stairsClimbed;
+// this.users.forEach(user => {
+//   stairsClimbed = user.activity.reduce((total, currentVal) => {
+//     if (currentVal.date === date) {
+//       averagedClimbedStairs.push(currentVal.flightsOfStairs)
+//       console.log('here data', averagedClimbedStairs)
+//       total += currentVal.flightsOfStairs
+//     }
+//     return total
+//   }, 0)
 
 
 
