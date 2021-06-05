@@ -142,7 +142,7 @@ class User {
     let stairsClimbDate = this.activity.find(activity => activity.date === date)
     return stairsClimbDate.flightsOfStairs
   }
-};
+// };
 
   allDaysGoalReached() {
     let daysGoalReached =
@@ -164,5 +164,7 @@ class User {
       this.activity.sort((a, b) => a.flightsOfStairs > b.flightsOfStairs ? -1 : 1);
     return highestStairCount[0].flightsOfStairs;
   };
+
+}
 
 export default User;
