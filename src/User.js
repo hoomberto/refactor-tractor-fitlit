@@ -228,12 +228,6 @@ class User {
     })
     let ouncesOverWeek = filteredDays.map(day => day.numOunces)
     return ouncesOverWeek;
-    // let sum = filteredDays.reduce((acc, currentVal) => {
-    //   acc += currentVal.numOunces
-    //   return acc
-    // }, 0)
-    //
-    // console.log('SUM', sum, 'AVERAGE', sum/7)
   }
 
   hoursSleptAverageForAllDays() {
@@ -283,6 +277,22 @@ class User {
     })
     let sleepQuality = filteredDays.map(day => day.sleepQuality)
     return sleepQuality;
+  }
+
+  calculateAverageQualityByWeek(date) {
+    let inputToWeek = dayjs(date, "YYYY-MM-DD").week()
+    let filteredDays = this.sleep.filter(item => {
+      let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
+      if (convertedToWeek === inputToWeek) {
+        return item
+      }
+    })
+    let sleepQuality = filteredDays.map(day => day.sleepQuality)
+    let sum = sleepQuality.reduce((total, currentVal) => {
+      total += currentVal
+      return total
+    }, 0)
+    return sum / sleepQuality.length
   }
 
 

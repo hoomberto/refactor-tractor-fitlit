@@ -769,4 +769,8 @@ describe('User', function() {
     expect(user.getSleepQualityOverWeek("2019/06/25").length).to.equal(2)
   })
 
+  it.only('should return average sleep quality over the week', () => {
+    expect(user.calculateAverageQualityByWeek("2019/06/25")).to.equal(3)
+  })
+
 });
