@@ -744,10 +744,23 @@ describe('User', function() {
 
     expect(user2.getAllTimeHigh()).to.equal(32)
   })
-  it.only('should return sleep hours for all day', () => {
+  it.only('should return sleep average hours for all day', () => {
 
     expect(user.hoursSleptAverageForAllDays()).to.equal(7)
   })
+  it.only('should return sleep quality average for all day', () => {
+
+    expect(user.sleepQualityAverageForAllDays()).to.equal(3)
+  })
+  it.only('should return sleep hours for specific day', () => {
+
+    expect(user.gethoursSleptOnDay("2019/06/25")).to.equal(8)
+  })
+  it.only('should return sleep quality for specific day', () => {
+
+    expect(user.getSleepQualityOnDay("2019/06/25")).to.equal(3)
+  })
+
   it.only('should return hours slept for week', () => {
 
     expect(user2.getHoursSleptOverWeek("2019/06/25").length).to.equal(2)

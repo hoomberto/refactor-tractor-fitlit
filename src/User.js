@@ -243,7 +243,22 @@ class User {
     return Math.round(sleepAvg / this.sleep.length)
   }
 
+  sleepQualityAverageForAllDays() {
+    let sleepAvg = this.sleep.reduce((total, sleepData) => {
+      return total + sleepData.sleepQuality
+    }, 0)
+    return Math.round(sleepAvg / this.sleep.length)
+  }
 
+  gethoursSleptOnDay(date) {
+    let found = this.sleep.find(sleepData => sleepData.date === date)
+    return found.hoursSlept
+  }
+
+  getSleepQualityOnDay(date) {
+    let found = this.sleep.find(sleepData => sleepData.date === date)
+    return found.sleepQuality
+  }
 
 
   getHoursSleptOverWeek(inputDate) {
