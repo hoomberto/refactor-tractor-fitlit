@@ -58,43 +58,42 @@ class UserRepository {
     })
     let sorted = values.sort((a, b) => a.hours > b.hours ? -1 : 1)
     if (sorted.length >= 3 && sorted[0] === sorted[1]) {
-      return sorted.slice(0,3)
-    }
-    else {
+      return sorted.slice(0, 3)
+    } else {
       return sorted[0]
     }
   }
 
 
-    // API RELATED STUFF vvvvvvvv
+  // API RELATED STUFF vvvvvvvv
 
-    // fetchedUserData.forEach(user => {
-    //   fetchedSleepData.forEach((data) => {
-    //     if (user.id === data.id)
-    //   });
-    //
-    // })
+  // fetchedUserData.forEach(user => {
+  //   fetchedSleepData.forEach((data) => {
+  //     if (user.id === data.id)
+  //   });
+  //
+  // })
 
-    // correlatedSleep = fetchedSleepData.filter(data => {
-    //   fetchedUserData.some(user => user.id === data.id}))
-    //
-    // })
-    //
-    // const correlate = (user, fetchedData) => {
-    //   correlated = fetchedData.filter(data => {
-    //     fetchedUserData.some(user => user.id === data.id}))
-    //   })
-    //   return correlated;
-    // }
-    //
-    //
-    //
-    // usersInstantiated = fetchedUserData.map(user => new User(user, correlate(user, sleepData), correlate(user, activityData))
-    // userRepo = new UserRepository(
-    //
-    // )
+  // correlatedSleep = fetchedSleepData.filter(data => {
+  //   fetchedUserData.some(user => user.id === data.id}))
+  //
+  // })
+  //
+  // const correlate = (user, fetchedData) => {
+  //   correlated = fetchedData.filter(data => {
+  //     fetchedUserData.some(user => user.id === data.id}))
+  //   })
+  //   return correlated;
+  // }
+  //
+  //
+  //
+  // usersInstantiated = fetchedUserData.map(user => new User(user, correlate(user, sleepData), correlate(user, activityData))
+  // userRepo = new UserRepository(
+  //
+  // )
 
-    // ALL THE PROVIDED GARBAGE CODE IS HERE vvvvvvvv
+  // ALL THE PROVIDED GARBAGE CODE IS HERE vvvvvvvv
 
   // calculateAverageStepGoal() {
   //   let goals = this.users.map(user => user.dailyStepGoal)

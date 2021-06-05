@@ -1,8 +1,10 @@
-import { expect } from 'chai'
+import {
+  expect
+} from 'chai'
 import Activity from '../src/Activity';
 
-describe('Activity', function() {
-  let activity;
+describe.only('Activity', function() {
+  let activity1, activity2
   beforeEach(() => {
     activity1 = new Activity({
       "userID": 1,
@@ -52,15 +54,5 @@ describe('Activity', function() {
   });
   it('should have a method that calculate miles walked', function() {
     expect(activity1.calculateMiles(userRepository)).to.equal('3.0');
-  });
-  describe('compareStepGoal', function() {
-    it('should return false if goal isn\'t met', function() {
-      activity1.compareStepGoal(userRepository);
-      expect(activity1.reachedStepGoal).to.equal(false);
-    });
-    it('should return true if goal is met', function() {
-      activity2.compareStepGoal(userRepository);
-      expect(activity2.reachedStepGoal).to.equal(true);
-    });
   });
 });

@@ -1,4 +1,6 @@
-import { expect } from 'chai';
+import {
+  expect
+} from 'chai';
 import UserRepository from '../src/UserRepository';
 import Sleep from '../src/Sleep';
 import Activity from '../src/Activity';
@@ -39,7 +41,7 @@ describe('UserRepository', function() {
 
     activity1 = new Activity({
       "userID": 2,
-      "date": "2019/06/20",
+      "date": "2019/06/21",
       "numSteps": 2856,
       "minutesActive": 280,
       "flightsOfStairs": 22
@@ -111,23 +113,26 @@ describe('UserRepository', function() {
   it('should be a function', function() {
     expect(UserRepository).to.be.a('function');
   });
+
   it('should be an instance of user repository', function() {
     expect(userRepository).to.be.an.instanceof(UserRepository);
   });
+
   it('should hold an array of users', function() {
     expect(userRepository.users).to.deep.equal([user1, user2, user3]);
     expect(userRepository.users.length).to.equal(3);
   });
+
   it('getUser should return user object when given a user id', function() {
     expect(userRepository.getUser(2)).to.equal(user2);
-  })
+  });
 
 
-  it.only('should find best sleepers whose average sleep quality for a week is greater than 3', function() {
+  it('should find best sleepers whose average sleep quality for a week is greater than 3', function() {
     expect(userRepo.getBestSleepers("2019/06/26").length).to.equal(2);
-  })
+  });
 
-  it.only('should find the top sleeper for a given date', function() {
+  it('should find the top sleeper for a given date', function() {
     let newSleep = new Sleep({
       "userID": 2,
       "date": "2019/07/26",
@@ -165,6 +170,9 @@ describe('UserRepository', function() {
       name: "Nerdo Baggins",
       hours: 9
     });
+    it('should return average stairs climbr on a given day', () => {
+      expect(userRepo.getAverageStairsClimbedOnDay("2019/06/21")).to.equal(27)
+    })
   })
 
 
