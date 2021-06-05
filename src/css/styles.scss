@@ -86,3 +86,32 @@ main {
 #weeklyactivitydata {
   grid-area: weeklyactivitydata;
 }
+
+@media only screen and (max-width: 550px) {
+
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .widgets-container {
+    margin-top: 16%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "userInfo"
+    "lateststepsmiles"
+    "usergoalvsavg"
+    "waterconsumed"
+    "latestsleepdata"
+    "alltimesleepavg"
+    "activityvsuserbase"
+    "wateroverweek"
+    "latestsleepoverweek"
+    "weeklyactivitydata"
+  }
+
+  .widgets-container * {
+    height: 300px;
+  }
+}
