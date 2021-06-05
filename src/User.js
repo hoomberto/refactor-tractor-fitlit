@@ -38,7 +38,6 @@ class User {
   }
 
   findTotalWaterConsumption() {
-    console.log(this.hydration)
     let hydrationAvg = this.hydration.reduce((total, userHydration) => {
       return total + userHydration.numOunces
     }, 0)

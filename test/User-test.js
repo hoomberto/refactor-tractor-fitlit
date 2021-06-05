@@ -152,8 +152,7 @@ describe('User', function() {
   });
 
   it('should have method that returns how many fluid ounces they consumed for a specific day (identified by a date)', function() {
-    user.hydration.push(hydration, hydration1)
-    console.log(user.hydration)
+    user.hydration.push(hydration1, hydration2)
     expect(user.consumedWaterOnDay("2019/06/15")).to.equal(37)
 
   });
@@ -229,7 +228,7 @@ describe('User', function() {
   });
 
   it('should have a method that returns average fluid oz consumption for all time for a user', function() {
-    user.hydration.push(hydration, hydration1)
+    user.hydration.push(hydration1, hydration2)
     expect(user.hydration.length).to.deep.equal(2)
     expect(user.findTotalWaterConsumption()).to.equal(53);
   });
@@ -244,7 +243,7 @@ describe('User', function() {
     expect(user2.getHoursSleptOverWeek("2019/06/25").length).to.equal(2)
   })
 
-  it.skip('should return sleep average hours for all day', () => {
+  it('should return sleep average hours for all day', () => {
 
     expect(user.hoursSleptAverageForAllDays()).to.equal(7)
   })
