@@ -1,4 +1,4 @@
-class Sleep { // instance for the user's sleep each day
+class Sleep {
   constructor(data) {
     this.userID = data.userID;
     this.date = data.date;
