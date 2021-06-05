@@ -22,9 +22,6 @@ class User {
 
   consumedWaterOnDay(date) {
     const ouncesInDay = this.hydration.find(currentDate => currentDate.date === date)
-    // console.log('currentdate', currentDate)
-
-    console.log(ouncesInDay)
     return ouncesInDay.numOunces;
   }
 

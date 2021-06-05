@@ -3,7 +3,7 @@ import {
 } from 'chai'
 import Activity from '../src/Activity';
 
-describe.only('Activity', function() {
+describe('Activity', function() {
   let activity1, activity2
   beforeEach(() => {
     activity1 = new Activity({
@@ -25,21 +25,27 @@ describe.only('Activity', function() {
   it('should be a function', function() {
     expect(Activity).to.be.a('function');
   });
+
   it('should be an instance of activity', function() {
     expect(activity1).to.be.an.instanceof(Activity);
   });
+
   it('should hold a userId', function() {
     expect(activity2.userId).to.equal(2);
   });
+
   it('should hold a date', function() {
     expect(activity1.date).to.equal("2019/06/15");
   });
+
   it('should hold number of steps', function() {
     expect(activity1.steps).to.equal(3684);
   });
+
   it('should hold minutes active', function() {
     expect(activity2.minutesActive).to.equal(280);
   });
+
   it('should hold flights of stairs', function() {
     expect(activity2.flightsOfStairs).to.equal(22);
   });
