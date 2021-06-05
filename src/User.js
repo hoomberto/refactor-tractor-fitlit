@@ -236,6 +236,16 @@ class User {
     // console.log('SUM', sum, 'AVERAGE', sum/7)
   }
 
+  hoursSleptAverageForAllDays() {
+    let sleepAvg = this.sleep.reduce((total, sleepData) => {
+      return total + sleepData.hoursSlept
+    }, 0)
+    return Math.round(sleepAvg / this.sleep.length)
+  }
+
+
+
+
   getHoursSleptOverWeek(inputDate) {
     let inputToWeek = dayjs(inputDate, "YYYY-MM-DD").week()
     let filteredDays = this.sleep.filter(item => {

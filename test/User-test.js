@@ -744,6 +744,10 @@ describe('User', function() {
 
     expect(user2.getAllTimeHigh()).to.equal(32)
   })
+  it.only('should return sleep hours for all day', () => {
+
+    expect(user.hoursSleptAverageForAllDays()).to.equal(7)
+  })
   it.only('should return hours slept for week', () => {
 
     expect(user2.getHoursSleptOverWeek("2019/06/25").length).to.equal(2)
@@ -751,4 +755,5 @@ describe('User', function() {
   it.only('should return sleep quality over the week', () => {
     expect(user.getSleepQualityOverWeek("2019/06/25").length).to.equal(2)
   })
+
 });
