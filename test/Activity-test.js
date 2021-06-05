@@ -43,16 +43,5 @@ describe.only('Activity', function() {
   it('should hold flights of stairs', function() {
     expect(activity2.flightsOfStairs).to.equal(22);
   });
-  it('should have a default value of 0 for miles walked', function() {
-    expect(activity2.milesWalked).to.equal(0);
-  });
-  it('should have a default value of null for reached step goal', function() {
-    expect(activity2.reachedStepGoal).to.equal(null);
-  });
-  it('doActivity should add activities to user record', function() {
-    expect(user1.activityRecord.length).to.equal(1);
-  });
-  it('should have a method that calculate miles walked', function() {
-    expect(activity1.calculateMiles(userRepository)).to.equal('3.0');
-  });
+
 });
