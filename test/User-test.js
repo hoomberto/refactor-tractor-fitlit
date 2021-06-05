@@ -8,7 +8,7 @@ import Hydration from '../src/Hydration';
 import User from '../src/User';
 
 describe('User', function() {
-  let user, user2, sleep1, sleep2, activity1, activity2, hydration1, hydration2, sleepArray, activityArray, hydrationArray;
+  let user, user2, sleep1, sleep2, sleep3, activity1, activity2, hydration1, hydration2, sleepArray, activityArray, hydrationArray;
   beforeEach(() => {
 
     sleep1 = new Sleep({
@@ -21,6 +21,13 @@ describe('User', function() {
     sleep2 = new Sleep({
       "userID": 2,
       "date": "2019/06/26",
+      "hoursSlept": 7,
+      "sleepQuality": 3
+    })
+
+    sleep3 = new Sleep({
+      "userID": 2,
+      "date": "2019/07/26",
       "hoursSlept": 7,
       "sleepQuality": 3
     })
@@ -57,7 +64,7 @@ describe('User', function() {
     hydrationArray = [];
     activityArray = [];
 
-    sleepArray.push(sleep1, sleep2)
+    sleepArray.push(sleep1, sleep2, sleep3)
     hydrationArray.push(hydration1, hydration2)
     activityArray.push(activity1, activity2)
 
@@ -168,7 +175,7 @@ describe('User', function() {
   //     expect(user.sleepQualityAverage).to.equal('4.7');
   //   });
   // })
-  it('should calculate the average hours slept per day' , function () {
+  it('should calculate the average hours slept per day', function() {
     expect(user.getAverageSleepPerDay()).to.equal(7.5)
     //
     // let totalHours = sleep1.getHoursSleptOverWeek(sleepArr)
@@ -618,65 +625,66 @@ describe('User', function() {
 
 
     let data = [{
-      "userID": 1,
-      "date": "2019/06/15",
-      "numOunces": 66
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/16",
-      "numOunces": 69
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/17",
-      "numOunces": 91
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/18",
-      "numOunces": 99
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/19",
-      "numOunces": 95
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/20",
-      "numOunces": 79
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/21",
-      "numOunces": 57
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/22",
-      "numOunces": 49
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/23",
-      "numOunces": 26
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/24",
-      "numOunces": 98
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/25",
-      "numOunces": 68
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/26",
-      "numOunces": 21
-    }]
+        "userID": 1,
+        "date": "2019/06/15",
+        "numOunces": 66
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/16",
+        "numOunces": 69
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/17",
+        "numOunces": 91
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/18",
+        "numOunces": 99
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/19",
+        "numOunces": 95
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/20",
+        "numOunces": 79
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/21",
+        "numOunces": 57
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/22",
+        "numOunces": 49
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/23",
+        "numOunces": 26
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/24",
+        "numOunces": 98
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/25",
+        "numOunces": 68
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/26",
+        "numOunces": 21
+      }
+    ]
 
 
     data.forEach(d => {
@@ -736,4 +744,29 @@ describe('User', function() {
 
     expect(user2.getAllTimeHigh()).to.equal(32)
   })
+  it.only('should return sleep average hours for all day', () => {
+
+    expect(user.hoursSleptAverageForAllDays()).to.equal(7)
+  })
+  it.only('should return sleep quality average for all day', () => {
+
+    expect(user.sleepQualityAverageForAllDays()).to.equal(3)
+  })
+  it.only('should return sleep hours for specific day', () => {
+
+    expect(user.gethoursSleptOnDay("2019/06/25")).to.equal(8)
+  })
+  it.only('should return sleep quality for specific day', () => {
+
+    expect(user.getSleepQualityOnDay("2019/06/25")).to.equal(3)
+  })
+
+  it.only('should return hours slept for week', () => {
+
+    expect(user2.getHoursSleptOverWeek("2019/06/25").length).to.equal(2)
+  })
+  it.only('should return sleep quality over the week', () => {
+    expect(user.getSleepQualityOverWeek("2019/06/25").length).to.equal(2)
+  })
+
 });
