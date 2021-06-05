@@ -6,7 +6,7 @@ import Hydration from '../src/Hydration';
 import User from '../src/User';
 
 describe('UserRepository', function() {
-  let userRepo, users, user, user2, sleep1, sleep2, sleep3, activity1, activity2, hydration1, hydration2, sleepArray, activityArray, hydrationArray;
+  let userRepo, users, user, user2, user3, sleep1, sleep2, sleep3, sleep4, activity1, activity2, hydration1, hydration2, sleepArray, sleepArray2, activityArray, hydrationArray;
   beforeEach(() => {
 
     sleep1 = new Sleep({
@@ -27,6 +27,13 @@ describe('UserRepository', function() {
       "userID": 2,
       "date": "2019/07/26",
       "hoursSlept": 7,
+      "sleepQuality": 3
+    })
+
+    sleep4 = new Sleep({
+      "userID": 2,
+      "date": "2019/06/25",
+      "hoursSlept": 9,
       "sleepQuality": 3
     })
 
@@ -59,6 +66,7 @@ describe('UserRepository', function() {
     })
 
     sleepArray = [];
+    sleepArray2 = [];
     hydrationArray = [];
     activityArray = [];
 
@@ -116,8 +124,53 @@ describe('UserRepository', function() {
 
 
   it.only('should find best sleepers whose average sleep quality for a week is greater than 3', function() {
-    expect(userRepo.findBestSleepers("2019/06/26").length).to.equal(2);
+    expect(userRepo.getBestSleepers("2019/06/26").length).to.equal(2);
   })
+
+  it.only('should find the top sleeper for a given date', function() {
+    let newSleep = new Sleep({
+      "userID": 2,
+      "date": "2019/07/26",
+      "hoursSlept": 7,
+      "sleepQuality": 3
+    })
+
+    let newSleep2 = new Sleep({
+      "userID": 2,
+      "date": "2019/06/25",
+      "hoursSlept": 9,
+      "sleepQuality": 3
+    })
+
+    sleepArray2.push(newSleep, newSleep2)
+
+    let newUser = new User({
+      "id": 2,
+      "name": "Nerdo Baggins",
+      "address": "30086 asdfasdf",
+      "email": "1@gmail.com",
+      "strideLength": 4.5,
+      "dailyStepGoal": 5000,
+      "friends": [
+        9,
+        18,
+        24,
+        19
+      ]
+    }, sleepArray2, hydrationArray, activityArray);
+
+    userRepo.users.push(newUser)
+
+    expect(userRepo.getLongestSleepers("2019/06/25")).to.deep.equal({
+      name: "Nerdo Baggins",
+      hours: 9
+    });
+  })
+
+
+
+
+
 
   // it('calculateAverageStepGoal should return average step goal for all users', function() {
   //   expect(userRepository.calculateAverageStepGoal()).to.equal(10000);
