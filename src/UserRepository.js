@@ -74,11 +74,7 @@ class UserRepository {
     }, 0)
     return Math.floor(sumDrankOnDate / todaysDrinkers.length);
   }
-  findBestSleepers(date) {
-    return this.users.filter(user => {
-      return user.calculateAverageQualityThisWeek(date) > 3;
-    })
-  }
+
   getLongestSleepers(date) {
     return sleepData.filter(sleep => {
       return sleep.date === date;
@@ -128,6 +124,12 @@ class UserRepository {
       total += currentVal
       return total
     }, 0) / averageStepsWalked.length
+  }
+
+  findBestSleepers(date) {
+    return this.users.filter(user => {
+      return user.calculateAverageQualityByWeek(date) >= 3;
+    })
   }
 
 }
