@@ -5,8 +5,7 @@ class Activity {
     this.steps = data.numSteps;
     this.minutesActive = data.minutesActive;
     this.flightsOfStairs = data.flightsOfStairs;
-    this.milesWalked = 0;
-    this.reachedStepGoal = null;
+
   }
 }
 
