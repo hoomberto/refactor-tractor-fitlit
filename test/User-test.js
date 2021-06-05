@@ -101,47 +101,61 @@ describe('User', function() {
   it('should be a function', function() {
     expect(User).to.be.a('function');
   });
+
   it('should be an instance of user', function() {
     expect(user).to.be.an.instanceof(User);
   });
+
   it('should have an id', function() {
     expect(user.id).to.equal(1);
   });
+
   it('should have a name', function() {
     expect(user.name).to.equal('Luisa Hane');
   });
+
   it('should have an address', function() {
     expect(user.address).to.equal('15195 Nakia Tunnel, Erdmanport VA 19901-1697');
   });
+
   it('should have an email address', function() {
     expect(user.email).to.equal('Diana.Hayes1@hotmail.com');
   });
+
   it('should have a stride length', function() {
     expect(user.strideLength).to.equal(4.3);
   });
+
   it.skip('should have a daily step goal', function() {
     expect(user.dailyStepGoal).to.equal(10000);
   });
+
   it.skip('should have friends', function() {
     expect(user.friends).to.deep.equal([16, 4, 8])
   });
+
   it.skip('should hold users sleep data', function() {
     expect(user.sleep).to.equal(sleepArray)
   });
+
   it.skip('should hold users hydration data', function() {
     user.hydration = []
     expect(user.hydration.length).to.deep.equal(0)
   });
+
   it.skip('should hold users activity data', function() {
     expect(user.activity).to.equal(activityArray)
   });
+
   it.skip('getFirstName should return the first name of the user', function() {
     expect(user.getFirstName()).to.equal('LUISA');
   });
+
   it('should have method that returns how many fluid ounces they consumed for a specific day (identified by a date)', function() {
     user.hydration.push(hydration, hydration1)
     console.log(user.hydration)
     expect(user.consumedWaterOnDay("2019/06/15")).to.equal(37)
+
   });
   it('should have method that returns average consumed ounces over week', function() {
 
@@ -220,80 +234,21 @@ describe('User', function() {
     expect(user.findTotalWaterConsumption()).to.equal(53);
   });
 
-  it('should return hours slept by date', () => {
+  it.only('should return sleep hours for specific day', () => {
 
-    expect(user.getHoursSleptByDay('2019/06/26')).to.equal(7);
-  });
+    expect(user.gethoursSleptOnDay("2019/06/25")).to.equal(8)
+  })
 
   it.only('should return hours slept for week', () => {
 
     expect(user2.getHoursSleptOverWeek("2019/06/25").length).to.equal(2)
   })
 
-
-
-  // it('calculateAverageQualityThisWeek should calculate average quality of sleep for week before a given date', function() {
-  //   expect(user.calculateAverageQualityThisWeek('2019/06/25')).to.equal(3)
-  // });
-
-  it.only('should return sleep average hours for all day', () => {
+  it.skip('should return sleep average hours for all day', () => {
 
     expect(user.hoursSleptAverageForAllDays()).to.equal(7)
   })
 
-
-  it('should return sleep quality by date', () => {
-
-    expect(user.getSleepQualityBydate('2019/06/26')).to.equal(3);
-  });
-
-  it('should calculate average hours sleep of all days', () => {
-
-    expect(user.getAverageHoursSleepAllDays()).to.equal(7.5)
-  })
-
-  it('should calculate average quality of sleep of all days', () => {
-
-    expect(user.getAverageQualitySleepAllDays()).to.equal(3)
-  })
-
-  it('should get the miles a user has walked on a specific day', () => {
-
-    expect(user.getMilesWalkedOnDay("2019/06/20")).to.equal(2.3)
-  })
-
-  it('should get the miles a user has walked on a specific day', () => {
-
-    expect(user.getMinutesActiveOnDay("2019/06/20")).to.equal(280)
-  })
-
-  it('should get the miles a user has walked on a specific day', () => {
-
-    expect(user.averageMinutesActiveByWeek("2019/06/20")).to.equal(280)
-  })
-
-  it('should get the miles a user has walked on a specific day', () => {
-
-    expect(user2.userGoalReached("2019/06/20")).to.be.false;
-    expect(user2.userGoalReached("2019/06/21")).to.be.true;
-  })
-
-  it('should get the all the the days of user where they reached thier daily step goals', () => {
-
-    expect(user2.allDaysGoalReached("2019/06/20").length).to.equal(1)
-  })
-  it('should get the highest stair count of user', () => {
-
-    expect(user2.getStairsAllTimeHigh()).to.equal(32)
-  })
-  it.only('should return sleep quality average for all day', () => {
-
-    expect(user.sleepQualityAverageForAllDays()).to.equal(3)
-  })
-  it.only('should return sleep hours for specific day', () => {
-
-    expect(user.gethoursSleptOnDay("2019/06/25")).to.equal(8)
-  })
   it.only('should return sleep quality for specific day', () => {
 
     expect(user.getSleepQualityOnDay("2019/06/25")).to.equal(3)
@@ -305,6 +260,47 @@ describe('User', function() {
 
   it.only('should return average sleep quality over the week', () => {
     expect(user.calculateAverageQualityByWeek("2019/06/25")).to.equal(3)
+  })
+
+  it.only('should return sleep quality average for all day', () => {
+
+    expect(user.sleepQualityAverageForAllDays()).to.equal(3)
+  })
+
+  it('should get the miles a user has walked on a specific day', () => {
+
+    expect(user.getMinutesActiveOnDay("2019/06/20")).to.equal(280)
+  });
+
+  it('should get the miles a user has walked on a specific day', () => {
+
+    expect(user.getMilesWalkedOnDay("2019/06/20")).to.equal(2.3)
+  });
+
+  it('should get the miles a user has walked on a specific day', () => {
+
+    expect(user.averageMinutesActiveByWeek("2019/06/20")).to.equal(280)
+  });
+
+  it.only('should get the stairs climbed on a given day', () => {
+
+    expect(user.getStairsClimbedOnDate("2019/06/21")).to.equal(32)
+  });
+
+  it('should get the all the the days of user where they reached thier daily step goals', () => {
+
+    expect(user2.allDaysGoalReached("2019/06/20").length).to.equal(1)
+  })
+
+  it('should get the miles a user has walked on a specific day', () => {
+
+    expect(user2.userGoalReached("2019/06/20")).to.be.false;
+    expect(user2.userGoalReached("2019/06/21")).to.be.true;
+  })
+
+  it('should get the highest stair count of user', () => {
+
+    expect(user2.getStairsAllTimeHigh()).to.equal(32)
   })
 
 });
