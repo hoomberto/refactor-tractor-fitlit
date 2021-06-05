@@ -22,9 +22,6 @@ class User {
 
   consumedWaterOnDay(date) {
     const ouncesInDay = this.hydration.find(currentDate => currentDate.date === date)
-    // console.log('currentdate', currentDate)
-
-    console.log(ouncesInDay)
     return ouncesInDay.numOunces;
   }
 
@@ -41,7 +38,6 @@ class User {
   }
 
   findTotalWaterConsumption() {
-    console.log(this.hydration)
     let hydrationAvg = this.hydration.reduce((total, userHydration) => {
       return total + userHydration.numOunces
     }, 0)
@@ -164,6 +160,5 @@ class User {
   };
 };
 
-}
 
 export default User;

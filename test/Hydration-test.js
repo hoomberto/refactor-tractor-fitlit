@@ -5,8 +5,7 @@ import {
 import Hydration from '../src/Hydration';
 
 describe('Hydration', function() {
-  let hydrate1;
-  let hydrate2;
+  let hydrate1, hydrate2
 
   beforeEach(() => {
     hydrate1 = new Hydration({
@@ -16,28 +15,35 @@ describe('Hydration', function() {
     });
 
     hydrate2 = new Hydration({
-      "userID": 2,
-      "date": "2019/06/15",
-      "numOunces": 75
+      "userID": 1,
+      "date": "2019/06/16",
+      "numOunces": 69
     });
+
   });
 
   it('should be a function', function() {
+
     expect(Hydration).to.be.a('function');
   });
+
   it('should be an instance of hydrate', function() {
+
     expect(hydrate1).to.be.an.instanceof(Hydration);
   });
+
   it('should have an id', function() {
+
     expect(hydrate1.userId).to.equal(1);
-    expect(hydrate2.userId).to.equal(2);
   });
+
   it('should have a date', function() {
+
     expect(hydrate1.date).to.equal("2019/06/15");
-    expect(hydrate2.date).to.equal("2019/06/15");
   });
+
   it('should have an amount of ounces drank', function() {
-    expect(hydrate1.ounces).to.equal(37);
-    expect(hydrate2.ounces).to.equal(75);
+
+    expect(hydrate1.numOunces).to.equal(37);
   });
 });

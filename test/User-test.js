@@ -126,146 +126,147 @@ describe('User', function() {
     expect(user.strideLength).to.equal(4.3);
   });
 
-  it.skip('should have a daily step goal', function() {
+  it('should have a daily step goal', function() {
     expect(user.dailyStepGoal).to.equal(10000);
   });
 
-  it.skip('should have friends', function() {
+  it('should have friends', function() {
     expect(user.friends).to.deep.equal([16, 4, 8])
   });
 
-  it.skip('should hold users sleep data', function() {
+  it('should hold users sleep data', function() {
     expect(user.sleep).to.equal(sleepArray)
   });
 
-  it.skip('should hold users hydration data', function() {
+  it('should hold users hydration data', function() {
     user.hydration = []
     expect(user.hydration.length).to.deep.equal(0)
   });
 
-  it.skip('should hold users activity data', function() {
+  it('should hold users activity data', function() {
     expect(user.activity).to.equal(activityArray)
   });
 
-  it.skip('getFirstName should return the first name of the user', function() {
+  it('getFirstName should return the first name of the user', function() {
     expect(user.getFirstName()).to.equal('LUISA');
   });
 
   it('should have method that returns how many fluid ounces they consumed for a specific day (identified by a date)', function() {
-    user.hydration.push(hydration, hydration1)
-    console.log(user.hydration)
+    user.hydration.push(hydration1, hydration2)
     expect(user.consumedWaterOnDay("2019/06/15")).to.equal(37)
 
   });
   it('should have method that returns average consumed ounces over week', function() {
 
     let data = [{
-      "userID": 1,
-      "date": "2019/06/15",
-      "numOunces": 66
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/16",
-      "numOunces": 69
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/17",
-      "numOunces": 91
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/18",
-      "numOunces": 99
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/19",
-      "numOunces": 95
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/20",
-      "numOunces": 79
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/21",
-      "numOunces": 57
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/22",
-      "numOunces": 49
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/23",
-      "numOunces": 26
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/24",
-      "numOunces": 98
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/25",
-      "numOunces": 68
-    },
-    {
-      "userID": 1,
-      "date": "2019/06/26",
-      "numOunces": 21
-    }
-  ]
+        "userID": 1,
+        "date": "2019/06/15",
+        "numOunces": 66
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/16",
+        "numOunces": 69
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/17",
+        "numOunces": 91
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/18",
+        "numOunces": 99
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/19",
+        "numOunces": 95
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/20",
+        "numOunces": 79
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/21",
+        "numOunces": 57
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/22",
+        "numOunces": 49
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/23",
+        "numOunces": 26
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/24",
+        "numOunces": 98
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/25",
+        "numOunces": 68
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/26",
+        "numOunces": 21
+      }
+    ]
 
-  data.forEach(d => {
-    user.hydration.push(new Hydration(d))
-  });
+    data.forEach(d => {
+      user.hydration.push(new Hydration(d))
+    });
 
-  expect(user.consumedWaterOverWeek("2019/06/16").length).to.equal(7);
+    expect(user.consumedWaterOverWeek("2019/06/16").length).to.equal(7);
   });
 
   it('should have a method that returns average fluid oz consumption for all time for a user', function() {
-    user.hydration.push(hydration, hydration1)
+    user.hydration.push(hydration1, hydration2)
     expect(user.hydration.length).to.deep.equal(2)
     expect(user.findTotalWaterConsumption()).to.equal(53);
   });
 
-  it.only('should return sleep hours for specific day', () => {
+  it('should return sleep hours for specific day', () => {
 
     expect(user.gethoursSleptOnDay("2019/06/25")).to.equal(8)
-  })
+  });
 
-  it.only('should return hours slept for week', () => {
+  it('should return hours slept for week', () => {
 
     expect(user2.getHoursSleptOverWeek("2019/06/25").length).to.equal(2)
-  })
+  });
 
-  it.skip('should return sleep average hours for all day', () => {
+  it('should return sleep average hours for all day', () => {
 
     expect(user.hoursSleptAverageForAllDays()).to.equal(7)
-  })
+  });
 
-  it.only('should return sleep quality for specific day', () => {
+  it('should return sleep quality for specific day', () => {
 
     expect(user.getSleepQualityOnDay("2019/06/25")).to.equal(3)
-  })
+  });
 
-  it.only('should return sleep quality over the week', () => {
+  it('should return sleep quality over the week', () => {
+
     expect(user.getSleepQualityOverWeek("2019/06/25").length).to.equal(2)
-  })
+  });
 
-  it.only('should return average sleep quality over the week', () => {
+  it('should return average sleep quality over the week', () => {
+
     expect(user.calculateAverageQualityByWeek("2019/06/25")).to.equal(3)
-  })
+  });
 
-  it.only('should return sleep quality average for all day', () => {
+  it('should return sleep quality average for all day', () => {
 
     expect(user.sleepQualityAverageForAllDays()).to.equal(3)
-  })
+  });
 
   it('should get the miles a user has walked on a specific day', () => {
 
@@ -282,7 +283,7 @@ describe('User', function() {
     expect(user.averageMinutesActiveByWeek("2019/06/20")).to.equal(280)
   });
 
-  it.only('should get the stairs climbed on a given day', () => {
+  it('should get the stairs climbed on a given day', () => {
 
     expect(user.getStairsClimbedOnDate("2019/06/21")).to.equal(32)
   });
@@ -290,17 +291,17 @@ describe('User', function() {
   it('should get the all the the days of user where they reached thier daily step goals', () => {
 
     expect(user2.allDaysGoalReached("2019/06/20").length).to.equal(1)
-  })
+  });
 
   it('should get the miles a user has walked on a specific day', () => {
 
     expect(user2.userGoalReached("2019/06/20")).to.be.false;
     expect(user2.userGoalReached("2019/06/21")).to.be.true;
-  })
+  });
 
   it('should get the highest stair count of user', () => {
 
     expect(user2.getStairsAllTimeHigh()).to.equal(32)
-  })
+  });
 
 });
