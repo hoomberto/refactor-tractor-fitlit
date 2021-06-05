@@ -11,7 +11,7 @@ class User {
     this.dailyStepGoal = user.dailyStepGoal;
     this.friends = user.friends;
     this.sleep = sleep;
-    this.hydration = [];
+    this.hydration = hydration;
     this.activity = activity;
   }
 

@@ -61,36 +61,6 @@ class UserRepository {
       return sorted[0]
     }
   }
-
-
-  // API RELATED STUFF vvvvvvvv
-
-  // fetchedUserData.forEach(user => {
-  //   fetchedSleepData.forEach((data) => {
-  //     if (user.id === data.id)
-  //   });
-  //
-  // })
-
-  // correlatedSleep = fetchedSleepData.filter(data => {
-  //   fetchedUserData.some(user => user.id === data.id}))
-  //
-  // })
-  //
-  // const correlate = (user, fetchedData) => {
-  //   correlated = fetchedData.filter(data => {
-  //     fetchedUserData.some(user => user.id === data.id}))
-  //   })
-  //   return correlated;
-  // }
-  //
-  //
-  //
-  // usersInstantiated = fetchedUserData.map(user => new User(user, correlate(user, sleepData), correlate(user, activityData))
-  // userRepo = new UserRepository(
-  //
-  // )
-
 }
 
 export default UserRepository;
