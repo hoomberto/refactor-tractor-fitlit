@@ -26,26 +26,32 @@ describe('Sleep', function() {
   });
 
   it('should be a function', function() {
+
     expect(Sleep).to.be.a('function');
   });
 
   it('should be an instance of activity', function() {
+
     expect(sleep1).to.be.an.instanceof(Sleep);
   });
 
   it('should hold a userId', function() {
+
     expect(sleep2.userID).to.equal(2);
   });
 
   it('should hold a date', function() {
+
     expect(sleep2.date).to.equal("2019/06/25");
   });
 
   it('should hold hours slept', function() {
+
     expect(sleep1.hoursSlept).to.equal(6.1);
   });
 
   it('should hold sleep quality', function() {
+
     expect(sleep2.sleepQuality).to.equal(3.2);
   });
 });
