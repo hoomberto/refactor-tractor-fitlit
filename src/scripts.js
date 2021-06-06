@@ -2,6 +2,11 @@ import './css/base.scss';
 import './css/styles.scss';
 import apiCalls from './apiCalls'
 
+import '@fortawesome/fontawesome-free/js/fontawesome'
+import '@fortawesome/fontawesome-free/js/solid'
+import '@fortawesome/fontawesome-free/js/regular'
+import '@fortawesome/fontawesome-free/js/brands'
+
 import UserRepository from './UserRepository';
 import User from './User';
 import Activity from './Activity';
@@ -9,27 +14,28 @@ import Hydration from './Hydration';
 import Sleep from './Sleep';
 import { renderWaterConsumed } from './charts/hydration-charts/water-consumed-chart.js'
 import { renderWaterOverWeek } from './charts/hydration-charts/water-over-week.js'
-
+import { renderStepsMiles } from './charts/activity-charts/steps-miles-chart.js'
+import { renderAllTimeSleep } from './charts/sleep-charts/allTime-sleep-chart.js'
+import { renderSleepQuality } from './charts/sleep-charts/latest-sleep-chart.js'
+import { renderUserStepGoalVsAverage } from './charts/activity-charts/user-step-goal-vs-avg.js'
+import { renderLastMinActive } from './charts/activity-charts/last-min-active.js'
 
 // -----------------------QUERY SELECTORS---------------------------
 
+const userCard = document.getElementById('userinfo');
+const friendsDropDown = document.getElementById('friendsDropDown');
+const friendsSelect = document.getElementById('userFriends');
 
 // -----------------------GLOBAL VARIABLES--------------------
 let currentDate, fetchUserData, fetchSleepData, fetchActivityData, fetchHydrationData, usersInstantiated, userRepo, currentUser
-// let currentDate = "2020/01/22"
+
 // -------------------EVENT LISTENERS----------------------
 
-
-// const correlate = (user, data) => {
-//   let correlated = data.filter(d => {
-//     user.id === d.id
-//   })
-//   return correlated;
-// }
 
 const getRandomArray = (array) => {
   return Math.floor(Math.random() * array.length)
 }
+
 
 window.addEventListener('load', function() {
 
@@ -56,49 +62,26 @@ window.addEventListener('load', function() {
     console.log(currentDate.date)
     renderWaterConsumed(currentUser, currentDate.date)
     renderWaterOverWeek(currentUser, currentDate.date)
+    renderStepsMiles(currentUser, currentDate.date)
+    renderAllTimeSleep(currentUser, currentDate.date)
+    renderSleepQuality(currentUser, currentDate.date)
+    renderUserCard(currentUser);
+    renderUserStepGoalVsAverage(currentUser, userRepo);
+    renderLastMinActive(currentUser, currentDate.date)
   })
 })
-// -------------------- Fetched Data ------------------------
 
-//
-
-
-// fetchedUserData.forEach(user => {
-//   fetchedSleepData.forEach((data) => {
-//     if (user.id === data.id)
-//   });
-// })
-//
-// correlatedSleep = fetchedSleepData.filter(data => {
-//   fetchedUserData.some(user => user.id === data.id}))
-//
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const userCard = document.getElementById('userinfo');
-
-var friendsDropDown = document.getElementById('friendsDropDown');
-var friendsSelect = document.getElementById('userFriends');
 friendsDropDown.addEventListener('click', () => {
   getFriends(currentUser)
 });
 
-function getFriends(currentUser) {
+
+
+
+
+
+
+const getFriends = (currentUser) => {
   console.log('GETFRIENDS', currentUser)
   let userFriends = currentUser.friends.map(friend => {
       return userRepo.users.filter(user => {
@@ -136,7 +119,6 @@ const renderUserCard = (currentUser) => {
           </section>
       </article> `
 };
-
 
 
 

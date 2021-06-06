@@ -16,6 +16,7 @@ nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  z-index: 5;
 }
 
 .date-picker,
@@ -61,7 +62,7 @@ main {
 }
 
 .widgets-container {
-  margin-top: 3%;
+  margin-top: 5%;
   width: 90%;
   height: 80%;
 }
