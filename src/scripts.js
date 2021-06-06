@@ -7,13 +7,14 @@ import User from './User';
 import Activity from './Activity';
 import Hydration from './Hydration';
 import Sleep from './Sleep';
+import { renderWaterConsumed } from './charts/hydration-charts/water-consumed-chart.js'
 
 // -----------------------QUERY SELECTORS---------------------------
 
 
 // -----------------------GLOBAL VARIABLES--------------------
-let fetchUserData, fetchSleepData, fetchActivityData, fetchHydrationData, usersInstantiated, userRepo, currentUser
-
+let currentDate, fetchUserData, fetchSleepData, fetchActivityData, fetchHydrationData, usersInstantiated, userRepo, currentUser
+// let currentDate = "2020/01/22"
 // -------------------EVENT LISTENERS----------------------
 
 
@@ -49,6 +50,9 @@ window.addEventListener('load', function() {
     userRepo = new UserRepository(usersInstantiated)
     currentUser = userRepo.users[getRandomArray(userRepo.users)]
     console.log(currentUser)
+    currentDate = currentUser.hydration.sort((a, b) => a.date > b.date ? -1 : 1)[0]
+    console.log(currentDate.date)
+    renderWaterConsumed(currentUser, currentDate.date)
   })
 })
 // -------------------- Fetched Data ------------------------
