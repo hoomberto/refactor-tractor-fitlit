@@ -6,7 +6,20 @@
   </head>
   <body>
     <nav>
-
+      <div class='calendar-and-add'>
+        <button class='date-picker' id='datePicker'>
+          //calender icon here alt text choose date. aria role?
+        </button>
+        <button class='add-entry' id='addEntry'>
+          //plus symbol here with alt text add user entry. aria role?
+        </button>
+      </div>
+      <form class='user-drop-down' action='drop-down'>
+        <select class='userFriends' id='userFriends'>
+          //interpolate currentUser.friends as options here
+          //aria role/state for is true/false
+        </select>
+      </form>
     </nav>
     <main>
       <section class="widgets-container">
