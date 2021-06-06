@@ -10,6 +10,7 @@ import Sleep from './Sleep';
 import { renderWaterConsumed } from './charts/hydration-charts/water-consumed-chart.js'
 import { renderWaterOverWeek } from './charts/hydration-charts/water-over-week.js'
 
+
 // -----------------------QUERY SELECTORS---------------------------
 
 

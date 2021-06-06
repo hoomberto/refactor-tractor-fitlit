@@ -139,6 +139,11 @@ class User {
     return parseFloat(((activityOnDay.steps * this.strideLength) / 5280).toFixed(1))
   }
 
+  getStepsWalkedOnDay(date) {
+    let activityOnDay = this.activity.find(activity => activity.date === date)
+    return activityOnDay.steps
+  }
+
   averageMinutesActiveByWeek(inputDate) {
     let inputToWeek = dayjs(inputDate, "YYYY-MM-DD").week()
     let filteredDays = this.activity.filter(item => {
