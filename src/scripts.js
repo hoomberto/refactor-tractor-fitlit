@@ -8,6 +8,7 @@ import Activity from './Activity';
 import Hydration from './Hydration';
 import Sleep from './Sleep';
 import { renderWaterConsumed } from './charts/hydration-charts/water-consumed-chart.js'
+import { renderWaterOverWeek } from './charts/hydration-charts/water-over-week.js'
 
 // -----------------------QUERY SELECTORS---------------------------
 
@@ -53,6 +54,7 @@ window.addEventListener('load', function() {
     currentDate = currentUser.hydration.sort((a, b) => a.date > b.date ? -1 : 1)[0]
     console.log(currentDate.date)
     renderWaterConsumed(currentUser, currentDate.date)
+    renderWaterOverWeek(currentUser, currentDate.date)
   })
 })
 // -------------------- Fetched Data ------------------------
