@@ -16,6 +16,7 @@ nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  z-index: 5;
 }
 
 .date-picker,
@@ -61,7 +62,7 @@ main {
 }
 
 .widgets-container {
-  margin-top: 3%;
+  margin-top: 5%;
   width: 90%;
   height: 80%;
 }
@@ -77,7 +78,18 @@ main {
 
 #lateststepsmiles {
   // background-color: lightgray;
+  position: relative;
   grid-area: lateststepsmiles;
+}
+
+#lateststepsmiles::after {
+  content: attr(data-before);
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  transform: translate(121px, 128px);
+  z-index: 2;
 }
 
 #latestminactive {
@@ -121,6 +133,8 @@ main {
 #weeklyactivitydata {
   grid-area: weeklyactivitydata;
 }
+
+
 
 @media only screen and (max-width: 550px) {
 
