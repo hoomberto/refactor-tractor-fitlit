@@ -25,3 +25,4 @@ export const renderUserStepGoalVsAverage = (currentUser, userRepo) => {
     activityConfig
   )
 };
+ //add commits to be deleted
