@@ -7,6 +7,7 @@
   "author": "Hannah Hudson",
   "license": "ISC",
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
     "chai": "^4.3.4",
     "css-loader": "^5.2.6",
     "eslint": "^7.27.0",
