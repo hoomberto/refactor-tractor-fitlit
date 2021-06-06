@@ -6,7 +6,21 @@
   </head>
   <body>
     <nav>
-
+      <div class='calendar-and-add'>
+        <button class='date-picker' id='datePicker'>
+          <i class="far fa-calendar-alt"></i>
+          <!-- need to add aria role? -->
+        </button>
+        <button class='add-entry' id='addEntry'>
+          <i class="fas fa-plus"></i>
+          <!-- need to add aria role? -->
+        </button>
+      </div>
+      <form class='friends-drop-down' id='friendsDropDown' action='drop-down'>
+        <select class='user-friends' id='userFriends'>
+          <option value='allFriends'>FRIENDS</option>
+        </select>
+      </form>
     </nav>
     <main>
       <section class="widgets-container">

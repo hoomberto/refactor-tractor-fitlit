@@ -89,12 +89,52 @@ window.addEventListener('load', function() {
 
 
 
+const userCard = document.getElementById('userinfo');
+
+var friendsDropDown = document.getElementById('friendsDropDown');
+var friendsSelect = document.getElementById('userFriends');
+friendsDropDown.addEventListener('click', () => {
+  getFriends(currentUser)
+});
+
+function getFriends(currentUser) {
+  console.log('GETFRIENDS', currentUser)
+  let userFriends = currentUser.friends.map(friend => {
+      return userRepo.users.filter(user => {
+          if (user.id === friend) {
+              return user
+          }
+      })
+  }).flat();
+  console.log(userFriends)
+  let userNames = userFriends.map(friend => friend.name)
+  userNames.forEach(user => {
+    friendsSelect.innerHTML +=
+    `<option value='allFriends'>${user}</option>
+    `
+   })
+  }
 
 
-
-
-
-
+const renderUserCard = (currentUser) => {
+  userCard.innerHTML =
+  `   <article id='userinfo'>
+          <div class='user-greeting'>
+            <h1>Welcome back, ${currentUser.name.split(' ')[0]}!</h1>
+          </div>
+          <section class='user-details' id='userDetails'>
+              <div class='user-address' id='userAddress'>
+                <p><strong> ADDRESS: </strong>${currentUser.address}</p>
+              </div>
+              <div class='user-email' id='userEmail'>
+                <p><strong> EMAIL: </strong>${currentUser.email}</p>
+              </div>
+              <div class='user-step-goal' id='userStepGoal'>
+                <p><strong> DAILY STEP GOAL: </strong>${currentUser.dailyStepGoal}</p>
+              </div>
+          </section>
+      </article> `
+};
 
 
 

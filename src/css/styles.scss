@@ -11,9 +11,37 @@ nav {
   top: 0;
   position: fixed;
   width: 100vw;
-  height: 5%;
-  background-color: blue;
+  min-height: 5%;
+  background-color: #001a4d;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
+
+.date-picker,
+.add-entry {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+	border: none;
+  margin: 20px;
+}
+
+
+.fa-calendar-alt,
+.fa-plus {
+  font-size: 20px;
+}
+
+.calendar-and-add{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+// .user-friends {
+//   padding: 20px;
+// }
 
 main {
   display: grid;
@@ -33,6 +61,7 @@ main {
 }
 
 .widgets-container {
+  margin-top: 3%;
   width: 90%;
   height: 80%;
 }
