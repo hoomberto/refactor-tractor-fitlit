@@ -3,4 +3,4 @@ export const renderLastMinActive = (currentUser, currentDate) => {
   articleEle.innerHTML = `
   <p class='last-min-active excise'>${currentUser.getMinutesActiveOnDay(currentDate)}
   </p>`};
-  //add commits to be deleteddd
+  //add commits to be deleted
