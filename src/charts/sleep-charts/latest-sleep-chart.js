@@ -16,14 +16,8 @@ export const renderSleepQuality = (currentUser, currentDate) => {
 
   };
 
-
+  const myChart = new Chart(
+    document.getElementById('sleep-chart'),
+    sleepConfig
+  )
 }
-
-
-
-//
-//
-// const myChart = new Chart(
-//   document.getElementById('sleep-chart'),
-//   sleepConfig
-// )
