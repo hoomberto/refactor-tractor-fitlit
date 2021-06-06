@@ -10,17 +10,17 @@ export const renderSleepQuality = (currentUser, currentDate) => {
       backgroundColor: ['rgb(94,158,167)', 'rgb(158,214,183)']
     }]
   }
+  const sleepConfig = {
+    type: 'pie',
+    data: sleepData,
 
+  };
 
 
 }
 
 
-// const sleepConfig = {
-//   type: 'pie',
-//   data: sleepData,
-//
-// };
+
 //
 //
 // const myChart = new Chart(
