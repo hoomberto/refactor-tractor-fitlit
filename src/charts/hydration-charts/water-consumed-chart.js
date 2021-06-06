@@ -1,6 +1,7 @@
 export const renderWaterConsumed = (currentUser, currentDate) => {
   let waterDrank = currentUser.consumedWaterOnDay(currentDate)
   let waterData;
+  // Comparing the recommended daily amount of 64oz to what the user drank
   let comparison = 64 - waterDrank
   if (comparison < 1) {
     waterData = {
