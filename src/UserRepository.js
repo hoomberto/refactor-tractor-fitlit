@@ -61,6 +61,13 @@ class UserRepository {
       return sorted[0]
     }
   }
+
+  getAverageStepGoalOfAllUser() {
+    return this.users.reduce((stepGoal, user) => {
+      stepGoal+= user.dailyStepGoal
+      return stepGoal 
+    }, 0) / this.users.length;
+  };
 }
 
 export default UserRepository;

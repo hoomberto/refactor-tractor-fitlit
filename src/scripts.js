@@ -9,6 +9,7 @@ import Hydration from './Hydration';
 import Sleep from './Sleep';
 import { renderWaterConsumed } from './charts/hydration-charts/water-consumed-chart.js'
 import { renderWaterOverWeek } from './charts/hydration-charts/water-over-week.js'
+import { renderUserStepGoalVsAverage } from './charts/activity-charts/user-step-goal-vs-average.js'
 
 // -----------------------QUERY SELECTORS---------------------------
 
@@ -52,9 +53,9 @@ window.addEventListener('load', function() {
     currentUser = userRepo.users[getRandomArray(userRepo.users)]
     console.log(currentUser)
     currentDate = currentUser.hydration.sort((a, b) => a.date > b.date ? -1 : 1)[0]
-    console.log(currentDate.date)
     renderWaterConsumed(currentUser, currentDate.date)
     renderWaterOverWeek(currentUser, currentDate.date)
+    renderUserStepGoalVsAverage(currentUser, userRepo)
   })
 })
 // -------------------- Fetched Data ------------------------
