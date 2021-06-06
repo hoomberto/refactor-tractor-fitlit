@@ -90,6 +90,12 @@ main {
 
 #waterconsumed {
   grid-area: waterconsumed;
+  place-items: center;
+}
+
+#water-chart {
+  background: url(https://i.imgur.com/sZLs3Vr.png?3) no-repeat center;
+
 }
 
 #latestsleepdata {
@@ -143,4 +149,10 @@ main {
   .widgets-container * {
     height: 300px;
   }
+}
+
+.fa-tint {
+  color: blue;
+  font-size: 24px;
+  z-index: 100;
 }
