@@ -7,13 +7,14 @@ import User from './User';
 import Activity from './Activity';
 import Hydration from './Hydration';
 import Sleep from './Sleep';
+import { renderWaterConsumed } from './charts/hydration-charts/water-consumed-chart.js'
 
 // -----------------------QUERY SELECTORS---------------------------
 
 
 // -----------------------GLOBAL VARIABLES--------------------
-let fetchUserData, fetchSleepData, fetchActivityData, fetchHydrationData, usersInstantiated, userRepo
-
+let currentDate, fetchUserData, fetchSleepData, fetchActivityData, fetchHydrationData, usersInstantiated, userRepo, currentUser
+// let currentDate = "2020/01/22"
 // -------------------EVENT LISTENERS----------------------
 
 
@@ -24,6 +25,10 @@ let fetchUserData, fetchSleepData, fetchActivityData, fetchHydrationData, usersI
 //   return correlated;
 // }
 
+const getRandomArray = (array) => {
+  return Math.floor(Math.random() * array.length)
+}
+
 window.addEventListener('load', function() {
 
   apiCalls.getData()
@@ -32,14 +37,10 @@ window.addEventListener('load', function() {
     fetchSleepData = data[1];
     fetchActivityData = data[2];
     fetchHydrationData = data[3];
-    // console.log(fetchSleepData.sleepData);
-    // console.log(fetchActivityData.activityData);
-    // console.log('FETCHED ACTIVITY DATA>>>', fetchActivityData.activityData[0])
-    // console.log('FETCHED HYDRATION DATA>>>', fetchHydrationData.activityData[0])
+
     let instaActivity = fetchActivityData.activityData.map(activity => new Activity(activity))
     let instaHydration = fetchHydrationData.hydrationData.map(hydration => new Hydration(hydration))
     let instaSleep = fetchSleepData.sleepData.map(sleep => new Sleep(sleep))
-    console.log('instaSLEEP >>>>', instaSleep[0])
     usersInstantiated = fetchUserData.userData.map(user => {
       let correlatedSleep = instaSleep.filter(sleep => sleep.userID === user.id)
       let correlatedHydration = instaHydration.filter(hydration => hydration.userId === user.id)
@@ -47,14 +48,12 @@ window.addEventListener('load', function() {
       return new User(user, correlatedSleep, correlatedHydration, correlatedActivity)
     });
     userRepo = new UserRepository(usersInstantiated)
-    console.log(userRepo)
-    // let test = correlate(userRepo.users[0], instaSleep)
-    // console.log('TESTING CORRELATE FUNCTION>>>', test)
-    // console.log('userData', fetchUserData.userData[1])
-    // console.log('sleepData', fetchSleepData.sleepData[1])
-    // console.log('activityData', fetchActivityData.activityData[1])
-    // console.log('hydrationData', fetchHydrationData.hydrationData[1])
-})
+    currentUser = userRepo.users[getRandomArray(userRepo.users)]
+    console.log(currentUser)
+    currentDate = currentUser.hydration.sort((a, b) => a.date > b.date ? -1 : 1)[0]
+    console.log(currentDate.date)
+    renderWaterConsumed(currentUser, currentDate.date)
+  })
 })
 // -------------------- Fetched Data ------------------------
 
