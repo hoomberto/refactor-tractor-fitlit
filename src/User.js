@@ -33,6 +33,19 @@ class User {
         return item
       }
     })
+    if (filteredDays.length !== 7) {
+      //add the amount of days before it to make the total .length of 7
+      let beforeWeek = dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1)
+      console.log(beforeWeek);
+      filteredDays = this.hydration.filter(item => {
+        let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
+        if (convertedToWeek === beforeWeek.$W) {
+          return item
+        }
+      })
+      // console.log('inputToWeek', dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1));
+      // console.log('inputDate.week(inputToWeek - 1)', inputDate.week(inputToWeek - 1));
+    }
     let ouncesOverWeek = filteredDays.map(day => day.numOunces)
     return ouncesOverWeek;
   }
