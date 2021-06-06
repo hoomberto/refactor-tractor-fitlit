@@ -91,6 +91,30 @@ window.addEventListener('load', function() {
 
 const userCard = document.getElementById('userinfo');
 
+var friendsDropDown = document.getElementById('friendsDropDown');
+var friendsSelect = document.getElementById('userFriends');
+friendsDropDown.addEventListener('click', () => {
+  getFriends(currentUser)
+});
+
+function getFriends(currentUser) {
+  console.log('GETFRIENDS', currentUser)
+  let userFriends = currentUser.friends.map(friend => {
+      return userRepo.users.filter(user => {
+          if (user.id === friend) {
+              return user
+          }
+      })
+  }).flat();
+  console.log(userFriends)
+  let userNames = userFriends.map(friend => friend.name)
+  userNames.forEach(user => {
+    friendsSelect.innerHTML +=
+    `<option value='allFriends'>${user}</option>
+    `
+   })
+  }
+
 
 const renderUserCard = (currentUser) => {
   userCard.innerHTML =
@@ -111,6 +135,7 @@ const renderUserCard = (currentUser) => {
           </section>
       </article> `
 };
+
 
 
 
