@@ -71,6 +71,7 @@ window.addEventListener('load', function() {
     renderUserStepGoalVsAverage(currentUser, userRepo);
     renderLastMinActive(currentUser, currentDate.date);
     renderUserAnalyticsVsAll(currentUser, currentDate.date, userRepo)
+    renderFriends(currentUser)
   })
 })
 
@@ -96,11 +97,7 @@ const renderFriends = (currentUser) => {
 
 
   const toggleFriends = () => {
-    if (friends.style.display = 'none') {
-      friends.style.display = 'flex'
-    } else {
-      friends.style.display = 'none'
-    }
+    friends.classList.toggle('hidden')
   }
 
 

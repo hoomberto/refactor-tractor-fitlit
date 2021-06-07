@@ -55,7 +55,6 @@ nav {
 .dropdown-content {
   align-items: center;
   display: flex;
-  display: none;
   background-color: #202020;
   width: 185px;
   height: 150px;
@@ -303,4 +302,9 @@ h2 {
 
 .user-input-activity {
   background-color: lightgreen;
+}
+
+
+.hidden {
+  display: none;
 }
