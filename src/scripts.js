@@ -12,14 +12,30 @@ import User from './User';
 import Activity from './Activity';
 import Hydration from './Hydration';
 import Sleep from './Sleep';
-import { renderWaterConsumed } from './charts/hydration-charts/water-consumed-chart.js'
-import { renderWaterOverWeek } from './charts/hydration-charts/water-over-week.js'
-import { renderStepsMiles } from './charts/activity-charts/steps-miles-chart.js'
-import { renderAllTimeSleep } from './charts/sleep-charts/allTime-sleep-chart.js'
-import { renderSleepQuality } from './charts/sleep-charts/latest-sleep-chart.js'
-import { renderUserStepGoalVsAverage } from './charts/activity-charts/user-step-goal-vs-avg.js'
-import { renderLastMinActive } from './charts/activity-charts/last-min-active.js'
-import { renderUserAnalyticsVsAll } from './charts/activity-charts/activity-analytics-vs-all.js'
+import {
+  renderWaterConsumed
+} from './charts/hydration-charts/water-consumed-chart.js'
+import {
+  renderWaterOverWeek
+} from './charts/hydration-charts/water-over-week.js'
+import {
+  renderStepsMiles
+} from './charts/activity-charts/steps-miles-chart.js'
+import {
+  renderAllTimeSleep
+} from './charts/sleep-charts/allTime-sleep-chart.js'
+import {
+  renderSleepQuality
+} from './charts/sleep-charts/latest-sleep-chart.js'
+import {
+  renderUserStepGoalVsAverage
+} from './charts/activity-charts/user-step-goal-vs-avg.js'
+import {
+  renderLastMinActive
+} from './charts/activity-charts/last-min-active.js'
+import {
+  renderUserAnalyticsVsAll
+} from './charts/activity-charts/activity-analytics-vs-all.js'
 
 // -----------------------QUERY SELECTORS---------------------------
 
@@ -41,37 +57,38 @@ const getRandomArray = (array) => {
 window.addEventListener('load', function() {
 
   apiCalls.getData()
-  .then(data => {
-    fetchUserData = data[0]
-    fetchSleepData = data[1];
-    fetchActivityData = data[2];
-    fetchHydrationData = data[3];
+    .then(data => {
+      fetchUserData = data[0]
+      fetchSleepData = data[1];
+      fetchActivityData = data[2];
+      fetchHydrationData = data[3];
 
-    let instaActivity = fetchActivityData.activityData.map(activity => new Activity(activity))
-    let instaHydration = fetchHydrationData.hydrationData.map(hydration => new Hydration(hydration))
-    let instaSleep = fetchSleepData.sleepData.map(sleep => new Sleep(sleep))
-    usersInstantiated = fetchUserData.userData.map(user => {
-      let correlatedSleep = instaSleep.filter(sleep => sleep.userID === user.id)
-      let correlatedHydration = instaHydration.filter(hydration => hydration.userId === user.id)
-      let correlatedActivity = instaActivity.filter(activity => activity.userId === user.id)
-      return new User(user, correlatedSleep, correlatedHydration, correlatedActivity)
-    });
-    userRepo = new UserRepository(usersInstantiated)
-    currentUser = userRepo.users[getRandomArray(userRepo.users)]
-    console.log(userRepo)
-    console.log('CURRENTUSER>>>>>'currentUser)
-    currentDate = currentUser.hydration.sort((a, b) => a.date > b.date ? -1 : 1)[0]
-    console.log(currentDate.date)
-    renderWaterConsumed(currentUser, currentDate.date)
-    renderWaterOverWeek(currentUser, currentDate.date)
-    renderStepsMiles(currentUser, currentDate.date)
-    renderAllTimeSleep(currentUser, currentDate.date)
-    renderSleepQuality(currentUser, currentDate.date)
-    renderUserCard(currentUser);
-    renderUserStepGoalVsAverage(currentUser, userRepo);
-    renderLastMinActive(currentUser, currentDate.date)
-    renderUserAnalyticsVsAll(currentUser, currentDate.date, userRepo)
-  })
+      let instaActivity = fetchActivityData.activityData.map(activity => new Activity(activity))
+      let instaHydration = fetchHydrationData.hydrationData.map(hydration => new Hydration(hydration))
+      let instaSleep = fetchSleepData.sleepData.map(sleep => new Sleep(sleep))
+      usersInstantiated = fetchUserData.userData.map(user => {
+        let correlatedSleep = instaSleep.filter(sleep => sleep.userID === user.id)
+        let correlatedHydration = instaHydration.filter(hydration => hydration.userId === user.id)
+        let correlatedActivity = instaActivity.filter(activity => activity.userId === user.id)
+        return new User(user, correlatedSleep, correlatedHydration, correlatedActivity)
+      });
+      userRepo = new UserRepository(usersInstantiated)
+      currentUser = userRepo.users[getRandomArray(userRepo.users)]
+      console.log(userRepo)
+      console.log('CURRENTUSER>>>>>',
+        currentUser)
+      currentDate = currentUser.hydration.sort((a, b) => a.date > b.date ? -1 : 1)[0]
+      console.log(currentDate.date)
+      renderWaterConsumed(currentUser, currentDate.date)
+      renderWaterOverWeek(currentUser, currentDate.date)
+      renderStepsMiles(currentUser, currentDate.date)
+      renderAllTimeSleep(currentUser, currentDate.date)
+      renderSleepQuality(currentUser, currentDate.date)
+      renderUserCard(currentUser);
+      renderUserStepGoalVsAverage(currentUser, userRepo);
+      renderLastMinActive(currentUser, currentDate.date)
+      renderUserAnalyticsVsAll(currentUser, currentDate.date, userRepo)
+    })
 })
 
 friendsDropDown.addEventListener('click', () => {
@@ -88,25 +105,25 @@ const getFriends = (currentUser) => {
   friendsSelect.innerHTML = '';
   console.log('GETFRIENDS', currentUser)
   let userFriends = currentUser.friends.map(friend => {
-      return userRepo.users.filter(user => {
-          if (user.id === friend) {
-              return user
-          }
-      })
+    return userRepo.users.filter(user => {
+      if (user.id === friend) {
+        return user
+      }
+    })
   }).flat();
   console.log(userFriends)
   let userNames = userFriends.map(friend => friend.name)
   userNames.forEach(user => {
     friendsSelect.innerHTML +=
-    `<option value='allFriends'>${user}</option>
+      `<option value='allFriends'>${user}</option>
     `
-   })
-  }
+  })
+}
 
 
 const renderUserCard = (currentUser) => {
   userCard.innerHTML =
-  `   <article id='userinfo'>
+    `   <article id='userinfo'>
           <div class='user-greeting'>
             <h1>Welcome back, ${currentUser.name.split(' ')[0]}!</h1>
           </div>
@@ -132,20 +149,15 @@ const renderUserCard = (currentUser) => {
 
 
 
-
-
-
-
-
 function postData(dataType, body) {
   const root = 'http://localhost:3001/api/v1/'
   fetch(root + dataType, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  })
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
     .then(response => console.log(response.status))
     .catch(err => console.error(err))
 }
@@ -154,14 +166,23 @@ function createSleepBody() {
   let userSleepDate = document.getElementById('sleep-input-date').value
   let userHoursSlept = parseFloat(document.getElementById('input-hours-slept').value)
   let userSleepQuality = parseFloat(document.getElementById('input-sleep-quality').value)
-  let sleep = {userID: currentUser.id, date: userSleepDate, hoursSlept: userHoursSlept, sleepQuality: userSleepQuality}
+  let sleep = {
+    userID: currentUser.id,
+    date: userSleepDate,
+    hoursSlept: userHoursSlept,
+    sleepQuality: userSleepQuality
+  }
   return new Sleep(sleep)
 }
 
 function createHydrationBody() {
   let userHydrationDate = document.getElementById('hydration-input-date').value
   let userOuncesConsumed = parseFloat(document.getElementById('input-ounces-number').value)
-  let hydration = {userID: currentUser.id, date: userHydrationDate, numOunces: userOuncesConsumed}
+  let hydration = {
+    userID: currentUser.id,
+    date: userHydrationDate,
+    numOunces: userOuncesConsumed
+  }
   return new Hydration(hydration)
 }
 
@@ -170,7 +191,13 @@ function createActivityBody() {
   let userNumberOfSteps = parseFloat(document.getElementById('input-step-number').value)
   let userMinutesActive = parseFloat(document.getElementById('input-minutes-active').value)
   let userStairsClimbed = parseFloat(document.getElementById('input-stairs-climbed').value)
-  let activity = {userID: currentUser.id, date: userActivityDate, numSteps: userNumberOfSteps, minutesActive: userMinutesActive, flightsOfStairs: userStairsClimbed}
+  let activity = {
+    userID: currentUser.id,
+    date: userActivityDate,
+    numSteps: userNumberOfSteps,
+    minutesActive: userMinutesActive,
+    flightsOfStairs: userStairsClimbed
+  }
   return new Activity(activity)
 }
 
@@ -197,7 +224,7 @@ const getUserInput = (currentUser) => {
   console.log(currentUser)
   userInputModal.innerHTML = '';
   userInputModal.innerHTML +=
-  `<article class='user-input-content'>
+    `<article class='user-input-content'>
       <div class='close-modal'>
         <i class="far fa-times-circle" id="closeModal"></i>
       </div>
@@ -233,7 +260,7 @@ const getUserInput = (currentUser) => {
           <button class="submit-info" id="submit-hydration">Submit</button>
         </form>
   </article>`
- openModal()
+  openModal()
 }
 
 newUserEntry.addEventListener('click', () => {
@@ -244,9 +271,9 @@ userInputModal.addEventListener('click', (event) => {
   modalClickHandler(event)
 });
 
-function modalClickHandler(event){
+function modalClickHandler(event) {
   event.preventDefault();
-  if(event.target.id === 'closeModal') {
+  if (event.target.id === 'closeModal') {
     closeModal();
   } else if (event.target.id === 'submit-activity' || event.target.id === 'submit-sleep' || event.target.id === 'submit-hydration') {
     formSubmitClickHandler(event);
@@ -270,84 +297,30 @@ function closeModal() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ---------------------FARA WORK AREA-------------------------
 
+const button = document.getElementById('datePicker1');
+button.addEventListener('click', bookDate)
+let picker;
 
+// We need to attach the Pikaday to an input tag!!!!
+// Then we can simply pull the value from that input, which should be our date?
 
+// Check out the example I just dropped in the zoom chat.
 
+function bookDate(event) {
+  event.preventDefault()
+  if (event.target.id === 'datePicker') {
+    picker = new Pikaday({
+      field: document.getElementById('datePicker')
+    })
+    // console.log(event)
+  }
 
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// let dates = picker.getDate()
+// console.log(dates)
 
 
 

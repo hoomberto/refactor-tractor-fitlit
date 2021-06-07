@@ -3,14 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
   </head>
   <body>
     <nav>
       <div class='calendar-and-add'>
-        <button class='date-picker' id='datePicker'>
+        <div class="date-picker" id="datePicker1">
+        <input type='text' id='datePicker' autocomplete = 'off'>
+        <button class='date-picker' >
           <i class="far fa-calendar-alt"></i>
           <!-- need to add aria role? -->
         </button>
+        </div>
         <button class='add-entry' id='addEntry'>
           <i class="fas fa-plus"></i>
           <!-- need to add aria role? -->
@@ -68,5 +72,6 @@
     </main>
     <script src="bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
   </body>
 </html>
