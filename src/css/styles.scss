@@ -1,6 +1,9 @@
 // DEEP GRAY
 // #323947;
 
+* {
+  font-family: 'Roboto', sans-serif;
+}
 body {
   margin: 0;
   background-color: #323947;
@@ -55,7 +58,7 @@ nav {
   align-items: center;
   display: flex;
   background-color: #202020;
-  width: 185px;
+  width: 250px;
   height: 150px;
   // transform: translate(-8px, 124px);
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -120,10 +123,22 @@ main {
   position: relative;
 }
 
+// USER INFO
 #userinfo {
   // background-color: lightgray;
   grid-area: userInfo;
 }
+
+h1 {
+  font-size: 30px;
+  margin: 17px 0px 2px 0px;
+}
+
+p {
+  line-height: 1.5;
+}
+
+
 
 #lateststepsmiles {
   // background-color: lightgray;
@@ -149,6 +164,15 @@ main {
   align-items: center;
   justify-content: center;
   padding: 70px;
+}
+
+h4 {
+  text-align: center;
+}
+
+.last-min-active-exercise {
+    font-size: 45px;
+    font-weight: 600;
 }
 
 #usergoalvsavg {
