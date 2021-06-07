@@ -67,6 +67,10 @@ class User {
 
   gethoursSleptOnDay(date) {
     let found = this.sleep.find(sleepData => sleepData.date === date)
+    if (!found) {
+      found = {};
+      found.hoursSlept = 7.5;
+    }
     return found.hoursSlept
   }
 
@@ -78,8 +82,34 @@ class User {
         return item
       }
     })
-    let hoursSlept = filteredDays.map(day => day.hoursSlept)
-    return hoursSlept;
+
+    filteredDays.sort((a, b) => a.date > b.date ? 1 : -1);
+    if (filteredDays.length < 7) {
+      //add the amount of days before it to make the total .length of 7
+        let beforeWeek = dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1)
+        let beforeWeekDays = this.sleep.filter(item => {
+          let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
+          if (convertedToWeek === beforeWeek.$W) {
+            return item
+          }
+        })
+        while (filteredDays.length < 7) {
+          filteredDays.unshift(beforeWeekDays.pop())
+      }
+
+    }
+    let hoursOverWeek = filteredDays.map(day => {
+      return {
+        date: day.date,
+        hoursSlept: day.hoursSlept
+      }
+    })
+    // let ouncesOverWeek = filteredDays.map(day => day.numOunces)
+    return hoursOverWeek;
+    //
+    //
+    // let hoursSlept = filteredDays.map(day => day.hoursSlept)
+    // return hoursSlept;
   }
 
   hoursSleptAverageForAllDays() {
@@ -91,6 +121,10 @@ class User {
 
   getSleepQualityOnDay(date) {
     let found = this.sleep.find(sleepData => sleepData.date === date)
+    if (!found) {
+      found = {};
+      found.sleepQuality = 3.3;
+    }
     return found.sleepQuality
   }
 
@@ -102,6 +136,31 @@ class User {
         return item
       }
     })
+    filteredDays.sort((a, b) => a.date > b.date ? 1 : -1);
+    if (filteredDays.length < 7) {
+      //add the amount of days before it to make the total .length of 7
+        let beforeWeek = dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1)
+        let beforeWeekDays = this.sleep.filter(item => {
+          let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
+          if (convertedToWeek === beforeWeek.$W) {
+            return item
+          }
+        })
+        while (filteredDays.length < 7) {
+          filteredDays.unshift(beforeWeekDays.shift())
+      }
+
+    }
+    let hoursOverWeek = filteredDays.map(day => {
+      return {
+        date: day.date,
+        sleepQuality: day.sleepQuality
+      }
+    })
+    // let ouncesOverWeek = filteredDays.map(day => day.numOunces)
+    return hoursOverWeek;
+
+
     let sleepQuality = filteredDays.map(day => day.sleepQuality)
     return sleepQuality;
   }
