@@ -61,7 +61,9 @@ console.log('>>>>>> USERS STEPS', userSteps)
         y: {
           beginAtZero: true
         }
-      }
+      },
+      maintainAspectRatio: false,
+      responsive: false
     },
   };
 
@@ -74,7 +76,9 @@ console.log('>>>>>> USERS STEPS', userSteps)
         y: {
           beginAtZero: true
         }
-      }
+      },
+      maintainAspectRatio: false,
+      responsive: false
     },
   };
 
