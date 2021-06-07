@@ -67,6 +67,10 @@ class User {
 
   gethoursSleptOnDay(date) {
     let found = this.sleep.find(sleepData => sleepData.date === date)
+    if (!found) {
+      found = {};
+      found.hoursSlept = 7.5;
+    }
     return found.hoursSlept
   }
 
@@ -91,6 +95,10 @@ class User {
 
   getSleepQualityOnDay(date) {
     let found = this.sleep.find(sleepData => sleepData.date === date)
+    if (!found) {
+      found = {};
+      found.sleepQuality = 3.3;
+    }
     return found.sleepQuality
   }
 
