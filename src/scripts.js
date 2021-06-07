@@ -71,7 +71,6 @@ window.addEventListener('load', function() {
     renderUserStepGoalVsAverage(currentUser, userRepo);
     renderLastMinActive(currentUser, currentDate.date);
     renderUserAnalyticsVsAll(currentUser, currentDate.date, userRepo)
-    renderFriends(currentUser)
   })
 })
 
@@ -92,7 +91,7 @@ const renderFriends = (currentUser) => {
   }).flat();
     console.log('FRIENDS', userFriends)
     friends.innerHTML +=
-    `<p class='friend-details'>${userFriends.map(friend => {return `${friend.name} | ${friend.dailyStepGoal}` + "<br>"}).join('')}</p>`
+    `<p class='friend-details'>${userFriends.map(friend => {return `${friend.name} | ${friend.dailyStepGoal} steps` + "<br>"}).join('')}</p>`
   };
 
 
