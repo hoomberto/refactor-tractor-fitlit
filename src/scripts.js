@@ -58,7 +58,8 @@ window.addEventListener('load', function() {
     });
     userRepo = new UserRepository(usersInstantiated)
     currentUser = userRepo.users[getRandomArray(userRepo.users)]
-    console.log(currentUser)
+    console.log(userRepo)
+    console.log('CURRENTUSER>>>>>', currentUser)
     currentDate = currentUser.hydration.sort((a, b) => a.date > b.date ? -1 : 1)[0]
     console.log(currentDate.date)
     renderWaterConsumed(currentUser, currentDate.date)
@@ -125,31 +126,65 @@ const renderUserCard = (currentUser) => {
 
 
 
-// const getUserInput = (currentUser) => {
-//   console.log(currentUser)
-//   userInputModal.innerHTML = '';
-//   userInputModal.innerHTML +=
-//   `<article class='user-input-content' id='${currentUser.id}'>
-//       <div class='close-modal'>
-//         <i class="far fa-times-circle" id="closeModal"></i>
-//       </div>
-//       <h1 class='input-header'></h1>
-//   </article>`
-//  openModal()
-// }
-// newUserEntry.addEventListener('click', () => {
-//   getUserInput(currentUser)
-// });
-// xIcon.addEventListener('click', hideModal);
-//
-// const openModal = () => {
-//   userInputModal.style.display = 'flex'
-// }
-//
-// const hideModal = () => {
-//   element.style.display = 'none'
-// }
-//
+
+
+
+
+
+
+
+
+
+
+
+function postData(dataType, body) {
+  const root = 'http://localhost:3001/api/v1/'
+  fetch(root + dataType, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+    .then(response => console.log(response.status))
+    .catch(err => console.error(err))
+}
+
+function createSleepBody() {
+  let userSleepDate = document.getElementById('sleep-input-date').value
+  let userHoursSlept = parseFloat(document.getElementById('input-hours-slept').value)
+  let userSleepQuality = parseFloat(document.getElementById('input-sleep-quality').value)
+  return {userID: currentUser.id, date: userSleepDate, hoursSlept: userHoursSlept, sleepQuality: userSleepQuality}
+}
+
+function createHydrationBody() {
+  let userHydrationDate = document.getElementById('hydration-input-date').value
+  let userOuncesConsumed = parseFloat(document.getElementById('input-ounces-number').value)
+  return {userID: currentUser.id, date: userHydrationDate, numOunces: userOuncesConsumed}
+}
+
+function createActivityBody() {
+  let userActivityDate = document.getElementById('activity-input-date').value
+  let userNumberOfSteps = parseFloat(document.getElementById('input-step-number').value)
+  let userMinutesActive = parseFloat(document.getElementById('input-minutes-active').value)
+  let userStairsClimbed = parseFloat(document.getElementById('input-stairs-climbed').value)
+  return {userID: currentUser.id, date: userActivityDate, numSteps: userNumberOfSteps, minutesActive: userMinutesActive, flightsOfStairs: userStairsClimbed}
+}
+
+function formSubmitClickHandler(event) {
+  if (event.target.id === 'submit-sleep') {
+    let sleepBody = createSleepBody();
+    postData('sleep', sleepBody)
+  }
+  if (event.target.id === 'submit-hydration') {
+    let hydrationBody = createHydrationBody();
+    postData('hydration', hydrationBody)
+  }
+  if (event.target.id === 'submit-activity') {
+    let activityBody = createActivityBody();
+    postData('activity', activityBody)
+  }
+}
 
 
 const newUserEntry = document.getElementById('addEntry');
@@ -159,11 +194,41 @@ const getUserInput = (currentUser) => {
   console.log(currentUser)
   userInputModal.innerHTML = '';
   userInputModal.innerHTML +=
-  `<article class='user-input-content' id='${currentUser.id}'>
+  `<article class='user-input-content'>
       <div class='close-modal'>
         <i class="far fa-times-circle" id="closeModal"></i>
       </div>
-      <h1 class='input-header'></h1>
+      <h1 class='user-input-header'>Add New Fitness Data</h1>
+        <form class='user-input-sleep' id='userInputSleep'>
+          <h2>Add New Sleep Data</h2>
+          <label for="sleep-user-date">Date</label>
+          <input type="text" name="sleep-user-input-date" id="sleep-input-date" placeholder="yyyy/mm/dd">
+          <label for="user-hours-slept">Hours Slept</label>
+          <input type="number" name="user-hours-slept" id="input-hours-slept" min="0" max="40">
+          <label for="user-sleep-quality">Sleep Quality</label>
+          <input type="number" name="user-sleep-quality" id="input-sleep-quality" min="1" max="5" placeholder="Enter a number from 1-5" step=".1">
+          <input value="Submit" class="submit-info" id="submit-sleep" type="submit">
+        </form>
+        <form class='user-input-activity' id='userInputActivity'>
+          <h2>Add New Activity Data</h2>
+          <label for="activity-user-date">Date</label>
+          <input type="text" name="activity-user-date" id="activity-input-date" placeholder="yyyy/mm/dd">
+          <label for="user-step-number">Number of Steps</label>
+          <input type="number" name="user-step-number" id="user-step-number" mix="0">
+          <label for="user-minutes-active">Active Minutes</label>
+          <input type="number" name="user-minutes-active" id="user-minutes-active" min="0">
+          <label for="user-stairs-climbed">Flight of Stairs Climbed</label>
+          <input type="number" name="user-stairs-climbed" id="user-stairs-climbed" min="0">
+          <button class="submit-info" id="submit-activity">Submit</button>
+        </form>
+        <form class='user-input-hydration' id='userInputHydration'>
+          <h2>Add New Hydration Data</h2>
+          <label for="hydration-user-date">Date</label>
+          <input type="text" name="hydration-user-date" id="hydration-input-date" placeholder="yyyy/mm/dd">
+          <label for="user-ounces-number">Ounces of Water Drank</label>
+          <input type="number" name="user-ounces-number" id="input-ounces-number" min="0">
+          <button class="submit-info" id="submit-hydration">Submit</button>
+        </form>
   </article>`
  openModal()
 }
@@ -173,12 +238,16 @@ newUserEntry.addEventListener('click', () => {
 });
 
 userInputModal.addEventListener('click', (event) => {
-  hideModal(event)
+  modalClickHandler(event)
 });
 
-function hideModal(event){
+function modalClickHandler(event){
+  event.preventDefault();
   if(event.target.id === 'closeModal') {
-    userInputModal.style.display = 'none'
+    closeModal();
+  } else if (event.target.id === 'submit-activity' || event.target.id === 'submit-sleep' || event.target.id === 'submit-hydration') {
+    formSubmitClickHandler(event);
+    closeModal();
   }
 }
 
@@ -186,6 +255,9 @@ function openModal() {
   userInputModal.style.display = 'flex'
 }
 
+function closeModal() {
+  userInputModal.style.display = 'none';
+}
 
 
 
