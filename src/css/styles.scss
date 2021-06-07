@@ -1,10 +1,12 @@
 // DEEP GRAY
 // #323947;
 
+* {
+  font-family: 'Roboto', sans-serif;
+}
 body {
   margin: 0;
   background-color: #323947;
-  border-color: 2px solid red;
 }
 
 nav {
@@ -12,6 +14,7 @@ nav {
   position: fixed;
   width: 100vw;
   min-height: 5%;
+  max-height: 10%;
   background-color: #001a4d;
   display: flex;
   flex-direction: row;
@@ -40,15 +43,54 @@ nav {
   align-items: center;
 }
 
-// .user-friends {
-//   padding: 20px;
-// }
+.friends-drop-down {
+  color: black;
+  background-color: lightgray;
+  width: 95px;
+  height: 40px;
+  border: none;
+  border-radius: 20px;
+  margin: 26px;
+  // position: absolute;
+}
+
+.dropdown-content {
+  align-items: center;
+  display: flex;
+  background-color: #202020;
+  width: 250px;
+  height: 150px;
+  // transform: translate(-8px, 124px);
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.friend-details {
+  font-size: 16px;
+  color: white;
+  line-height: 2;
+  text-align: center;
+}
+
+.friendsDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 main {
   display: grid;
   height: 100vh;
   place-items: center;
 }
+
+// canvas {
+//   min-width: 0;
+// }
 
 .widgets-container {
   display: grid;
@@ -69,12 +111,34 @@ main {
 
 .widgets-container * {
   background-color: lightgray;
+  min-width: 0;
+  display: grid;
+  place-items: center;
 }
 
+
+
+#lateststepsmiles div {
+  overflow: auto;
+  position: relative;
+}
+
+// USER INFO
 #userinfo {
   // background-color: lightgray;
   grid-area: userInfo;
 }
+
+h1 {
+  font-size: 30px;
+  margin: 17px 0px 2px 0px;
+}
+
+p {
+  line-height: 1.5;
+}
+
+
 
 #lateststepsmiles {
   // background-color: lightgray;
@@ -90,6 +154,7 @@ main {
   text-align: center;
   transform: translate(121px, 128px);
   z-index: 2;
+  opacity: 0;
 }
 
 #latestminactive {
@@ -99,6 +164,15 @@ main {
   align-items: center;
   justify-content: center;
   padding: 70px;
+}
+
+h4 {
+  text-align: center;
+}
+
+.last-min-active-exercise {
+    font-size: 45px;
+    font-weight: 600;
 }
 
 #usergoalvsavg {
@@ -112,6 +186,7 @@ main {
 
 #water-chart {
   background: url(https://i.imgur.com/sZLs3Vr.png?3) no-repeat center;
+  background-size: 60px;
 }
 
 #latestsleepdata {
@@ -155,6 +230,43 @@ main {
   font-size: 42px;
 }
 
+#weeklyactivitydata div {
+  min-width: 0;
+}
+
+#minStairsAvgChart,
+#stepsAvgChart {
+  height: 300;
+}
+
+
+
+
+@media only screen and (max-width: 950px) {
+
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #lateststepsmiles::after {
+    transform: translate(114px, 120px);
+  }
+
+  .widgets-container {
+    margin-top: 16%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "userInfo userInfo lateststepsmiles"
+    "waterconsumed latestsleepdata alltimesleepavg"
+    "wateroverweek latestsleepoverweek latestminactive"
+    "usergoalvsavg activityvsuserbase activityvsuserbase"
+    "weeklyactivitydata weeklyactivitydata weeklyactivitydata"
+  }
+
+}
+
 
 
 @media only screen and (max-width: 550px) {
@@ -164,8 +276,12 @@ main {
     flex-direction: column;
   }
 
+  #lateststepsmiles::after {
+    transform: translate(140px, 146px);
+  }
+
   .widgets-container {
-    margin-top: 16%;
+    margin-top: 36%;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
@@ -174,6 +290,7 @@ main {
     "usergoalvsavg"
     "waterconsumed"
     "latestsleepdata"
+    "latestminactive"
     "alltimesleepavg"
     "activityvsuserbase"
     "wateroverweek"
@@ -181,9 +298,21 @@ main {
     "weeklyactivitydata"
   }
 
-  .widgets-container * {
-    height: 300px;
+  #weeklyactivitydata {
+    display: flex;
+    height: 600px;
+    flex-direction: column;
   }
+
+  #weeklyactivitydata div {
+    position: relative;
+  }
+
+  #minStairsAvgChart,
+  #stepsAvgChart {
+    height: 200;
+  }
+
 }
 
 
@@ -218,16 +347,27 @@ main {
   height: 80%;
   overflow-y: scroll;
   box-shadow: 0px 7px 29px 0px black;
-  transform: translate(-273px, -63px);
+  // transform: translate(-273px, -63px);
 }
 
 .fa-times-circle {
   font-size: 34px;
 }
 
-.close-modal {
-  padding: 10px;
+.fa-times-circle:hover {
+  transform: scale(1.1)
 }
+
+.close-modal {
+  background-color: white;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+	border: none;
+  margin: 6px 0px 0px 0px;
+  padding: 0px;
+}
+
 
 h2 {
   text-align: center;
@@ -255,4 +395,9 @@ h2 {
 
 .user-input-activity {
   background-color: lightgreen;
+}
+
+
+.hidden {
+  display: none;
 }

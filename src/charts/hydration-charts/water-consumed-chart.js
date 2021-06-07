@@ -40,7 +40,7 @@ export const renderWaterConsumed = (currentUser, currentDate) => {
     type: 'doughnut',
     data: waterData,
     options: {
-      cutout: 77
+      cutout: 77,
     }
   };
 

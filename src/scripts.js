@@ -20,12 +20,14 @@ import { renderSleepQuality } from './charts/sleep-charts/latest-sleep-chart.js'
 import { renderUserStepGoalVsAverage } from './charts/activity-charts/user-step-goal-vs-avg.js'
 import { renderLastMinActive } from './charts/activity-charts/last-min-active.js'
 import { renderUserAnalyticsVsAll } from './charts/activity-charts/activity-analytics-vs-all.js'
+import { renderSleepOverWeek } from './charts/sleep-charts/weekly-sleep-chart.js'
+import { renderWeeklyActivity } from './charts/activity-charts/weekly-activity-analytics-chart.js'
 
 // -----------------------QUERY SELECTORS---------------------------
 
 const userCard = document.getElementById('userinfo');
-const friendsDropDown = document.getElementById('friendsDropDown');
-const friendsSelect = document.getElementById('userFriends');
+const friendsBtn = document.getElementById('friendsDropDown');
+const friends = document.getElementById('dropDownContent');
 
 // -----------------------GLOBAL VARIABLES--------------------
 let currentDate, fetchUserData, fetchSleepData, fetchActivityData, fetchHydrationData, usersInstantiated, userRepo, currentUser
@@ -59,7 +61,7 @@ window.addEventListener('load', function() {
     userRepo = new UserRepository(usersInstantiated)
     currentUser = userRepo.users[getRandomArray(userRepo.users)]
     console.log(userRepo)
-    console.log('CURRENTUSER>>>>>'currentUser)
+    console.log('CURRENTUSER>>>>>', currentUser)
     currentDate = currentUser.hydration.sort((a, b) => a.date > b.date ? -1 : 1)[0]
     console.log(currentDate.date)
     renderWaterConsumed(currentUser, currentDate.date)
@@ -69,24 +71,22 @@ window.addEventListener('load', function() {
     renderSleepQuality(currentUser, currentDate.date)
     renderUserCard(currentUser);
     renderUserStepGoalVsAverage(currentUser, userRepo);
-    renderLastMinActive(currentUser, currentDate.date)
+    renderLastMinActive(currentUser, currentDate.date);
     renderUserAnalyticsVsAll(currentUser, currentDate.date, userRepo)
+    renderSleepOverWeek(currentUser, currentDate.date)
+    renderWeeklyActivity(currentUser, currentDate.date)
+    renderFriends(currentUser);
   })
 })
 
-friendsDropDown.addEventListener('click', () => {
-  getFriends(currentUser)
-});
 
 
 
 
 
-
-
-const getFriends = (currentUser) => {
-  friendsSelect.innerHTML = '';
-  console.log('GETFRIENDS', currentUser)
+//need to invoke on pageload to populate these friends... then will apply hover to the FRIENDS button in nav
+const renderFriends = (currentUser) => {
+  friends.innerHTML = '';
   let userFriends = currentUser.friends.map(friend => {
       return userRepo.users.filter(user => {
           if (user.id === friend) {
@@ -94,19 +94,24 @@ const getFriends = (currentUser) => {
           }
       })
   }).flat();
-  console.log(userFriends)
-  let userNames = userFriends.map(friend => friend.name)
-  userNames.forEach(user => {
-    friendsSelect.innerHTML +=
-    `<option value='allFriends'>${user}</option>
-    `
-   })
+    console.log('FRIENDS', userFriends)
+    friends.innerHTML +=
+    `<p class='friend-details'>${userFriends.map(friend => {return `${friend.name} | ${friend.dailyStepGoal} steps` + "<br>"}).join('')}</p>`
+  };
+
+
+  const toggleFriends = () => {
+    friends.classList.toggle('hidden')
   }
+
+
+  friendsBtn.addEventListener('click', toggleFriends)
+
 
 
 const renderUserCard = (currentUser) => {
   userCard.innerHTML =
-  `   <article id='userinfo'>
+  `   <article id='user' width="300" height="300">
           <div class='user-greeting'>
             <h1>Welcome back, ${currentUser.name.split(' ')[0]}!</h1>
           </div>
@@ -178,14 +183,17 @@ function formSubmitClickHandler(event) {
   if (event.target.id === 'submit-sleep') {
     let sleepBody = createSleepBody();
     postData('sleep', sleepBody)
+    closeModal();
   }
   if (event.target.id === 'submit-hydration') {
     let hydrationBody = createHydrationBody();
     postData('hydration', hydrationBody)
+    closeModal();
   }
   if (event.target.id === 'submit-activity') {
     let activityBody = createActivityBody();
     postData('activity', activityBody)
+    closeModal();
   }
 }
 
@@ -198,9 +206,9 @@ const getUserInput = (currentUser) => {
   userInputModal.innerHTML = '';
   userInputModal.innerHTML +=
   `<article class='user-input-content'>
-      <div class='close-modal'>
-        <i class="far fa-times-circle" id="closeModal"></i>
-      </div>
+      <button class='close-modal' id='close'>
+        <i class="far fa-times-circle"></i>
+      </button>
       <h1 class='user-input-header'>Add New Fitness Data</h1>
         <form class='user-input-sleep' id='userInputSleep'>
           <h2>Add New Sleep Data</h2>
@@ -246,7 +254,8 @@ userInputModal.addEventListener('click', (event) => {
 
 function modalClickHandler(event){
   event.preventDefault();
-  if(event.target.id === 'closeModal') {
+  if(event.target.id === 'close') {
+    console.log('click')
     closeModal();
   } else if (event.target.id === 'submit-activity' || event.target.id === 'submit-sleep' || event.target.id === 'submit-hydration') {
     formSubmitClickHandler(event);
