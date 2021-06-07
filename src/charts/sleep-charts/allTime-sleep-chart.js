@@ -2,6 +2,11 @@ export const renderAllTimeSleep = (currentUser, currentDate) => {
   let hrsSlept = currentUser.hoursSleptAverageForAllDays(currentDate)
   let sleepQuality = currentUser.sleepQualityAverageForAllDays(currentDate)
 
+  if (!hrsSlept || !sleepQuality) {
+    hrsSlept = currentUser.gethoursSleptOnDay("2020/01/21")
+    sleepQuality = currentUser.getSleepQualityOnDay("2020/01/21")
+  }
+
   const sleepDataForAllTimes = {
     labels: ['All Time Sleep Hours', 'All Time Sleep Quality'],
     datasets: [{
