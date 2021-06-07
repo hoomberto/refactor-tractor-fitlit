@@ -19,6 +19,7 @@ import { renderAllTimeSleep } from './charts/sleep-charts/allTime-sleep-chart.js
 import { renderSleepQuality } from './charts/sleep-charts/latest-sleep-chart.js'
 import { renderUserStepGoalVsAverage } from './charts/activity-charts/user-step-goal-vs-avg.js'
 import { renderLastMinActive } from './charts/activity-charts/last-min-active.js'
+import { renderUserAnalyticsVsAll } from './charts/activity-charts/activity-analytics-vs-all.js'
 
 // -----------------------QUERY SELECTORS---------------------------
 
@@ -68,6 +69,7 @@ window.addEventListener('load', function() {
     renderUserCard(currentUser);
     renderUserStepGoalVsAverage(currentUser, userRepo);
     renderLastMinActive(currentUser, currentDate.date)
+    renderUserAnalyticsVsAll(currentUser, currentDate.date, userRepo)
   })
 })
 

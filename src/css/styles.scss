@@ -94,6 +94,11 @@ main {
 
 #latestminactive {
   grid-area: latestminactive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 70px;
 }
 
 #usergoalvsavg {
@@ -107,7 +112,6 @@ main {
 
 #water-chart {
   background: url(https://i.imgur.com/sZLs3Vr.png?3) no-repeat center;
-
 }
 
 #latestsleepdata {
@@ -132,6 +136,20 @@ main {
 
 #weeklyactivitydata {
   grid-area: weeklyactivitydata;
+}
+
+#latestminactive h3,
+.last-min-active {
+  margin: 0 auto;
+}
+
+#latestminactive h3 {
+  text-align: center;
+  width: 100%;
+}
+
+.last-min-active {
+  font-size: 42px;
 }
 
 
