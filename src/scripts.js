@@ -44,7 +44,7 @@ const friendsDropDown = document.getElementById('friendsDropDown');
 const friendsSelect = document.getElementById('userFriends');
 
 // -----------------------GLOBAL VARIABLES--------------------
-let currentDate, fetchUserData, fetchSleepData, fetchActivityData, fetchHydrationData, usersInstantiated, userRepo, currentUser
+let currentDate, fetchUserData, fetchSleepData, fetchActivityData, fetchHydrationData, usersInstantiated, userRepo, currentUser, picker
 
 // -------------------EVENT LISTENERS----------------------
 
@@ -55,7 +55,9 @@ const getRandomArray = (array) => {
 
 
 window.addEventListener('load', function() {
-
+  picker = new Pikaday({
+    field: document.getElementById('datePicker')
+  })
   apiCalls.getData()
     .then(data => {
       fetchUserData = data[0]
@@ -299,28 +301,7 @@ function closeModal() {
 
 // ---------------------FARA WORK AREA-------------------------
 
-const button = document.getElementById('datePicker1');
-button.addEventListener('click', bookDate)
-let picker;
 
-// We need to attach the Pikaday to an input tag!!!!
-// Then we can simply pull the value from that input, which should be our date?
-
-// Check out the example I just dropped in the zoom chat.
-
-function bookDate(event) {
-  event.preventDefault()
-  if (event.target.id === 'datePicker') {
-    picker = new Pikaday({
-      field: document.getElementById('datePicker')
-    })
-    // console.log(event)
-  }
-
-}
-
-// let dates = picker.getDate()
-// console.log(dates)
 
 
 
