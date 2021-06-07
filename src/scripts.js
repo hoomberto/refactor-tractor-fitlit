@@ -82,6 +82,7 @@ friendsDropDown.addEventListener('click', () => {
 
 
 const getFriends = (currentUser) => {
+  friendsSelect.innerHTML = '';
   console.log('GETFRIENDS', currentUser)
   let userFriends = currentUser.friends.map(friend => {
       return userRepo.users.filter(user => {
@@ -119,6 +120,87 @@ const renderUserCard = (currentUser) => {
           </section>
       </article> `
 };
+
+
+
+// const getUserInput = (currentUser) => {
+//   console.log(currentUser)
+//   userInputModal.innerHTML = '';
+//   userInputModal.innerHTML +=
+//   `<article class='user-input-content' id='${currentUser.id}'>
+//       <div class='close-modal'>
+//         <i class="far fa-times-circle" id="closeModal"></i>
+//       </div>
+//       <h1 class='input-header'></h1>
+//   </article>`
+//  openModal()
+// }
+// newUserEntry.addEventListener('click', () => {
+//   getUserInput(currentUser)
+// });
+// xIcon.addEventListener('click', hideModal);
+//
+// const openModal = () => {
+//   userInputModal.style.display = 'flex'
+// }
+//
+// const hideModal = () => {
+//   element.style.display = 'none'
+// }
+//
+
+
+const newUserEntry = document.getElementById('addEntry');
+const userInputModal = document.getElementById('userInputModal');
+
+const getUserInput = (currentUser) => {
+  console.log(currentUser)
+  userInputModal.innerHTML = '';
+  userInputModal.innerHTML +=
+  `<article class='user-input-content' id='${currentUser.id}'>
+      <div class='close-modal'>
+        <i class="far fa-times-circle" id="closeModal"></i>
+      </div>
+      <h1 class='input-header'></h1>
+  </article>`
+ openModal()
+}
+
+newUserEntry.addEventListener('click', () => {
+  getUserInput(currentUser)
+});
+
+userInputModal.addEventListener('click', (event) => {
+  hideModal(event)
+});
+
+function hideModal(event){
+  if(event.target.id === 'closeModal') {
+    userInputModal.style.display = 'none'
+  }
+}
+
+function openModal() {
+  userInputModal.style.display = 'flex'
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
