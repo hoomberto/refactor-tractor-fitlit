@@ -160,9 +160,9 @@ class User {
     // let ouncesOverWeek = filteredDays.map(day => day.numOunces)
     return hoursOverWeek;
 
-
-    let sleepQuality = filteredDays.map(day => day.sleepQuality)
-    return sleepQuality;
+    //
+    // let sleepQuality = filteredDays.map(day => day.sleepQuality)
+    // return sleepQuality;
   }
 
   calculateAverageQualityByWeek(date) {
@@ -203,7 +203,7 @@ class User {
     return activityOnDay.steps
   }
 
-  averageMinutesActiveByWeek(inputDate) {
+  getAverageMinutesActiveByWeek(inputDate) {
     let inputToWeek = dayjs(inputDate, "YYYY-MM-DD").week()
     let filteredDays = this.activity.filter(item => {
       let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
@@ -211,12 +211,92 @@ class User {
         return item
       }
     })
-    let averageMinutesOverWeek = filteredDays.reduce((total, currentVal) => {
-      total += currentVal.minutesActive
-      return total
-    }, 0)
 
-    return averageMinutesOverWeek / filteredDays.length
+    filteredDays.sort((a, b) => a.date > b.date ? 1 : -1);
+    if (filteredDays.length < 7) {
+      //add the amount of days before it to make the total .length of 7
+        let beforeWeek = dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1)
+        let beforeWeekDays = this.activity.filter(item => {
+          let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
+          if (convertedToWeek === beforeWeek.$W) {
+            return item
+          }
+        })
+        while (filteredDays.length < 7) {
+          filteredDays.unshift(beforeWeekDays.shift())
+      }
+
+    }
+    let minutesActiveOverWeek = filteredDays.map(day => day.minutesActive)
+    .reduce((acc, currentVal) => {
+      acc += currentVal
+      return acc
+    }, 0)
+    return minutesActiveOverWeek / filteredDays.length;
+  }
+
+  getAverageStepsByWeek(inputDate) {
+    let inputToWeek = dayjs(inputDate, "YYYY-MM-DD").week()
+    let filteredDays = this.activity.filter(item => {
+      let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
+      if (convertedToWeek === inputToWeek) {
+        return item
+      }
+    })
+
+    filteredDays.sort((a, b) => a.date > b.date ? 1 : -1);
+    if (filteredDays.length < 7) {
+      //add the amount of days before it to make the total .length of 7
+        let beforeWeek = dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1)
+        let beforeWeekDays = this.activity.filter(item => {
+          let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
+          if (convertedToWeek === beforeWeek.$W) {
+            return item
+          }
+        })
+        while (filteredDays.length < 7) {
+          filteredDays.unshift(beforeWeekDays.shift())
+      }
+
+    }
+    let stepsOverWeek = filteredDays.map(day => day.steps)
+    .reduce((acc, currentVal) => {
+      acc += currentVal
+      return acc
+    }, 0)
+    return stepsOverWeek / filteredDays.length;
+  }
+
+  getAverageStairsByWeek(inputDate) {
+    let inputToWeek = dayjs(inputDate, "YYYY-MM-DD").week()
+    let filteredDays = this.activity.filter(item => {
+      let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
+      if (convertedToWeek === inputToWeek) {
+        return item
+      }
+    })
+
+    filteredDays.sort((a, b) => a.date > b.date ? 1 : -1);
+    if (filteredDays.length < 7) {
+      //add the amount of days before it to make the total .length of 7
+        let beforeWeek = dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1)
+        let beforeWeekDays = this.activity.filter(item => {
+          let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
+          if (convertedToWeek === beforeWeek.$W) {
+            return item
+          }
+        })
+        while (filteredDays.length < 7) {
+          filteredDays.unshift(beforeWeekDays.shift())
+      }
+
+    }
+    let stairsOverWeek = filteredDays.map(day => day.flightsOfStairs)
+    .reduce((acc, currentVal) => {
+      acc += currentVal
+      return acc
+    }, 0)
+    return stairsOverWeek / filteredDays.length;
   }
 
   getStairsClimbedOnDate(date) {

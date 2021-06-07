@@ -21,6 +21,7 @@ import { renderUserStepGoalVsAverage } from './charts/activity-charts/user-step-
 import { renderLastMinActive } from './charts/activity-charts/last-min-active.js'
 import { renderUserAnalyticsVsAll } from './charts/activity-charts/activity-analytics-vs-all.js'
 import { renderSleepOverWeek } from './charts/sleep-charts/weekly-sleep-chart.js'
+import { renderWeeklyActivity } from './charts/activity-charts/weekly-activity-analytics-chart.js'
 
 
 // -----------------------QUERY SELECTORS---------------------------
@@ -73,6 +74,7 @@ window.addEventListener('load', function() {
     renderLastMinActive(currentUser, currentDate.date)
     renderUserAnalyticsVsAll(currentUser, currentDate.date, userRepo)
     renderSleepOverWeek(currentUser, currentDate.date)
+    renderWeeklyActivity(currentUser, currentDate.date)
   })
 })
 
