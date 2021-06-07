@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "chart.js": "^3.3.2",
-    "dayjs": "^1.10.5"
+    "dayjs": "^1.10.5",
+    "pikaday": "^1.8.2"
   }
 }
