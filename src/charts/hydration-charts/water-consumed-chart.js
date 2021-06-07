@@ -1,4 +1,5 @@
 export const renderWaterConsumed = (currentUser, currentDate) => {
+  let waterChart;
   let waterDrank = currentUser.consumedWaterOnDay(currentDate)
   let waterData;
   // Comparing the recommended daily amount of 64oz to what the user drank
@@ -44,8 +45,8 @@ export const renderWaterConsumed = (currentUser, currentDate) => {
     }
   };
 
-  const myChart = new Chart(
-    document.getElementById('water-chart'),
+  waterChart = new Chart(
+    document.getElementById('water-chart').getContext("2d"),
     waterConfig
   );
 }

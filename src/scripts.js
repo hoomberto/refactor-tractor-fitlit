@@ -1,6 +1,7 @@
 import './css/base.scss';
 import './css/styles.scss';
 import apiCalls from './apiCalls'
+import dayjs from 'dayjs';
 
 import '@fortawesome/fontawesome-free/js/fontawesome'
 import '@fortawesome/fontawesome-free/js/solid'
@@ -76,12 +77,16 @@ window.addEventListener('load', function() {
     renderUserAnalyticsVsAll(currentUser, currentDate.date, userRepo)
     renderSleepOverWeek(currentUser, currentDate.date)
     renderWeeklyActivity(currentUser, currentDate.date)
-    renderDatePicker(currentDate.date, firstDate.date)
+    renderDatePicker(currentDate.date, firstDate.date, currentUser)
     renderFriends(currentUser);
+
   })
 })
 
-const renderDatePicker = (currentDate, firstDate) => {
+const renderDatePicker = (currentDate, firstDate, currentUser) => {
+  const testInput = (value) => {
+    alert(`THE VALUE IS ${value}`)
+  }
   let current = new Date(currentDate)
   let min = new Date(firstDate)
   picker = new Pikaday({
@@ -90,6 +95,18 @@ const renderDatePicker = (currentDate, firstDate) => {
    minDate: min,
    maxDate: current,
  })
+  document.getElementById('datePicker').addEventListener('change', (event) => {
+    let value = event.target.value
+    let day = value.split(' ').slice(1, 4).join(' ')
+    let formatted = dayjs(day).format("YYYY/DD/MM")
+    // .shift().join(' ')
+    console.log(formatted)
+    document.getElementById('waterconsumed').innerHTML = ""
+    document.getElementById('waterconsumed').innerHTML += `
+    <canvas id="water-chart" width="300" height="300"></canvas>
+    `
+    renderWaterConsumed(currentUser, formatted)
+ });
 }
 
 

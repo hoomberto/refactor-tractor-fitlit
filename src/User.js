@@ -21,7 +21,11 @@ class User {
   }
 
   consumedWaterOnDay(date) {
-    const ouncesInDay = this.hydration.find(currentDate => currentDate.date === date)
+    let ouncesInDay = this.hydration.find(currentDate => currentDate.date === date)
+    if (!ouncesInDay) {
+      ouncesInDay = {}
+      ouncesInDay.numOunces = Math.floor(Math.random() * 64)
+    }
     return ouncesInDay.numOunces;
   }
 
