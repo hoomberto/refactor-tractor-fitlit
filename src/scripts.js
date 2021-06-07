@@ -20,9 +20,6 @@ import { renderSleepQuality } from './charts/sleep-charts/latest-sleep-chart.js'
 import { renderUserStepGoalVsAverage } from './charts/activity-charts/user-step-goal-vs-avg.js'
 import { renderLastMinActive } from './charts/activity-charts/last-min-active.js'
 import { renderUserAnalyticsVsAll } from './charts/activity-charts/activity-analytics-vs-all.js'
-import { renderSleepOverWeek } from './charts/sleep-charts/weekly-sleep-chart.js'
-import { renderWeeklyActivity } from './charts/activity-charts/weekly-activity-analytics-chart.js'
-
 
 // -----------------------QUERY SELECTORS---------------------------
 
@@ -62,7 +59,7 @@ window.addEventListener('load', function() {
     userRepo = new UserRepository(usersInstantiated)
     currentUser = userRepo.users[getRandomArray(userRepo.users)]
     console.log(userRepo)
-    console.log('CURRENTUSER>>>>>', currentUser)
+    console.log('CURRENTUSER>>>>>'currentUser)
     currentDate = currentUser.hydration.sort((a, b) => a.date > b.date ? -1 : 1)[0]
     console.log(currentDate.date)
     renderWaterConsumed(currentUser, currentDate.date)
@@ -74,8 +71,6 @@ window.addEventListener('load', function() {
     renderUserStepGoalVsAverage(currentUser, userRepo);
     renderLastMinActive(currentUser, currentDate.date)
     renderUserAnalyticsVsAll(currentUser, currentDate.date, userRepo)
-    renderSleepOverWeek(currentUser, currentDate.date)
-    renderWeeklyActivity(currentUser, currentDate.date)
   })
 })
 
@@ -159,13 +154,15 @@ function createSleepBody() {
   let userSleepDate = document.getElementById('sleep-input-date').value
   let userHoursSlept = parseFloat(document.getElementById('input-hours-slept').value)
   let userSleepQuality = parseFloat(document.getElementById('input-sleep-quality').value)
-  return {userID: currentUser.id, date: userSleepDate, hoursSlept: userHoursSlept, sleepQuality: userSleepQuality}
+  let sleep = {userID: currentUser.id, date: userSleepDate, hoursSlept: userHoursSlept, sleepQuality: userSleepQuality}
+  return new Sleep(sleep)
 }
 
 function createHydrationBody() {
   let userHydrationDate = document.getElementById('hydration-input-date').value
   let userOuncesConsumed = parseFloat(document.getElementById('input-ounces-number').value)
-  return {userID: currentUser.id, date: userHydrationDate, numOunces: userOuncesConsumed}
+  let hydration = {userID: currentUser.id, date: userHydrationDate, numOunces: userOuncesConsumed}
+  return new Hydration(hydration)
 }
 
 function createActivityBody() {
@@ -173,7 +170,8 @@ function createActivityBody() {
   let userNumberOfSteps = parseFloat(document.getElementById('input-step-number').value)
   let userMinutesActive = parseFloat(document.getElementById('input-minutes-active').value)
   let userStairsClimbed = parseFloat(document.getElementById('input-stairs-climbed').value)
-  return {userID: currentUser.id, date: userActivityDate, numSteps: userNumberOfSteps, minutesActive: userMinutesActive, flightsOfStairs: userStairsClimbed}
+  let activity = {userID: currentUser.id, date: userActivityDate, numSteps: userNumberOfSteps, minutesActive: userMinutesActive, flightsOfStairs: userStairsClimbed}
+  return new Activity(activity)
 }
 
 function formSubmitClickHandler(event) {
@@ -284,6 +282,78 @@ function closeModal() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+// ---------------------FARA WORK AREA-------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ----------------------------------------------------------------
 //
 // window.onload = fetchApiData('users').then(promise => {
 //   fetchUserData = promise;
