@@ -94,6 +94,11 @@ main {
 
 #latestminactive {
   grid-area: latestminactive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 70px;
 }
 
 #usergoalvsavg {
@@ -107,7 +112,6 @@ main {
 
 #water-chart {
   background: url(https://i.imgur.com/sZLs3Vr.png?3) no-repeat center;
-
 }
 
 #latestsleepdata {
@@ -132,6 +136,20 @@ main {
 
 #weeklyactivitydata {
   grid-area: weeklyactivitydata;
+}
+
+#latestminactive h3,
+.last-min-active {
+  margin: 0 auto;
+}
+
+#latestminactive h3 {
+  text-align: center;
+  width: 100%;
+}
+
+.last-min-active {
+  font-size: 42px;
 }
 
 
@@ -165,8 +183,40 @@ main {
   }
 }
 
-.fa-tint {
-  color: blue;
-  font-size: 24px;
-  z-index: 100;
+
+
+
+
+
+// ---------MODAL-----------
+
+.user-input-modal {
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  display: flex;
+  display: none;
+}
+
+.user-input-content {
+  display: flex;
+  flex-direction: column;
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 25px;
+  border: 1px solid #888;
+  width: 60%;
+  height: 80%;
+  overflow-y: scroll;
+  box-shadow: 0px 7px 29px 0px black;
+}
+
+.fa-times-circle {
+  font-size: 34px;
 }
