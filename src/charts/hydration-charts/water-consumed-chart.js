@@ -12,7 +12,7 @@ export const renderWaterConsumed = (currentUser, currentDate) => {
         label: 'Water Consumed',
         data: [waterDrank],
         backgroundColor: [
-          'lightblue',
+          'rgba(41, 255, 251, 0.21)',
         ],
         hoverOffset: 4
       }],

@@ -30,7 +30,7 @@ const friendsBtn = document.getElementById('friendsDropDown');
 const friends = document.getElementById('dropDownContent');
 
 // -----------------------GLOBAL VARIABLES--------------------
-let currentDate, fetchUserData, fetchSleepData, fetchActivityData, fetchHydrationData, usersInstantiated, userRepo, currentUser
+let currentDate, firstDate, fetchUserData, fetchSleepData, fetchActivityData, fetchHydrationData, usersInstantiated, userRepo, currentUser, picker
 
 // -------------------EVENT LISTENERS----------------------
 
@@ -63,6 +63,7 @@ window.addEventListener('load', function() {
     console.log(userRepo)
     console.log('CURRENTUSER>>>>>', currentUser)
     currentDate = currentUser.hydration.sort((a, b) => a.date > b.date ? -1 : 1)[0]
+    firstDate = currentUser.hydration.sort((a, b) => a.date > b.date ? 1 : -1)[0]
     console.log(currentDate.date)
     renderWaterConsumed(currentUser, currentDate.date)
     renderWaterOverWeek(currentUser, currentDate.date)
@@ -75,11 +76,21 @@ window.addEventListener('load', function() {
     renderUserAnalyticsVsAll(currentUser, currentDate.date, userRepo)
     renderSleepOverWeek(currentUser, currentDate.date)
     renderWeeklyActivity(currentUser, currentDate.date)
+    renderDatePicker(currentDate.date, firstDate.date)
+
   })
 })
 
-
-
+const renderDatePicker = (currentDate, firstDate) => {
+  let current = new Date(currentDate)
+  let min = new Date(firstDate)
+  picker = new Pikaday({
+   field: document.getElementById('datePicker'),
+   defaultDate: current,
+   minDate: min,
+   maxDate: current,
+ })
+}
 
 
 
