@@ -199,7 +199,7 @@ main {
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  justify-content: center;
+  justify-content: flex-start;
   display: flex;
   display: none;
 }
@@ -211,8 +211,8 @@ main {
   margin: 15% auto;
   padding: 25px;
   border: 1px solid #888;
-  width: 60%;
-  height: 80%;
+  width: 30%;
+  height: 70%;
   overflow-y: scroll;
   box-shadow: 0px 7px 29px 0px black;
 }
