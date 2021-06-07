@@ -4,7 +4,6 @@
 body {
   margin: 0;
   background-color: #323947;
-  border-color: 2px solid red;
 }
 
 nav {
@@ -50,6 +49,10 @@ main {
   place-items: center;
 }
 
+// canvas {
+//   min-width: 0;
+// }
+
 .widgets-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -69,6 +72,16 @@ main {
 
 .widgets-container * {
   background-color: lightgray;
+  min-width: 0;
+  display: grid;
+  place-items: center;
+}
+
+
+
+#lateststepsmiles div {
+  overflow: auto;
+  position: relative;
 }
 
 #userinfo {
@@ -90,6 +103,7 @@ main {
   text-align: center;
   transform: translate(121px, 128px);
   z-index: 2;
+  opacity: 0;
 }
 
 #latestminactive {
@@ -112,6 +126,7 @@ main {
 
 #water-chart {
   background: url(https://i.imgur.com/sZLs3Vr.png?3) no-repeat center;
+  background-size: 60px;
 }
 
 #latestsleepdata {
@@ -155,6 +170,43 @@ main {
   font-size: 42px;
 }
 
+#weeklyactivitydata div {
+  min-width: 0;
+}
+
+#minStairsAvgChart,
+#stepsAvgChart {
+  height: 300;
+}
+
+
+
+
+@media only screen and (max-width: 950px) {
+
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #lateststepsmiles::after {
+    transform: translate(114px, 120px);
+  }
+
+  .widgets-container {
+    margin-top: 16%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "userInfo userInfo lateststepsmiles"
+    "waterconsumed latestsleepdata alltimesleepavg"
+    "wateroverweek latestsleepoverweek latestminactive"
+    "usergoalvsavg activityvsuserbase activityvsuserbase"
+    "weeklyactivitydata weeklyactivitydata weeklyactivitydata"
+  }
+
+}
+
 
 
 @media only screen and (max-width: 550px) {
@@ -164,8 +216,12 @@ main {
     flex-direction: column;
   }
 
+  #lateststepsmiles::after {
+    transform: translate(140px, 146px);
+  }
+
   .widgets-container {
-    margin-top: 16%;
+    margin-top: 36%;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
@@ -174,6 +230,7 @@ main {
     "usergoalvsavg"
     "waterconsumed"
     "latestsleepdata"
+    "latestminactive"
     "alltimesleepavg"
     "activityvsuserbase"
     "wateroverweek"
@@ -181,9 +238,21 @@ main {
     "weeklyactivitydata"
   }
 
-  .widgets-container * {
-    height: 300px;
+  #weeklyactivitydata {
+    display: flex;
+    height: 600px;
+    flex-direction: column;
   }
+
+  #weeklyactivitydata div {
+    position: relative;
+  }
+
+  #minStairsAvgChart,
+  #stepsAvgChart {
+    height: 200;
+  }
+
 }
 
 

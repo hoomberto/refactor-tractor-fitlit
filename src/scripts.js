@@ -20,6 +20,8 @@ import { renderSleepQuality } from './charts/sleep-charts/latest-sleep-chart.js'
 import { renderUserStepGoalVsAverage } from './charts/activity-charts/user-step-goal-vs-avg.js'
 import { renderLastMinActive } from './charts/activity-charts/last-min-active.js'
 import { renderUserAnalyticsVsAll } from './charts/activity-charts/activity-analytics-vs-all.js'
+import { renderSleepOverWeek } from './charts/sleep-charts/weekly-sleep-chart.js'
+import { renderWeeklyActivity } from './charts/activity-charts/weekly-activity-analytics-chart.js'
 
 // -----------------------QUERY SELECTORS---------------------------
 
@@ -59,7 +61,7 @@ window.addEventListener('load', function() {
     userRepo = new UserRepository(usersInstantiated)
     currentUser = userRepo.users[getRandomArray(userRepo.users)]
     console.log(userRepo)
-    console.log('CURRENTUSER>>>>>'currentUser)
+    console.log('CURRENTUSER>>>>>', currentUser)
     currentDate = currentUser.hydration.sort((a, b) => a.date > b.date ? -1 : 1)[0]
     console.log(currentDate.date)
     renderWaterConsumed(currentUser, currentDate.date)
@@ -71,6 +73,8 @@ window.addEventListener('load', function() {
     renderUserStepGoalVsAverage(currentUser, userRepo);
     renderLastMinActive(currentUser, currentDate.date)
     renderUserAnalyticsVsAll(currentUser, currentDate.date, userRepo)
+    renderSleepOverWeek(currentUser, currentDate.date)
+    renderWeeklyActivity(currentUser, currentDate.date)
   })
 })
 

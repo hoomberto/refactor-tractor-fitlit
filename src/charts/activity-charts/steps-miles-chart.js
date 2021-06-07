@@ -31,7 +31,7 @@ export const renderStepsMiles = (currentUser, currentDate) => {
     data: data,
     options: {
       cutout: 77,
-      plugins: {legend: { position: 'bottom'} }
+      plugins: {legend: { position: 'bottom'} },
   }
 }
 
