@@ -77,7 +77,7 @@ window.addEventListener('load', function() {
     renderSleepOverWeek(currentUser, currentDate.date)
     renderWeeklyActivity(currentUser, currentDate.date)
     renderDatePicker(currentDate.date, firstDate.date)
-
+    renderFriends(currentUser);
   })
 })
 
@@ -121,7 +121,7 @@ const renderFriends = (currentUser) => {
 
 const renderUserCard = (currentUser) => {
   userCard.innerHTML =
-  `   <article id='userinfo'>
+  `   <article id='user' width="300" height="300">
           <div class='user-greeting'>
             <h1>Welcome back, ${currentUser.name.split(' ')[0]}!</h1>
           </div>
