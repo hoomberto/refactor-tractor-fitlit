@@ -136,6 +136,9 @@ main {
 
 #weeklyactivitydata {
   grid-area: weeklyactivitydata;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 #latestminactive h3,
