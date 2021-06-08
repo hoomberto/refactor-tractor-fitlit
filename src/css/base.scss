@@ -36,6 +36,10 @@
 @mixin grid-area($name) {
   grid-area: $name;
 }
+
+@mixin padding($size) {
+  padding:$size;
+}
 // ******************SINGLE VARIBALES******************
 $align: center;
 $display: flex;
@@ -184,7 +188,8 @@ p {
   @include flex-direction-column();
   align-items:$align;
   justify-content:$align;
-  padding: 70px;
+  // padding: 70px;
+  @include padding(70px);
 }
 
 .last-min-active-exercise {
@@ -361,7 +366,7 @@ p {
   @include flex-direction-column();
   @include color(#fefefe);
   margin: 15% auto;
-  padding: 0px;
+  @include padding(0px);
   border: 1px solid #888;
   @include height-width(80%,35%);
   overflow-y: scroll;
@@ -382,7 +387,7 @@ p {
   width: 50px;
 	border: $displayNone;
   margin: 6px 0px 0px 0px;
-  padding: 0px;
+  @include padding(0px);
 }
 
 h2 {
@@ -397,7 +402,7 @@ h2 {
 .user-input-hydration,
 .user-input-activity {
   @include flex-direction-column();
-  padding: 20px;
+  @include padding(20px);
 }
 
 .user-input-sleep {
