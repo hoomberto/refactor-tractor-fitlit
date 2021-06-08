@@ -14,14 +14,14 @@ export const renderSleepOverWeek = (currentUser, currentDate) => {
       label: 'Hours over Week',
       data: hoursValues,
       fill: false,
-      borderColor: 'blue',
+      borderColor: 'rgb(94,158,167)',
       tension: 0.1
     },
     {
       label: 'Quality over Week',
       data: qualityValues,
       fill: false,
-      borderColor: 'red',
+      borderColor: 'rgba(118, 254, 179, 0.88)',
       tension: 0.1
     }]
   };

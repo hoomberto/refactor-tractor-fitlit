@@ -21,12 +21,12 @@ console.log('>>>>>> USERS STEPS', userSteps)
         userMin,
       ],
       backgroundColor: [
-        'purple',
-        'pink',
+        'rgba(255, 10, 202, 0.17)',
+        'rgba(245, 196, 0, 0.28)',
       ],
       borderColor: [
-        'white',
-        'white',
+        'rgba(255, 10, 202, 0.66)',
+        'rgba(214, 171, 0, 0.76)',
       ],
       borderWidth: 1
     }]
@@ -41,11 +41,12 @@ console.log('>>>>>> USERS STEPS', userSteps)
         currentUser.dailyStepGoal
       ],
       backgroundColor: [
-        'blue',
-        'purple'
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 10, 10, 0.21)'
       ],
       borderColor: [
-        'white',
+        'rgb(54, 162, 235)',
+        'rgba(255, 10, 10, 0.64)',
       ],
       borderWidth: 1
     }]

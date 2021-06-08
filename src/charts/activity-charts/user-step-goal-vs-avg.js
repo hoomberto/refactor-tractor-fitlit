@@ -6,12 +6,12 @@ export const renderUserStepGoalVsAverage = (currentUser, userRepo) => {
       label: 'Users Step Goal VS Average',
       data: [ currentUser.dailyStepGoal , userRepo.getAverageStepGoalOfAllUser() ],
       backgroundColor: [
-        'orange',
-        'pink'
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
       ],
       borderColor: [
-        'orange',
-        'pink'
+        'rgb(54, 162, 235)',
+        'rgb(153, 102, 255)',
       ],
       borderWidth: 1
     }]
