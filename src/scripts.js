@@ -1,6 +1,7 @@
 import './css/base.scss';
 import './css/styles.scss';
 import apiCalls from './apiCalls'
+import dayjs from 'dayjs';
 
 import '@fortawesome/fontawesome-free/js/fontawesome'
 import '@fortawesome/fontawesome-free/js/solid'
@@ -76,12 +77,16 @@ window.addEventListener('load', function() {
     renderUserAnalyticsVsAll(currentUser, currentDate.date, userRepo)
     renderSleepOverWeek(currentUser, currentDate.date)
     renderWeeklyActivity(currentUser, currentDate.date)
-    renderDatePicker(currentDate.date, firstDate.date)
+    renderDatePicker(currentDate.date, firstDate.date, currentUser)
     renderFriends(currentUser);
+
   })
 })
 
-const renderDatePicker = (currentDate, firstDate) => {
+const renderDatePicker = (currentDate, firstDate, currentUser) => {
+  const testInput = (value) => {
+    alert(`THE VALUE IS ${value}`)
+  }
   let current = new Date(currentDate)
   let min = new Date(firstDate)
   picker = new Pikaday({
@@ -90,8 +95,76 @@ const renderDatePicker = (currentDate, firstDate) => {
    minDate: min,
    maxDate: current,
  })
+  document.getElementById('datePicker').addEventListener('change', (event) => {
+    let value = event.target.value
+    let day = value.split(' ').slice(1, 4).join(' ')
+    let formatted = dayjs(day).format("YYYY/MM/DD")
+    // .shift().join(' ')
+    console.log(formatted)
+    resetCharts();
+    renderCanvases()
+    // document.getElementById('waterconsumed').innerHTML = ""
+    // document.getElementById('waterconsumed').innerHTML += `
+    // <canvas id="water-chart" width="300" height="300"></canvas>
+    // `
+    renderWaterConsumed(currentUser, formatted)
+    renderWaterOverWeek(currentUser, formatted)
+    renderStepsMiles(currentUser, formatted)
+    renderAllTimeSleep(currentUser, formatted)
+    renderSleepQuality(currentUser, formatted)
+    renderUserStepGoalVsAverage(currentUser, userRepo);
+    renderLastMinActive(currentUser, formatted);
+    renderUserAnalyticsVsAll(currentUser, formatted, userRepo)
+    renderSleepOverWeek(currentUser, formatted)
+    renderWeeklyActivity(currentUser, formatted)
+ });
 }
 
+
+const resetCharts = () => {
+  let allChartContainers = document.querySelectorAll('.chart-ctr')
+  allChartContainers.forEach(container => {
+    container.innerHTML = ""
+  })
+}
+
+const renderCanvases = () => {
+  document.getElementById('waterconsumed').innerHTML += `
+  <canvas id="water-chart" width="300" height="300"></canvas>
+  `
+  document.getElementById('wateroverweek').innerHTML += `
+  <canvas id="waterWeekChart" width="300" height="300"></canvas>
+  `
+  document.getElementById('latestsleepdata').innerHTML += `
+  <canvas id="sleep-chart" width="300" height="300"></canvas>
+  `
+  document.getElementById('latestsleepoverweek').innerHTML += `
+  <canvas id="sleepOverWeekChart" width="300" height="300"></canvas>
+  `
+  document.getElementById('alltimesleepavg').innerHTML += `
+  <canvas id="allTimeSleep-chart" ></canvas>
+  `
+  document.getElementById('lateststepsmiles').innerHTML += `
+  <canvas id="stepsMilesChart" width="300" height="300"></canvas>
+  `
+  // document.getElementById('latestminactive').innerHTML += `
+  // <canvas id="water-chart" width="300" height="300"></canvas>
+  // `
+  document.getElementById('usergoalvsavg').innerHTML += `
+  <canvas id="useravgchart"></canvas>
+  `
+  document.getElementById('activityvsuserbase').innerHTML += `
+  <canvas id="userAnalyticsVsUserBase" width="626" height="312"></canvas>
+  `
+  document.getElementById('weeklyactivitydata').innerHTML += `
+  <div id="min-stairs-container">
+    <canvas id="minStairsAvgChart" width="224" height="300"></canvas>
+  </div>
+  <div id="steps-container">
+    <canvas id="stepsAvgChart"  width="224" height="300"></canvas>
+  </div>  `
+
+}
 
 
 //need to invoke on pageload to populate these friends... then will apply hover to the FRIENDS button in nav

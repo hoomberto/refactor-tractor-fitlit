@@ -15,7 +15,10 @@ export const renderStepsMiles = (currentUser, currentDate) => {
 
   let outerRing = {
     data: [userStepsOnDay, comparison],
-    backgroundColor: ['blue', 'yellow', 'orange'],
+    backgroundColor: [
+      'rgba(255, 91, 41, 0.8)',
+      'rgba(255, 226, 41, 0.8)',
+    ],
     label: 'Outer Ring',
     labels: ['User Steps','Steps Left till Goal'],
     hoverOffset: 4
@@ -38,7 +41,7 @@ export const renderStepsMiles = (currentUser, currentDate) => {
   if (comparison < 1) {
     outerRing = {
       data: [userStepsOnDay],
-      backgroundColor: ['red'],
+      backgroundColor: ['rgba(255, 41, 41, 0.79)'],
       // labels: ['Daily Step Goal Met!'],
       hoverOffset: 4
     }
