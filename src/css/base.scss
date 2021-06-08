@@ -32,6 +32,10 @@
   height: $hWidth;
   width: $wWidth;
 }
+
+@mixin grid-area($name) {
+  grid-area: $name;
+}
 // ******************SINGLE VARIBALES******************
 $align: center;
 $display: flex;
@@ -168,7 +172,7 @@ p {
 
 #lateststepsmiles {
   @include position (relative);
-  grid-area: lateststepsmiles;
+  @include grid-area(lateststepsmiles);
 }
 
 
@@ -176,7 +180,7 @@ p {
 }
 
 #latestminactive {
-  grid-area: latestminactive;
+  @include grid-area(latestminactive);
   @include flex-direction-column();
   align-items:$align;
   justify-content:$align;
@@ -189,11 +193,12 @@ p {
 }
 
 #usergoalvsavg {
-  grid-area: usergoalvsavg;
+  @include grid-area(usergoalvsavg);
+
 }
 
 #waterconsumed {
-  grid-area: waterconsumed;
+  @include grid-area(waterconsumed);
   place-items:$align;
 }
 
@@ -202,27 +207,27 @@ p {
 }
 
 #latestsleepdata {
-  grid-area: latestsleepdata;
+  @include grid-area(latestsleepdata);
 }
 
 #alltimesleepavg {
-  grid-area: alltimesleepavg;
+  @include grid-area(alltimesleepavg);
 }
 
 #activityvsuserbase {
-  grid-area: activityvsuserbase;
+  @include grid-area(activityvsuserbase);
 }
 
 #wateroverweek {
-  grid-area: wateroverweek;
+  @include grid-area(wateroverweek);
 }
 
 #latestsleepoverweek {
-  grid-area: latestsleepoverweek;
+  @include grid-area(latestsleepoverweek);
 }
 
 #weeklyactivitydata {
-  grid-area: weeklyactivitydata;
+  @include grid-area(weeklyactivitydata);
   display:$display;
   justify-content: space-around;
   align-items:$align;
