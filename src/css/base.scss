@@ -13,12 +13,17 @@
 @mixin position ($fixed){
   position: $fixed;
 }
-
+@mixin color($color) {
+  background-color:$color
+}
+@mixin z-index($index) {
+  z-index: $index
+}
 $align: center;
-
 $display: flex;
 $grid: grid;
-
+$greyColor: lightgray;
+$displayNone: none;
 
 * {
   font-family: 'Roboto', sans-serif;
@@ -26,7 +31,7 @@ $grid: grid;
 
 body {
   margin: 0;
-  background-color: #323947;
+  @include color(#323947);
 }
 
 nav {
@@ -35,10 +40,11 @@ nav {
   width: 100vw;
   // min-height: 5%;
   max-height: 10%;
-  background-color: #001a4d;
+  @include color(#001a4d);
   @include flex-direction-row();
   justify-content: space-between;
-  z-index: 5;
+  // z-index: 5;
+  @include z-index(5);
 }
 
 
@@ -48,7 +54,7 @@ nav {
   border-radius: 50%;
   height: 50px;
   width: 50px;
-	border: none;
+	border:$displayNone;
   margin: 20px;
 }
 
@@ -66,10 +72,10 @@ nav {
 
 .friends-drop-down {
   color: black;
-  background-color: lightgray;
+  background-color: $greyColor;
   width: 95px;
   height: 40px;
-  border: none;
+  border:$displayNone;
   border-radius: 20px;
   margin: 26px;
   // position: absolute;
@@ -78,7 +84,7 @@ nav {
 .dropdown-content {
   align-items:$align;
   display:$display;
-  background-color: #202020;
+  @include color(#202020);
   width: 250px;
   height: 150px;
   // transform: translate(-8px, 124px);
@@ -104,7 +110,7 @@ nav {
 
 
 main {
-  display: grid;
+  display:$grid;
   height: 100vh;
   place-items:  $align;
 }
@@ -115,7 +121,7 @@ input {
 }
 
 .widgets-container {
-  display: grid;
+  display:$grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 1rem;
@@ -132,16 +138,15 @@ input {
 }
 
 .widgets-container * {
-  background-color: lightgray;
+  background-color: $greyColor;
   min-width: 0;
-  display: grid;
+  display:$grid;
   place-items:$align;
 }
 
 
 // USER INFO
 #userinfo {
-  // background-color: lightgray;
   grid-area: userInfo;
 }
 
@@ -156,7 +161,6 @@ p {
 
 
 #lateststepsmiles {
-  // background-color: lightgray;
   @include position (relative);
   grid-area: lateststepsmiles;
 }
@@ -352,12 +356,12 @@ p {
   background-color: rgba(0, 0, 0, 0.5);
   justify-content: flex-start;
   display: $display;
-  display: none;
+  display: $displayNone;
 }
 
 .user-input-content {
-@include flex-direction-column();
-  background-color: #fefefe;
+  @include flex-direction-column();
+  @include color(#fefefe);
   margin: 15% auto;
   padding: 0px;
   border: 1px solid #888;
@@ -377,10 +381,10 @@ p {
 }
 
 .close-modal {
-  background-color: white;
+  @include color(white);
   height: 50px;
   width: 50px;
-	border: none;
+	border: $displayNone;
   margin: 6px 0px 0px 0px;
   padding: 0px;
 }
@@ -401,18 +405,18 @@ h2 {
 }
 
 .user-input-sleep {
-  background-color: yellow;
+  @include color(yellow);
 }
 
 .user-input-hydration {
-  background-color: lightblue;
+  @include color(lightblue);
 }
 
 .user-input-activity {
-  background-color: lightgreen;
+  @include color(lightgreen);
 }
 
 
 .hidden {
-  display: none;
+  display: $displayNone;
 }
