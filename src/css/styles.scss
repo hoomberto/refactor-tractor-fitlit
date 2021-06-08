@@ -121,12 +121,6 @@ input {
 }
 
 
-
-#lateststepsmiles div {
-  overflow: auto;
-  position: relative;
-}
-
 // USER INFO
 #userinfo {
   // background-color: lightgray;
@@ -143,23 +137,28 @@ p {
 }
 
 
-
 #lateststepsmiles {
   // background-color: lightgray;
   position: relative;
   grid-area: lateststepsmiles;
 }
 
-#lateststepsmiles::after {
-  content: attr(data-before);
-  position: absolute;
-  top: 0;
-  left: 0;
-  text-align: center;
-  transform: translate(121px, 128px);
-  z-index: 2;
-  opacity: 0;
+
+#stepsMilesChart {
+  background: url(https://i.imgur.com/PoOS51w.png?2) no-repeat center;
+  background-size: 60px;
 }
+//
+// #lateststepsmiles::after {
+//   content: attr(data-before);
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   text-align: center;
+//   transform: translate(121px, 128px);
+//   z-index: 2;
+//   opacity: 0;
+// }
 
 #latestminactive {
   grid-area: latestminactive;
@@ -168,10 +167,6 @@ p {
   align-items: center;
   justify-content: center;
   padding: 70px;
-}
-
-h4 {
-  text-align: center;
 }
 
 .last-min-active-exercise {
@@ -220,12 +215,12 @@ h4 {
   align-items: center;
 }
 
-#latestminactive h3,
+#latestminactive h2,
 .last-min-active {
   margin: 0 auto;
 }
 
-#latestminactive h3 {
+#latestminactive h2 {
   text-align: center;
   width: 100%;
 }
@@ -364,14 +359,12 @@ h4 {
 
 .close-modal {
   background-color: white;
-  border-radius: 50%;
   height: 50px;
   width: 50px;
 	border: none;
   margin: 6px 0px 0px 0px;
   padding: 0px;
 }
-
 
 h2 {
   text-align: center;
