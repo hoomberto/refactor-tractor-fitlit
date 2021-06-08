@@ -281,53 +281,30 @@ function formSubmitClickHandler(event) {
 }
 
 
-const newUserEntry = document.getElementById('addEntry');
+
+const addEntryBtn = document.getElementById('addEntryBtn');
 const userInputModal = document.getElementById('userInputModal');
 
-const getUserInput = (currentUser) => {
-  console.log(currentUser)
+const getUserInput = () => {
   userInputModal.innerHTML = '';
   userInputModal.innerHTML +=
   `<article class='user-input-content'>
       <button class='close-modal' id='close' aria-label="close-modal">
         <i class="far fa-times-circle"></i>
       </button>
-      <h1 class='user-input-header'>Add New Fitness Data</h1>
-        <form class='user-input-sleep' id='userInputSleep'>
-          <h2>Add New Sleep Data</h2>
-          <label for="sleep-user-date">Date</label>
-          <input type="text" name="sleep-user-input-date" id="sleep-input-date" placeholder="yyyy/mm/dd">
-          <label for="user-hours-slept">Hours Slept</label>
-          <input type="number" name="user-hours-slept" id="input-hours-slept" min="0" max="40">
-          <label for="user-sleep-quality">Sleep Quality</label>
-          <input type="number" name="user-sleep-quality" id="input-sleep-quality" min="1" max="5" placeholder="Enter a number from 1-5" step=".1">
-          <input value="Submit" class="submit-info" id="submit-sleep" type="submit">
-        </form>
-        <form class='user-input-activity' id='userInputActivity'>
-          <h2>Add New Activity Data</h2>
-          <label for="activity-user-date">Date</label>
-          <input type="text" name="activity-user-date" id="activity-input-date" placeholder="yyyy/mm/dd">
-          <label for="user-step-number">Number of Steps</label>
-          <input type="number" name="user-step-number" id="user-step-number" mix="0">
-          <label for="user-minutes-active">Active Minutes</label>
-          <input type="number" name="user-minutes-active" id="user-minutes-active" min="0">
-          <label for="user-stairs-climbed">Flight of Stairs Climbed</label>
-          <input type="number" name="user-stairs-climbed" id="user-stairs-climbed" min="0">
-          <button class="submit-info" id="submit-activity">Submit</button>
-        </form>
-        <form class='user-input-hydration' id='userInputHydration'>
-          <h2>Add New Hydration Data</h2>
-          <label for="hydration-user-date">Date</label>
-          <input type="text" name="hydration-user-date" id="hydration-input-date" placeholder="yyyy/mm/dd">
-          <label for="user-ounces-number">Ounces of Water Drank</label>
-          <input type="number" name="user-ounces-number" id="input-ounces-number" min="0">
-          <button class="submit-info" id="submit-hydration">Submit</button>
-        </form>
-  </article>`
+      <section class='user-input-form' id='userInputForm'>
+        <h1 class='user-input-header'>What Would You Like To Add?</h1>
+        <div class='data-buttons' id='dataButtons'>
+          <button id='addSleep'>Sleep</button>
+          <button id='addWater'>Water</button>
+          <button id='addActivity'>Activity</button>
+        </div>
+      </section>
+   </article>`
  openModal()
 }
 
-newUserEntry.addEventListener('click', () => {
+addEntryBtn.addEventListener('click', () => {
   getUserInput(currentUser)
 });
 
@@ -340,6 +317,12 @@ function modalClickHandler(event){
   if(event.target.id === 'close') {
     console.log('click')
     closeModal();
+  } else if (event.target.id === 'addSleep') {
+    renderSleepInputField()
+  } else if (event.target.id === 'addWater') {
+    renderWaterInputField()
+  } else if (event.target.id === 'addActivity') {
+    renderActivityInputField()
   } else if (event.target.id === 'submit-activity' || event.target.id === 'submit-sleep' || event.target.id === 'submit-hydration') {
     formSubmitClickHandler(event);
     closeModal();
@@ -354,8 +337,53 @@ function closeModal() {
   userInputModal.style.display = 'none';
 }
 
+// let userInputForm = document.getElementById('userInputForm');
 
-
+function renderWaterInputField() {
+  let userInputForm = document.getElementById('userInputForm')
+  userInputForm.innerHTML = ''
+  userInputForm.innerHTML +=
+  `<section class='user-input-form' id='userInputForm'>
+    <form class='user-input-hydration' id='userInputHydration'>
+      <h2>Add Water Intake</h2>
+      <label for="hydration-user-date">Date</label>
+      <input type="text" name="hydration-user-date" id="hydration-input-date" placeholder="yyyy/mm/dd" required>
+      <label for="user-ounces-number">Ounces of Water Drank</label>
+      <input type="number" name="user-ounces-number" id="input-ounces-number" min="0" required>
+      <button class="submit-info" id="submit-hydration">Submit</button>
+    </form>
+   </section>`
+}
+// <form class='user-input-sleep' id='userInputSleep'>
+//   <h2>Add New Sleep Data</h2>
+//   <label for="sleep-user-date">Date</label>
+//   <input type="text" name="sleep-user-input-date" id="sleep-input-date" placeholder="yyyy/mm/dd">
+//   <label for="user-hours-slept">Hours Slept</label>
+//   <input type="number" name="user-hours-slept" id="input-hours-slept" min="0" max="40">
+//   <label for="user-sleep-quality">Sleep Quality</label>
+//   <input type="number" name="user-sleep-quality" id="input-sleep-quality" min="1" max="5" placeholder="Enter a number from 1-5" step=".1">
+//   <input value="Submit" class="submit-info" id="submit-sleep" type="submit">
+// </form>
+// <form class='user-input-activity' id='userInputActivity'>
+//   <h2>Add New Activity Data</h2>
+//   <label for="activity-user-date">Date</label>
+//   <input type="text" name="activity-user-date" id="activity-input-date" placeholder="yyyy/mm/dd">
+//   <label for="user-step-number">Number of Steps</label>
+//   <input type="number" name="user-step-number" id="user-step-number" mix="0">
+//   <label for="user-minutes-active">Active Minutes</label>
+//   <input type="number" name="user-minutes-active" id="user-minutes-active" min="0">
+//   <label for="user-stairs-climbed">Flight of Stairs Climbed</label>
+//   <input type="number" name="user-stairs-climbed" id="user-stairs-climbed" min="0">
+//   <button class="submit-info" id="submit-activity">Submit</button>
+// </form>
+// <form class='user-input-hydration' id='userInputHydration'>
+//   <h2>Add New Hydration Data</h2>
+//   <label for="hydration-user-date">Date</label>
+//   <input type="text" name="hydration-user-date" id="hydration-input-date" placeholder="yyyy/mm/dd">
+//   <label for="user-ounces-number">Ounces of Water Drank</label>
+//   <input type="number" name="user-ounces-number" id="input-ounces-number" min="0">
+//   <button class="submit-info" id="submit-hydration">Submit</button>
+// </form>
 
 
 
