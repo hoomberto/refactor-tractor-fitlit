@@ -23,8 +23,14 @@
 @mixin z-index($index) {
   z-index: $index;
 }
+
 @mixin marginSize($num) {
   margin:$num;
+}
+
+@mixin height-width($hWidth,$wWidth) {
+  height: $hWidth;
+  width: $wWidth;
 }
 // ******************SINGLE VARIBALES******************
 $align: center;
@@ -45,15 +51,12 @@ body {
 }
 
 nav {
-  // top: 0;
   @include position (fixed);
   width: 100vw;
-  // min-height: 5%;
   max-height: 10%;
   @include color(#001a4d);
   @include flex-direction-row();
   justify-content: space-between;
-  // z-index: 5;
   @include z-index(5);
 }
 
@@ -62,8 +65,7 @@ nav {
 .date-picker,
 .add-entry-btn {
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  @include height-width(50px,50px);
 	border:$displayNone;
   @include marginSize(20px);
 }
@@ -83,21 +85,17 @@ nav {
 .friends-drop-down {
   color: black;
   background-color: $greyColor;
-  width: 95px;
-  height: 40px;
+  @include height-width(40px,95px);
   border:$displayNone;
   border-radius: 20px;
   @include marginSize(26px)
-  // position: absolute;
 }
 
 .dropdown-content {
   align-items:$align;
   display:$display;
   @include color(#202020);
-  width: 250px;
-  height: 150px;
-  // transform: translate(-8px, 124px);
+  @include height-width(150px,250px);
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 12px 16px;
   @include z-index(1);
@@ -142,9 +140,7 @@ input {
 }
 
 .widgets-container {
-  // margin-top: 5%;
-  width: 90%;
-  height: 80%;
+  @include height-width(80%,90%);
 }
 
 .widgets-container * {
@@ -178,17 +174,6 @@ p {
 
 #stepsMilesChart {
 }
-//
-// #lateststepsmiles::after {
-//   content: attr(data-before);
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   text-align: center;
-//   transform: translate(121px, 128px);
-//   z-index: 2;
-//   opacity: 0;
-// }
 
 #latestminactive {
   grid-area: latestminactive;
@@ -213,8 +198,7 @@ p {
 }
 
 #water-chart {
-  // background: url(https://i.imgur.com/sZLs3Vr.png?3) no-repeat center;
-  // background-size: 60px;
+
 }
 
 #latestsleepdata {
@@ -358,8 +342,7 @@ p {
 .user-input-modal {
   align-items:$align;
   @include position (fixed);
-  width: 100%;
-  height: 100vh;
+  @include height-width(100vh,100%);
   @include z-index(10);
   top: 0;
   left: 0;
@@ -375,11 +358,9 @@ p {
   margin: 15% auto;
   padding: 0px;
   border: 1px solid #888;
-  width: 35%;
-  height: 80%;
+  @include height-width(80%,35%);
   overflow-y: scroll;
   box-shadow: 0px 7px 29px 0px black;
-  // transform: translate(-273px, -63px);
 }
 
 .fa-times-circle {
