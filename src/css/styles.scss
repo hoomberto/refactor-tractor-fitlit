@@ -10,10 +10,10 @@ body {
 }
 
 nav {
-  top: 0;
+  // top: 0;
   position: fixed;
   width: 100vw;
-  min-height: 5%;
+  // min-height: 5%;
   max-height: 10%;
   background-color: #001a4d;
   display: flex;
@@ -79,6 +79,7 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width:20%;
 }
 
 
@@ -88,9 +89,9 @@ main {
   place-items: center;
 }
 
-input {
-  // margin-left: 7%;
-}
+// input {
+//   // margin-left: 7%;
+// }
 
 // canvas {
 //   min-width: 0;
@@ -108,7 +109,7 @@ input {
 }
 
 .widgets-container {
-  margin-top: 5%;
+  // margin-top: 5%;
   width: 90%;
   height: 80%;
 }
@@ -246,6 +247,7 @@ p {
   main {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
   }
 
   #lateststepsmiles::after {
