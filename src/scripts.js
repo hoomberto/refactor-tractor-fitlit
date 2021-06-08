@@ -289,7 +289,7 @@ const getUserInput = (currentUser) => {
   userInputModal.innerHTML = '';
   userInputModal.innerHTML +=
   `<article class='user-input-content'>
-      <button class='close-modal' id='close'>
+      <button class='close-modal' id='close' aria-label="close-modal">
         <i class="far fa-times-circle"></i>
       </button>
       <h1 class='user-input-header'>Add New Fitness Data</h1>
