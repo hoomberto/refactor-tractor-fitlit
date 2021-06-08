@@ -22,6 +22,8 @@ nav {
   z-index: 5;
 }
 
+
+
 .date-picker,
 .add-entry {
   border-radius: 50%;
@@ -41,6 +43,7 @@ nav {
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 40%;
 }
 
 .friends-drop-down {
@@ -89,9 +92,11 @@ main {
   place-items: center;
 }
 
-// input {
-//   // margin-left: 7%;
-// }
+
+input {
+  margin-left: 7%;
+}
+
 
 // canvas {
 //   min-width: 0;
@@ -185,8 +190,8 @@ p {
 }
 
 #water-chart {
-  background: url(https://i.imgur.com/sZLs3Vr.png?3) no-repeat center;
-  background-size: 60px;
+  // background: url(https://i.imgur.com/sZLs3Vr.png?3) no-repeat center;
+  // background-size: 60px;
 }
 
 #latestsleepdata {
@@ -242,7 +247,7 @@ p {
 
 
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 1000px) {
 
   main {
     display: flex;
@@ -264,6 +269,10 @@ p {
     "wateroverweek latestsleepoverweek latestminactive"
     "usergoalvsavg activityvsuserbase activityvsuserbase"
     "weeklyactivitydata weeklyactivitydata weeklyactivitydata"
+  }
+
+  .calendar-and-add {
+    width: 76%;
   }
 
 }
@@ -313,6 +322,8 @@ p {
   #stepsAvgChart {
     height: 200;
   }
+
+
 
 }
 

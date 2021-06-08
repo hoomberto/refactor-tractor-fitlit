@@ -12,9 +12,6 @@
   <body>
     <nav>
       <div class='calendar-and-add'>
-        <button class='date-picker' role='button' aria-label='date-selector'>
-          <i class="far fa-calendar-alt"></i>
-        </button>
         <input type='text' id='datePicker' autocomplete='off' placeholder="Select a date">
         <button class='add-entry' id='addEntry' role='button' aria-label="add-data">
           <i class="fas fa-plus"></i>
@@ -33,43 +30,48 @@
         <article id="userinfo">
 
         </article>
-        <article id="waterconsumed">
+        <article id="waterconsumed" class="chart-ctr">
           <canvas id="water-chart" width="300" height="300"></canvas>
         </article>
-        <article id="wateroverweek">
+        <article id="wateroverweek" class="chart-ctr">
           <canvas id="waterWeekChart" width="300" height="300"></canvas>
         </article>
-        <article id="latestsleepdata">
+        <article id="latestsleepdata" class="chart-ctr">
           <canvas id="sleep-chart" width="300" height="300"></canvas>
         </article>
-        <article id="latestsleepoverweek">
+        <article id="latestsleepoverweek" class="chart-ctr">
           <canvas id="sleepOverWeekChart" width="300" height="300"></canvas>
         </article>
-        <article id="alltimesleepavg">
-        <canvas id="allTimeSleep-chart"></canvas>
+        <article id="alltimesleepavg" class="chart-ctr">
+          <canvas id="allTimeSleep-chart" ></canvas>
         </article>
-        <article id="lateststepsmiles">
+        <article id="lateststepsmiles" class="chart-ctr">
             <canvas id="stepsMilesChart" width="300" height="300"></canvas>
         </article>
-        <article id="latestminactive">
+        <article id="latestminactive" class="chart-ctr">
 
         </article>
-        <article id="usergoalvsavg">
+        <article id="usergoalvsavg" class="chart-ctr">
           <canvas id="useravgchart"></canvas>
         </article>
-        <article id="activityvsuserbase">
+        <article id="activityvsuserbase" class="chart-ctr">
           <canvas id="userAnalyticsVsUserBase" width="626" height="312"></canvas>
         </article>
-        <article id="weeklyactivitydata">
+        <article id="weeklyactivitydata" class="chart-ctr">
           <div id="min-stairs-container">
-            <canvas id="minStairsAvgChart" width="300" height="300"></canvas>
+            <canvas id="minStairsAvgChart" width="224" height="300"></canvas>
           </div>
           <div id="steps-container">
-            <canvas id="stepsAvgChart"  width="300" height="300"></canvas>
+            <canvas id="stepsAvgChart"  width="224" height="300"></canvas>
           </div>
         </article>
       </section>
     </main>
+    <!-- <script type="text/javascript">
+      function testInput(value) {
+        alert(`THE VALUE IS ${value}`)
+      }
+    </script> -->
     <script src="bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

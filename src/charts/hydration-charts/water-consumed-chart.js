@@ -1,4 +1,5 @@
 export const renderWaterConsumed = (currentUser, currentDate) => {
+  let waterChart;
   let waterDrank = currentUser.consumedWaterOnDay(currentDate)
   let waterData;
   // Comparing the recommended daily amount of 64oz to what the user drank
@@ -12,7 +13,7 @@ export const renderWaterConsumed = (currentUser, currentDate) => {
         label: 'Water Consumed',
         data: [waterDrank],
         backgroundColor: [
-          'rgba(41, 255, 251, 0.21)',
+          'rgba(41, 126, 255, 0.54)',
         ],
         hoverOffset: 4
       }],
@@ -28,8 +29,8 @@ export const renderWaterConsumed = (currentUser, currentDate) => {
         label: 'My First Dataset',
         data: [waterDrank, comparison],
         backgroundColor: [
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
+          'rgba(41, 223, 255, 0.44)',
+          'rgba(219, 41, 255, 0.54)'
         ],
         hoverOffset: 4
       }],
@@ -44,8 +45,8 @@ export const renderWaterConsumed = (currentUser, currentDate) => {
     }
   };
 
-  const myChart = new Chart(
-    document.getElementById('water-chart'),
+  waterChart = new Chart(
+    document.getElementById('water-chart').getContext("2d"),
     waterConfig
   );
 }

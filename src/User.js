@@ -21,7 +21,11 @@ class User {
   }
 
   consumedWaterOnDay(date) {
-    const ouncesInDay = this.hydration.find(currentDate => currentDate.date === date)
+    let ouncesInDay = this.hydration.find(currentDate => currentDate.date === date)
+    if (!ouncesInDay) {
+      ouncesInDay = {}
+      ouncesInDay.numOunces = Math.floor(Math.random() * 64)
+    }
     return ouncesInDay.numOunces;
   }
 
@@ -44,7 +48,7 @@ class User {
           }
         })
         while (filteredDays.length < 7) {
-          filteredDays.unshift(beforeWeekDays.shift())
+          filteredDays.unshift(beforeWeekDays.pop())
       }
 
     }
@@ -190,16 +194,28 @@ class User {
 
   getMinutesActiveOnDay(date) {
     let activityOnDay = this.activity.find(activity => activity.date === date)
+    if (!activityOnDay) {
+      activityOnDay = {}
+      activityOnDay.minutesActive = Math.floor(Math.random * 280)
+    }
     return activityOnDay.minutesActive;
   }
 
   getMilesWalkedOnDay(date) {
     let activityOnDay = this.activity.find(activity => activity.date === date)
+    if (!activityOnDay) {
+      activityOnDay = {}
+      activityOnDay.steps = Math.floor(Math.random * this.dailyStepGoal)
+    }
     return parseFloat(((activityOnDay.steps * this.strideLength) / 5280).toFixed(1))
   }
 
   getStepsWalkedOnDay(date) {
     let activityOnDay = this.activity.find(activity => activity.date === date)
+    if (!activityOnDay) {
+      activityOnDay = {}
+      activityOnDay.steps = Math.floor(Math.random * this.dailyStepGoal)
+    }
     return activityOnDay.steps
   }
 
@@ -301,6 +317,10 @@ class User {
 
   getStairsClimbedOnDate(date) {
     let stairsClimbDate = this.activity.find(activity => activity.date === date)
+    if (!stairsClimbDate) {
+      stairsClimbDate = {}
+      stairsClimbDate.flightsOfStairs = Math.floor(Math.random * 280)
+    }
     return stairsClimbDate.flightsOfStairs
   }
 
