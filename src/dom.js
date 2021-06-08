@@ -1,0 +1,161 @@
+import { renderWaterConsumed } from './charts/hydration-charts/water-consumed-chart.js'
+import { renderWaterOverWeek } from './charts/hydration-charts/water-over-week.js'
+import { renderStepsMiles } from './charts/activity-charts/steps-miles-chart.js'
+import { renderAllTimeSleep } from './charts/sleep-charts/allTime-sleep-chart.js'
+import { renderSleepQuality } from './charts/sleep-charts/latest-sleep-chart.js'
+import { renderUserStepGoalVsAverage } from './charts/activity-charts/user-step-goal-vs-avg.js'
+import { renderLastMinActive } from './charts/activity-charts/last-min-active.js'
+import { renderUserAnalyticsVsAll } from './charts/activity-charts/activity-analytics-vs-all.js'
+import { renderSleepOverWeek } from './charts/sleep-charts/weekly-sleep-chart.js'
+import { renderWeeklyActivity } from './charts/activity-charts/weekly-activity-analytics-chart.js'
+
+
+const friendsDiv = document.getElementById('dropDownContent'); // CANT GET DIV TO WORK WITHOUT THIS HERE(used to be called 'const friends' only)
+
+const renderCharts = (currentUser, currentDate, userRepo, firstDate) => {
+  renderWaterConsumed(currentUser, currentDate.date)
+  renderWaterOverWeek(currentUser, currentDate.date)
+  renderStepsMiles(currentUser, currentDate.date)
+  renderAllTimeSleep(currentUser, currentDate.date)
+  renderSleepQuality(currentUser, currentDate.date)
+  renderUserCard(currentUser);
+  renderUserStepGoalVsAverage(currentUser, userRepo);
+  renderLastMinActive(currentUser, currentDate.date);
+  renderUserAnalyticsVsAll(currentUser, currentDate.date, userRepo)
+  renderSleepOverWeek(currentUser, currentDate.date)
+  renderWeeklyActivity(currentUser, currentDate.date)
+  renderDatePicker(currentDate.date, firstDate.date)
+}
+
+const renderFriends = (currentUser) => {
+  friendsDiv.innerHTML = 'test';
+  let userFriends = currentUser.friends.map(friend => {
+      return userRepo.users.filter(user => {
+          if (user.id === friend) {
+            return user
+          }
+      })
+  }).flat();
+  friendsDiv.innerHTML +=
+    `<p class='friend-details'>${userFriends.map(friend => {return `${friend.name} | ${friend.dailyStepGoal} steps` + "<br>"}).join('')}</p>`
+};
+
+const toggleFriends = () => {
+    friendsDiv.classList.toggle('hidden')
+  }
+
+const renderDatePicker = (currentDate, firstDate) => {
+
+  let current = new Date(currentDate)
+  let min = new Date(firstDate)
+  let picker = new Pikaday({
+   field: document.getElementById('datePicker'),
+   defaultDate: current,
+   minDate: min,
+   maxDate: current,
+ })
+}
+
+const renderUserCard = (currentUser) => {
+  const userCard = document.getElementById('userinfo'); //This gonna have to stay here?
+  userCard.innerHTML =
+  `   <article id='user' width="300" height="300">
+          <div class='user-greeting'>
+            <h1>Welcome back, ${currentUser.name.split(' ')[0]}!</h1>
+          </div>
+          <section class='user-details' id='userDetails'>
+              <div class='user-address' id='userAddress'>
+                <p><strong> ADDRESS: </strong>${currentUser.address}</p>
+              </div>
+              <div class='user-email' id='userEmail'>
+                <p><strong> EMAIL: </strong>${currentUser.email}</p>
+              </div>
+              <div class='user-step-goal' id='userStepGoal'>
+                <p><strong> DAILY STEP GOAL: </strong>${currentUser.dailyStepGoal}</p>
+              </div>
+          </section>
+      </article> `
+};
+
+
+  const getUserInput = () => {
+  userInputModal.innerHTML = '';
+  userInputModal.innerHTML +=
+    `<article class='user-input-content'>
+        <button class='close-modal' id='close'>
+          <i class="far fa-times-circle"></i>
+        </button>
+        <h1 class='user-input-header'>Add New Fitness Data</h1>
+          <form class='user-input-sleep' id='userInputSleep'>
+            <h2>Add New Sleep Data</h2>
+            <label for="sleep-user-date">Date</label>
+            <input type="text" name="sleep-user-input-date" id="sleep-input-date" placeholder="yyyy/mm/dd">
+            <label for="user-hours-slept">Hours Slept</label>
+            <input type="number" name="user-hours-slept" id="input-hours-slept" min="0" max="40">
+            <label for="user-sleep-quality">Sleep Quality</label>
+            <input type="number" name="user-sleep-quality" id="input-sleep-quality" min="1" max="5" placeholder="Enter a number from 1-5" step=".1">
+            <input value="Submit" class="submit-info" id="submit-sleep" type="submit">
+          </form>
+          <form class='user-input-activity' id='userInputActivity'>
+            <h2>Add New Activity Data</h2>
+            <label for="activity-user-date">Date</label>
+            <input type="text" name="activity-user-date" id="activity-input-date" placeholder="yyyy/mm/dd">
+            <label for="user-step-number">Number of Steps</label>
+            <input type="number" name="user-step-number" id="user-step-number" mix="0">
+            <label for="user-minutes-active">Active Minutes</label>
+            <input type="number" name="user-minutes-active" id="user-minutes-active" min="0">
+            <label for="user-stairs-climbed">Flight of Stairs Climbed</label>
+            <input type="number" name="user-stairs-climbed" id="user-stairs-climbed" min="0">
+            <button class="submit-info" id="submit-activity">Submit</button>
+          </form>
+          <form class='user-input-hydration' id='userInputHydration'>
+            <h2>Add New Hydration Data</h2>
+            <label for="hydration-user-date">Date</label>
+            <input type="text" name="hydration-user-date" id="hydration-input-date" placeholder="yyyy/mm/dd">
+            <label for="user-ounces-number">Ounces of Water Drank</label>
+            <input type="number" name="user-ounces-number" id="input-ounces-number" min="0">
+            <button class="submit-info" id="submit-hydration">Submit</button>
+          </form>
+    </article>`
+  openModal()
+}
+
+const openModal = () => {
+  userInputModal.style.display = 'flex'
+}
+
+const closeModal = () => {
+  console.log('closeModal function in domljs');
+  userInputModal.style.display = 'none';
+}
+
+const modalClickHandler = (event) => {
+  event.preventDefault();
+  if(event.target.id === 'close') {
+    closeModal();
+  } else if (event.target.id === 'submit-activity' || event.target.id === 'submit-sleep' 
+    || event.target.id === 'submit-hydration') {
+      formSubmitClickHandler(event);
+      closeModal();
+  }
+}
+
+const formSubmitClickHandler =(event) => {
+  if (event.target.id === 'submit-sleep') {
+    let sleepBody = createSleepBody();
+    postData('sleep', sleepBody)
+    closeModal();
+  }
+  if (event.target.id === 'submit-hydration') {
+    let hydrationBody = createHydrationBody();
+    postData('hydration', hydrationBody)
+    closeModal();
+  }
+  if (event.target.id === 'submit-activity') {
+    let activityBody = createActivityBody();
+    postData('activity', activityBody)
+    closeModal();
+  }
+}
+
+export { getUserInput, openModal, closeModal, modalClickHandler, renderCharts, renderFriends, toggleFriends }
