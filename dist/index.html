@@ -7,23 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,400;1,700&display=swap" rel="stylesheet">
-    <title></title>
+    <title>FitLit!</title>
   </head>
   <body>
     <nav>
       <div class='calendar-and-add'>
-        <button class='date-picker'>
+        <button class='date-picker' role='button' aria-label='date-selector'>
           <i class="far fa-calendar-alt"></i>
-          <!-- need to add aria role? -->
         </button>
         <input type='text' id='datePicker' autocomplete='off' placeholder="Select a date">
-        <button class='add-entry' id='addEntry'>
+        <button class='add-entry' id='addEntry' role='button' aria-label="add-data">
           <i class="fas fa-plus"></i>
-          <!-- need to add aria role? -->
         </button>
       </div>
       <div class='friendsDiv'>
-        <button class='friends-drop-down' id='friendsDropDown'>FRIENDS</button>
+        <button class='friends-drop-down' id='friendsDropDown' role='button' aria-label='drop-down-text' aria-expanded='false'>FRIENDS</button>
         <div class="dropdown-content hidden" id="dropDownContent">
         </div>
       </div>
