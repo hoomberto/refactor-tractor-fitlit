@@ -10,10 +10,10 @@ body {
 }
 
 nav {
-  top: 0;
+  // top: 0;
   position: fixed;
   width: 100vw;
-  min-height: 5%;
+  // min-height: 5%;
   max-height: 10%;
   background-color: #001a4d;
   display: flex;
@@ -89,9 +89,9 @@ main {
   place-items: center;
 }
 
-input {
-  // margin-left: 7%;
-}
+// input {
+//   // margin-left: 7%;
+// }
 
 // canvas {
 //   min-width: 0;
@@ -252,6 +252,7 @@ h4 {
   main {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
   }
 
   #lateststepsmiles::after {
