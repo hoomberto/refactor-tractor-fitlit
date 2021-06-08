@@ -228,7 +228,6 @@ describe('User', function() {
   });
 
   it('should have a method that returns average fluid oz consumption for all time for a user', function() {
-    user.hydration.push(hydration1, hydration2)
     expect(user.hydration.length).to.deep.equal(2)
     expect(user.findTotalWaterConsumption()).to.equal(53);
   });

@@ -47,10 +47,9 @@ class User {
             return item
           }
         })
-        while (filteredDays.length < 7) {
+        while (filteredDays.length < 7 && beforeWeekDays.length) {
           filteredDays.unshift(beforeWeekDays.pop())
       }
-
     }
     let ouncesOverWeek = filteredDays.map(day => {
       return {
@@ -59,6 +58,9 @@ class User {
       }
     })
     // let ouncesOverWeek = filteredDays.map(day => day.numOunces)
+    if (ouncesOverWeek.length === 8) {
+      ouncesOverWeek.pop()
+    }
     return ouncesOverWeek;
   }
 
@@ -91,17 +93,19 @@ class User {
     if (filteredDays.length < 7) {
       //add the amount of days before it to make the total .length of 7
         let beforeWeek = dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1)
+
         let beforeWeekDays = this.sleep.filter(item => {
           let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
           if (convertedToWeek === beforeWeek.$W) {
             return item
           }
         })
-        while (filteredDays.length < 7) {
+        while (filteredDays.length < 7 && beforeWeekDays.length) {
           filteredDays.unshift(beforeWeekDays.pop())
       }
 
     }
+    console.log(filteredDays)
     let hoursOverWeek = filteredDays.map(day => {
       return {
         date: day.date,
@@ -150,7 +154,7 @@ class User {
             return item
           }
         })
-        while (filteredDays.length < 7) {
+        while (filteredDays.length < 7 && beforeWeekDays.length) {
           filteredDays.unshift(beforeWeekDays.shift())
       }
 
@@ -238,7 +242,7 @@ class User {
             return item
           }
         })
-        while (filteredDays.length < 7) {
+        while (filteredDays.length < 7 && beforeWeekDays.length) {
           filteredDays.unshift(beforeWeekDays.shift())
       }
 
@@ -270,7 +274,7 @@ class User {
             return item
           }
         })
-        while (filteredDays.length < 7) {
+        while (filteredDays.length < 7 && beforeWeekDays.length) {
           filteredDays.unshift(beforeWeekDays.shift())
       }
 
@@ -302,7 +306,7 @@ class User {
             return item
           }
         })
-        while (filteredDays.length < 7) {
+        while (filteredDays.length < 7 && beforeWeekDays.length) {
           filteredDays.unshift(beforeWeekDays.shift())
       }
 
