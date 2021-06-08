@@ -58,6 +58,8 @@ nav {
 }
 
 .dropdown-content {
+  position: absolute;
+  transform: translate(-50px, 68px);
   align-items: center;
   display: flex;
   background-color: #202020;
@@ -304,6 +306,10 @@ p {
     "wateroverweek"
     "latestsleepoverweek"
     "weeklyactivitydata"
+  }
+
+  .dropdown-content {
+      transform: translate(-70px, 68px);
   }
 
   #weeklyactivitydata {
