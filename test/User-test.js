@@ -279,7 +279,7 @@ describe('User', function() {
 
   it('should get the miles a user has walked on a specific day', () => {
 
-    expect(user.averageMinutesActiveByWeek("2019/06/20")).to.equal(280)
+    expect(user.getAverageMinutesActiveByWeek("2019/06/20")).to.equal(280)
   });
 
   it('should get the stairs climbed on a given day', () => {
