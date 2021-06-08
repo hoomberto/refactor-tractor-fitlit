@@ -40,15 +40,15 @@ class User {
     filteredDays.sort((a, b) => a.date > b.date ? 1 : -1);
     if (filteredDays.length < 7) {
       //add the amount of days before it to make the total .length of 7
-        let beforeWeek = dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1)
-        let beforeWeekDays = this.hydration.filter(item => {
-          let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
-          if (convertedToWeek === beforeWeek.$W) {
-            return item
-          }
-        })
-        while (filteredDays.length < 7 && beforeWeekDays.length) {
-          filteredDays.unshift(beforeWeekDays.pop())
+      let beforeWeek = dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1)
+      let beforeWeekDays = this.hydration.filter(item => {
+        let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
+        if (convertedToWeek === beforeWeek.$W) {
+          return item
+        }
+      })
+      while (filteredDays.length < 7 && beforeWeekDays.length) {
+        filteredDays.unshift(beforeWeekDays.pop())
       }
     }
     let ouncesOverWeek = filteredDays.map(day => {
@@ -92,20 +92,19 @@ class User {
     filteredDays.sort((a, b) => a.date > b.date ? 1 : -1);
     if (filteredDays.length < 7) {
       //add the amount of days before it to make the total .length of 7
-        let beforeWeek = dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1)
+      let beforeWeek = dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1)
 
-        let beforeWeekDays = this.sleep.filter(item => {
-          let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
-          if (convertedToWeek === beforeWeek.$W) {
-            return item
-          }
-        })
-        while (filteredDays.length < 7 && beforeWeekDays.length) {
-          filteredDays.unshift(beforeWeekDays.pop())
+      let beforeWeekDays = this.sleep.filter(item => {
+        let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
+        if (convertedToWeek === beforeWeek.$W) {
+          return item
+        }
+      })
+      while (filteredDays.length < 7 && beforeWeekDays.length) {
+        filteredDays.unshift(beforeWeekDays.pop())
       }
 
     }
-    console.log(filteredDays)
     let hoursOverWeek = filteredDays.map(day => {
       return {
         date: day.date,
@@ -147,15 +146,15 @@ class User {
     filteredDays.sort((a, b) => a.date > b.date ? 1 : -1);
     if (filteredDays.length < 7) {
       //add the amount of days before it to make the total .length of 7
-        let beforeWeek = dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1)
-        let beforeWeekDays = this.sleep.filter(item => {
-          let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
-          if (convertedToWeek === beforeWeek.$W) {
-            return item
-          }
-        })
-        while (filteredDays.length < 7 && beforeWeekDays.length) {
-          filteredDays.unshift(beforeWeekDays.shift())
+      let beforeWeek = dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1)
+      let beforeWeekDays = this.sleep.filter(item => {
+        let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
+        if (convertedToWeek === beforeWeek.$W) {
+          return item
+        }
+      })
+      while (filteredDays.length < 7 && beforeWeekDays.length) {
+        filteredDays.unshift(beforeWeekDays.shift())
       }
 
     }
@@ -235,23 +234,23 @@ class User {
     filteredDays.sort((a, b) => a.date > b.date ? 1 : -1);
     if (filteredDays.length < 7) {
       //add the amount of days before it to make the total .length of 7
-        let beforeWeek = dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1)
-        let beforeWeekDays = this.activity.filter(item => {
-          let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
-          if (convertedToWeek === beforeWeek.$W) {
-            return item
-          }
-        })
-        while (filteredDays.length < 7 && beforeWeekDays.length) {
-          filteredDays.unshift(beforeWeekDays.shift())
+      let beforeWeek = dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1)
+      let beforeWeekDays = this.activity.filter(item => {
+        let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
+        if (convertedToWeek === beforeWeek.$W) {
+          return item
+        }
+      })
+      while (filteredDays.length < 7 && beforeWeekDays.length) {
+        filteredDays.unshift(beforeWeekDays.shift())
       }
 
     }
     let minutesActiveOverWeek = filteredDays.map(day => day.minutesActive)
-    .reduce((acc, currentVal) => {
-      acc += currentVal
-      return acc
-    }, 0)
+      .reduce((acc, currentVal) => {
+        acc += currentVal
+        return acc
+      }, 0)
     return minutesActiveOverWeek / filteredDays.length;
   }
 
@@ -267,23 +266,23 @@ class User {
     filteredDays.sort((a, b) => a.date > b.date ? 1 : -1);
     if (filteredDays.length < 7) {
       //add the amount of days before it to make the total .length of 7
-        let beforeWeek = dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1)
-        let beforeWeekDays = this.activity.filter(item => {
-          let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
-          if (convertedToWeek === beforeWeek.$W) {
-            return item
-          }
-        })
-        while (filteredDays.length < 7 && beforeWeekDays.length) {
-          filteredDays.unshift(beforeWeekDays.shift())
+      let beforeWeek = dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1)
+      let beforeWeekDays = this.activity.filter(item => {
+        let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
+        if (convertedToWeek === beforeWeek.$W) {
+          return item
+        }
+      })
+      while (filteredDays.length < 7 && beforeWeekDays.length) {
+        filteredDays.unshift(beforeWeekDays.shift())
       }
 
     }
     let stepsOverWeek = filteredDays.map(day => day.steps)
-    .reduce((acc, currentVal) => {
-      acc += currentVal
-      return acc
-    }, 0)
+      .reduce((acc, currentVal) => {
+        acc += currentVal
+        return acc
+      }, 0)
     return stepsOverWeek / filteredDays.length;
   }
 
@@ -299,23 +298,23 @@ class User {
     filteredDays.sort((a, b) => a.date > b.date ? 1 : -1);
     if (filteredDays.length < 7) {
       //add the amount of days before it to make the total .length of 7
-        let beforeWeek = dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1)
-        let beforeWeekDays = this.activity.filter(item => {
-          let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
-          if (convertedToWeek === beforeWeek.$W) {
-            return item
-          }
-        })
-        while (filteredDays.length < 7 && beforeWeekDays.length) {
-          filteredDays.unshift(beforeWeekDays.shift())
+      let beforeWeek = dayjs(inputDate, "YYYY-MM-DD").week(inputToWeek - 1)
+      let beforeWeekDays = this.activity.filter(item => {
+        let convertedToWeek = dayjs(item.date, "YYYY-MM-DD").week()
+        if (convertedToWeek === beforeWeek.$W) {
+          return item
+        }
+      })
+      while (filteredDays.length < 7 && beforeWeekDays.length) {
+        filteredDays.unshift(beforeWeekDays.shift())
       }
 
     }
     let stairsOverWeek = filteredDays.map(day => day.flightsOfStairs)
-    .reduce((acc, currentVal) => {
-      acc += currentVal
-      return acc
-    }, 0)
+      .reduce((acc, currentVal) => {
+        acc += currentVal
+        return acc
+      }, 0)
     return stairsOverWeek / filteredDays.length;
   }
 
@@ -331,13 +330,14 @@ class User {
   allDaysGoalReached() {
     let daysGoalReached = this.activity.filter(act => this.userGoalReached(act.date));
     return daysGoalReached;
-  };
+  }
 
   userGoalReached(date) {
     let activityOnDay = this.activity.find(activity => activity.date === date)
     if (activityOnDay.steps >= this.dailyStepGoal) {
       return true
-    } else {
+    }
+    else {
       return false
     }
   }
@@ -346,8 +346,8 @@ class User {
     let highestStairCount =
       this.activity.sort((a, b) => a.flightsOfStairs > b.flightsOfStairs ? -1 : 1);
     return highestStairCount[0].flightsOfStairs;
-  };
-};
+  }
+}
 
 
 export default User;

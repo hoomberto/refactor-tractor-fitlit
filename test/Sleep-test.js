@@ -1,9 +1,5 @@
-import {
-  expect
-} from 'chai';
-
+import { expect } from 'chai';
 import Sleep from '../src/Sleep';
-import User from '../src/User';
 
 describe('Sleep', function() {
   let sleep1, sleep2
