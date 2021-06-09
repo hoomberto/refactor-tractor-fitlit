@@ -25,12 +25,18 @@ nav {
 
 
 .date-picker,
-.add-entry {
+.add-entry-btn {
   border-radius: 50%;
   height: 50px;
   width: 50px;
 	border: none;
   margin: 20px;
+  cursor: pointer;
+  transition: .2s all ease;
+}
+
+.add-entry-btn:hover {
+  transform: scale(1.15)
 }
 
 
@@ -54,7 +60,11 @@ nav {
   border: none;
   border-radius: 20px;
   margin: 26px;
-  // position: absolute;
+  cursor: pointer;
+  transition: .2s ease all;
+  &:hover {
+    transform: scale(1.14)
+  }
 }
 
 .dropdown-content {
@@ -368,6 +378,7 @@ p {
 
 .fa-times-circle {
   font-size: 34px;
+  transition: .2s all ease;
 }
 
 .fa-times-circle:hover {
@@ -391,24 +402,109 @@ h2 {
   text-align: center;
 }
 
+.user-input-form {
+
+}
+
 .user-input-sleep,
 .user-input-hydration,
 .user-input-activity {
   display: flex;
   flex-direction: column;
   padding: 20px;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 12px;
 }
 
+.data-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10%;
+}
+
+.data-buttons * {
+  margin-bottom: 2%;
+  width: 50%;
+  height: 40px;
+  cursor: pointer;
+  transition: .2s all ease;
+  border-radius: 18px;
+}
+
+.data-buttons *:hover {
+  width: 70%;
+}
+
+.error-message {
+  color: white;
+}
+
+form input {
+  margin-top: 3%;
+}
+
+form label {
+  margin-left: 5%;
+  transform: translate(9px, 8px);
+  color: white;
+}
+
+#addSleep, #addWater, #addActivity {
+  color: white;
+  border: 0;
+  font-size: 22px;
+}
+
+#addSleep {
+  background-color: rgba(94,158,167);
+}
+
+#addWater {
+  background-color: rgba(61, 125, 245, 0.81);
+}
+
+#addActivity {
+  background-color: rgba(245, 77, 61, 0.81);
+}
+
+
+
+#close {
+  cursor: pointer;
+}
+
+.return-to-selection,
+.submit-info {
+  margin-top: 5%;
+  margin-left: 5%;
+  width: 25%;
+  height: 32px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: 0;
+  background-color: lightgray;
+  transition: .2s all ease;
+  cursor: pointer;
+  &:hover {
+    width: 45%;
+  }
+}
+
+
+
 .user-input-sleep {
-  background-color: yellow;
+  background-color: rgba(94,158,167, 0.8);
 }
 
 .user-input-hydration {
-  background-color: lightblue;
+  background-color: rgba(61, 125, 245, 0.81);
 }
 
 .user-input-activity {
-  background-color: lightgreen;
+  background-color: rgba(245, 77, 61, 0.81);
 }
 
 
