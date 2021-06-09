@@ -45,4 +45,12 @@ window.addEventListener('load', function() {
       firstDate = currentUser.hydration.sort((a, b) => a.date > b.date ? 1 : -1)[0];
       renderPage(currentUser, currentDate.date, userRepo, firstDate)
     })
+
+    .catch(err => displayPageLevelError())
 })
+
+function displayPageLevelError() {
+  let userCard = document.getElementById('userinfo');
+  userCard.innerHTML = `Oops, we seem to be experiencing some
+  technical difficulties!`
+}
