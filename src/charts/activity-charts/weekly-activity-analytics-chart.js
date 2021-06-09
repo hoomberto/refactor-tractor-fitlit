@@ -5,9 +5,7 @@ const userStairs = currentUser.getAverageStairsByWeek(currentDate)
 const userMin = currentUser.getAverageMinutesActiveByWeek(currentDate)
 const userSteps = currentUser.getAverageStepsByWeek(currentDate)
 
-console.log('>>>>>> USERS STEPS', userSteps)
-
-  const labels1 = [
+const labels1 = [
     `${userFirstName}'s stairs climbed`,
     `${userFirstName}'s minutes active`,
   ];

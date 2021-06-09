@@ -193,7 +193,6 @@ const checkResponse = (response) => {
     let error = new Error('BAD POST REQUEST')
     let message = `${response.status} code, ${error.message}`
     let userMessage = "*Please fill out all fields"
-    console.log(message)
     document.querySelector('.error-message').innerText = userMessage
     throw error
   } else {
@@ -215,22 +214,6 @@ const postData = (dataType, body) => {
     .then(checkResponse)
     .catch(err => console.error(err))
 }
-
-
-// function postData(dataType, body) {
-//   const root = 'http://localhost:3001/api/v1/'
-//   fetch(root + dataType, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(body),
-//   })
-//     .then(checkResponse)
-//     .catch(err => console.error(err))
-// }
-
-
 
 
 function createSleepBody() {
@@ -333,7 +316,6 @@ userInputModal.addEventListener('click', (event) => {
 function modalClickHandler(event) {
   event.preventDefault();
   if (event.target.id === 'close') {
-    console.log('click')
     closeModal();
   } else if (event.target.id === 'addSleep') {
     renderSleepInputField()
@@ -357,7 +339,6 @@ function closeModal() {
   userInputModal.style.display = 'none';
 }
 
-// let userInputForm = document.getElementById('userInputForm');
 
 function renderWaterInputField() {
   let userInputForm = document.getElementById('userInputForm')
