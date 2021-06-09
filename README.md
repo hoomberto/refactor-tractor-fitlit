@@ -62,9 +62,13 @@ activity, sleep, and hydration analytics<br>
 
 1. Clone down this [repository](https://github.com/hoomberto/refactor-tractor-fitlit)
 2. `cd` into the repository in your terminal
-3. Run `npm install` to install all dependencies
-4. Run `npm start` and visit `localhost:8080`
-5. To test the code, run `npm test`
+3. Run `npm install` to install npm 
+4. Run `npm install dayjs` to install dayJS
+5. Run `npm install chart.js` to install Chart.js
+6. Run `npm i pikaday` to install Pikaday
+7. Run `npm install --save @fortawesome/fontawesome-free` to install FontAwesome 
+8. Run `npm start` and visit `localhost:8080`
+9. To test the code, run `npm test`
 
 ### Want to contribute?
 If you would like to contribute, please fork this repository and clone it down to your local machine. Once you've successfully implemented the changes in code necessary for your intended contribution without changing any of the current functionality of main, submit a pull request for authors to review the changes.
