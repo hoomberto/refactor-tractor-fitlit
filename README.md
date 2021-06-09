@@ -25,22 +25,22 @@ To solidify and demonstrate the understanding of:
 
 ## Functionality
 
--Site pulls in data from API and selects a random user on load, displaying their stats for the latest day
+-Site pulls in data from API and selects a random user on load, displaying their stats for the latest day<br>
 ![alt text](https://media.giphy.com/media/MrNwZqVPeOlpcu4F0I/giphy.gif "Demo of random user on load")
 
 -Date picker that lets user go through a navigable calendar of dates corresponding to the current users data<br>
--Choosing a date loads the data corresponding to selection
+-Choosing a date loads the data corresponding to selection<br>
 ![alt text](https://media.giphy.com/media/dTbWqLdK5LH3mvsxiv/giphy.gif "Demo of site date picker")
 
 -User is able to see their friends + friends' daily step goals<br>
 ![alt text](https://media.giphy.com/media/fr6WYH3SC24K8suBIw/giphy.gif "Demo of friends list")
 
 -Site features responsive and interactive charts that visually represent data pertaining to the user's<br>
-activity, sleep, and hydration analytics
+activity, sleep, and hydration analytics<br>
 ![alt text](https://media.giphy.com/media/3NnAxDGExfDxBPPx6k/giphy.gif "Demo of interactive charts")
 
 -User is able to POST and add analytics data via form accessible from navigation bar<br>
--All forms have error handling that ask user to input data correctly if they have not done so
+-All forms have error handling that ask user to input data correctly if they have not done so<br>
 ![alt text](https://media.giphy.com/media/pJZ3ik3nCeiADf19Fm/giphy.gif "Demo of POST form")
 
 -Site is responsive and will change layouts across desktop, tablet, and phone screens<br>
