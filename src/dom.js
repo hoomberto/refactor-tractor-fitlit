@@ -227,8 +227,8 @@ const updateCharts = (currentUser, formatted, userRepo) => {
     userInputModal.innerHTML = '';
     userInputModal.innerHTML +=
     `<article class='user-input-content'>
-        <button class='close-modal' id='close' aria-label="close-modal">
-          <i class="far fa-times-circle"></i>
+        <button class='close-modal' aria-label="close-modal">
+          <i id='close' class="far fa-times-circle"></i>
         </button>
         <section class='user-input-form' id='userInputForm'>
           <h1 class='user-input-header'>What Would You Like To Add?</h1>
