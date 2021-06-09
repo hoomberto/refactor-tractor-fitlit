@@ -47,6 +47,7 @@ nav {
   margin: 26px;
   cursor: pointer;
   transition: .2s ease all;
+  transform: translateY(12px);
   &:hover {
     transform: scale(1.14)
   }

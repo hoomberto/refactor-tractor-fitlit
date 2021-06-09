@@ -27,15 +27,13 @@ const userBaseStairsAvg = currentRepo.users
 }, 0) / currentRepo.users.length
 
 
-console.log('>>>>>> USERS STEPS', userSteps)
-
-  const labels = [
-    `${userFirstName}'s stairs climbed`,
-    'All stairs climbed',
-    `${userFirstName}'s minutes active`,
-    'All minutes active',
-    `${userFirstName}'s steps walked`,
-    'All steps walked',
+const labels = [
+  `${userFirstName}'s stairs climbed`,
+  'All stairs climbed',
+  `${userFirstName}'s minutes active`,
+  'All minutes active',
+  `${userFirstName}'s steps walked`,
+  'All steps walked',
   ];
 
   const data = {
