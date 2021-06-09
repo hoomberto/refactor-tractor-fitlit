@@ -1,0 +1,28 @@
+.widgets-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  grid-template-areas:
+  "userInfo userInfo lateststepsmiles latestminactive usergoalvsavg"
+  "waterconsumed latestsleepdata alltimesleepavg activityvsuserbase activityvsuserbase"
+  "wateroverweek latestsleepoverweek weeklyactivitydata weeklyactivitydata weeklyactivitydata";
+}
+
+.widgets-container {
+  margin-top: 5%;
+  width: 90%;
+  height: 80%;
+}
+
+.widgets-container * {
+  background-color: $container-color;
+  min-width: 0;
+  display: grid;
+  place-items: center;
+}
+
+#userinfo {
+  // background-color: lightgray;
+  grid-area: userInfo;
+}

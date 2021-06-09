@@ -1,0 +1,18 @@
+$main-bg-color: #323947;
+$container-color: lightgray;
+$white: #fefefe;
+$nav-gradient: linear-gradient(201deg, rgba(115,75,109,1) 0%, rgba(50,57,73,1) 100%);
+$sleep-color: rgba(94,158,167, 0.8);
+$hydration-color: rgba(61, 125, 245, 0.81);
+$activity-color: rgba(245, 77, 61, 0.81);
+
+// *****************MIXINS******************
+@mixin flex-column() {
+  display:flex;
+  flex-direction:column;
+}
+
+@mixin flex-row() {
+  display:flex;
+  flex-direction:row;
+}
