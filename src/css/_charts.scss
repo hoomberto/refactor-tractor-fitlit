@@ -1,0 +1,77 @@
+#lateststepsmiles {
+  position: relative;
+  grid-area: lateststepsmiles;
+}
+
+#latestminactive {
+  grid-area: latestminactive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 70px;
+}
+
+.last-min-active-exercise {
+  font-size: 45px;
+  font-weight: 600;
+}
+
+#usergoalvsavg {
+  grid-area: usergoalvsavg;
+}
+
+#waterconsumed {
+  grid-area: waterconsumed;
+  place-items: center;
+}
+
+#latestsleepdata {
+  grid-area: latestsleepdata;
+}
+
+#alltimesleepavg {
+  grid-area: alltimesleepavg;
+}
+
+#activityvsuserbase {
+  grid-area: activityvsuserbase;
+}
+
+#wateroverweek {
+  grid-area: wateroverweek;
+}
+
+#latestsleepoverweek {
+  grid-area: latestsleepoverweek;
+}
+
+#weeklyactivitydata {
+  grid-area: weeklyactivitydata;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#latestminactive h2,
+.last-min-active {
+  margin: 0 auto;
+}
+
+#latestminactive h2 {
+  text-align: center;
+  width: 100%;
+}
+
+.last-min-active {
+  font-size: 42px;
+}
+
+#weeklyactivitydata div {
+  min-width: 0;
+}
+
+#minStairsAvgChart,
+#stepsAvgChart {
+  height: 300;
+}

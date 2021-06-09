@@ -1,102 +1,15 @@
-// DEEP GRAY
-// #323947;
+@import "variables";
+@import "charts";
+@import "grid";
+@import "nav";
 
 * {
   font-family: 'Roboto', sans-serif;
 }
 body {
   margin: 0;
-  background-color: #323947;
+  background-color: $main-bg-color;
 }
-
-nav {
-  // top: 0;
-  position: fixed;
-  width: 100vw;
-  // min-height: 5%;
-  max-height: 10%;
-  background-color: #001a4d;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  z-index: 5;
-}
-
-
-
-.date-picker,
-.add-entry-btn {
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-	border: none;
-  margin: 20px;
-  cursor: pointer;
-  transition: .2s all ease;
-}
-
-.add-entry-btn:hover {
-  transform: scale(1.15)
-}
-
-
-.fa-calendar-alt,
-.fa-plus {
-  font-size: 20px;
-}
-
-.calendar-and-add{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 40%;
-}
-
-.friends-drop-down {
-  color: black;
-  background-color: lightgray;
-  width: 95px;
-  height: 40px;
-  border: none;
-  border-radius: 20px;
-  margin: 26px;
-  cursor: pointer;
-  transition: .2s ease all;
-  &:hover {
-    transform: scale(1.14)
-  }
-}
-
-.dropdown-content {
-  position: absolute;
-  transform: translate(-50px, 68px);
-  align-items: center;
-  display: flex;
-  background-color: #202020;
-  width: 250px;
-  height: 150px;
-  // transform: translate(-8px, 124px);
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
-  z-index: 1;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.friend-details {
-  font-size: 16px;
-  color: white;
-  line-height: 2;
-  text-align: center;
-}
-
-.friendsDiv {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width:20%;
-}
-
 
 main {
   display: grid;
@@ -104,45 +17,8 @@ main {
   place-items: center;
 }
 
-
 input {
   margin-left: 7%;
-}
-
-
-// canvas {
-//   min-width: 0;
-// }
-
-.widgets-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-gap: 1rem;
-  grid-template-areas:
-  "userInfo userInfo lateststepsmiles latestminactive usergoalvsavg"
-  "waterconsumed latestsleepdata alltimesleepavg activityvsuserbase activityvsuserbase"
-  "wateroverweek latestsleepoverweek weeklyactivitydata weeklyactivitydata weeklyactivitydata";
-}
-
-.widgets-container {
-  // margin-top: 5%;
-  width: 90%;
-  height: 80%;
-}
-
-.widgets-container * {
-  background-color: lightgray;
-  min-width: 0;
-  display: grid;
-  place-items: center;
-}
-
-
-// USER INFO
-#userinfo {
-  // background-color: lightgray;
-  grid-area: userInfo;
 }
 
 h1 {
@@ -154,197 +30,9 @@ p {
   line-height: 1.5;
 }
 
-
-#lateststepsmiles {
-  // background-color: lightgray;
-  position: relative;
-  grid-area: lateststepsmiles;
-}
-
-
-#stepsMilesChart {
-}
-//
-// #lateststepsmiles::after {
-//   content: attr(data-before);
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   text-align: center;
-//   transform: translate(121px, 128px);
-//   z-index: 2;
-//   opacity: 0;
-// }
-
-#latestminactive {
-  grid-area: latestminactive;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 70px;
-}
-
-.last-min-active-exercise {
-    font-size: 45px;
-    font-weight: 600;
-}
-
-#usergoalvsavg {
-  grid-area: usergoalvsavg;
-}
-
-#waterconsumed {
-  grid-area: waterconsumed;
-  place-items: center;
-}
-
-#water-chart {
-  // background: url(https://i.imgur.com/sZLs3Vr.png?3) no-repeat center;
-  // background-size: 60px;
-}
-
-#latestsleepdata {
-  grid-area: latestsleepdata;
-}
-
-#alltimesleepavg {
-  grid-area: alltimesleepavg;
-}
-
-#activityvsuserbase {
-  grid-area: activityvsuserbase;
-}
-
-#wateroverweek {
-  grid-area: wateroverweek;
-}
-
-#latestsleepoverweek {
-  grid-area: latestsleepoverweek;
-}
-
-#weeklyactivitydata {
-  grid-area: weeklyactivitydata;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-#latestminactive h2,
-.last-min-active {
-  margin: 0 auto;
-}
-
-#latestminactive h2 {
+h2 {
   text-align: center;
-  width: 100%;
 }
-
-.last-min-active {
-  font-size: 42px;
-}
-
-#weeklyactivitydata div {
-  min-width: 0;
-}
-
-#minStairsAvgChart,
-#stepsAvgChart {
-  height: 300;
-}
-
-
-
-
-@media only screen and (max-width: 1000px) {
-
-  main {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-
-  #lateststepsmiles::after {
-    transform: translate(114px, 120px);
-  }
-
-  .widgets-container {
-    margin-top: 16%;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-areas:
-    "userInfo userInfo lateststepsmiles"
-    "waterconsumed latestsleepdata alltimesleepavg"
-    "wateroverweek latestsleepoverweek latestminactive"
-    "usergoalvsavg activityvsuserbase activityvsuserbase"
-    "weeklyactivitydata weeklyactivitydata weeklyactivitydata"
-  }
-
-  .calendar-and-add {
-    width: 76%;
-  }
-
-}
-
-
-
-@media only screen and (max-width: 550px) {
-
-  main {
-    display: flex;
-    flex-direction: column;
-  }
-
-  #lateststepsmiles::after {
-    transform: translate(140px, 146px);
-  }
-
-  .widgets-container {
-    margin-top: 36%;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-areas:
-    "userInfo"
-    "lateststepsmiles"
-    "usergoalvsavg"
-    "waterconsumed"
-    "latestsleepdata"
-    "latestminactive"
-    "alltimesleepavg"
-    "activityvsuserbase"
-    "wateroverweek"
-    "latestsleepoverweek"
-    "weeklyactivitydata"
-  }
-
-  .dropdown-content {
-      transform: translate(-70px, 68px);
-  }
-
-  #weeklyactivitydata {
-    display: flex;
-    height: 600px;
-    flex-direction: column;
-  }
-
-  #weeklyactivitydata div {
-    position: relative;
-  }
-
-  #minStairsAvgChart,
-  #stepsAvgChart {
-    height: 200;
-  }
-
-
-
-}
-
-
-
-
-
 
 // ---------MODAL-----------
 
@@ -365,7 +53,7 @@ p {
 .user-input-content {
   display: flex;
   flex-direction: column;
-  background-color: #fefefe;
+  background-color: $white;
   margin: 15% auto;
   padding: 0px;
   border: 1px solid #888;
@@ -373,7 +61,6 @@ p {
   height: 80%;
   overflow-y: scroll;
   box-shadow: 0px 7px 29px 0px black;
-  // transform: translate(-273px, -63px);
 }
 
 .fa-times-circle {
@@ -394,23 +81,14 @@ p {
   padding: 0px;
 }
 
-h2 {
-  text-align: center;
-}
-
 .user-input-header {
   text-align: center;
-}
-
-.user-input-form {
-
 }
 
 .user-input-sleep,
 .user-input-hydration,
 .user-input-activity {
-  display: flex;
-  flex-direction: column;
+  @include flex-column();
   padding: 20px;
   width: 80%;
   margin: 0 auto;
@@ -418,8 +96,7 @@ h2 {
 }
 
 .data-buttons {
-  display: flex;
-  flex-direction: column;
+  @include flex-column();
   align-items: center;
   justify-content: space-between;
   margin-top: 10%;
@@ -470,8 +147,6 @@ form label {
   background-color: rgba(245, 77, 61, 0.81);
 }
 
-
-
 #close {
   cursor: pointer;
 }
@@ -493,21 +168,24 @@ form label {
   }
 }
 
-
-
 .user-input-sleep {
-  background-color: rgba(94,158,167, 0.8);
+  background-color: $sleep-color;
 }
 
 .user-input-hydration {
-  background-color: rgba(61, 125, 245, 0.81);
+  background-color: $hydration-color;
 }
 
 .user-input-activity {
-  background-color: rgba(245, 77, 61, 0.81);
+  background-color: $activity-color;
 }
 
+.user-input-header {
+  font-size: 28px;
+}
 
 .hidden {
   display: none;
 }
+
+@import "media";

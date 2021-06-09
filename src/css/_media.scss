@@ -1,0 +1,81 @@
+@media only screen and (max-width: 1000px) {
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  #lateststepsmiles::after {
+    transform: translate(114px, 120px);
+  }
+
+  .widgets-container {
+    margin-top: 16%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "userInfo userInfo lateststepsmiles"
+    "waterconsumed latestsleepdata alltimesleepavg"
+    "wateroverweek latestsleepoverweek latestminactive"
+    "usergoalvsavg activityvsuserbase activityvsuserbase"
+    "weeklyactivitydata weeklyactivitydata weeklyactivitydata"
+  }
+
+  .calendar-and-add {
+    width: 76%;
+  }
+
+}
+
+
+
+@media only screen and (max-width: 550px) {
+
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #lateststepsmiles::after {
+    transform: translate(140px, 146px);
+  }
+
+  .widgets-container {
+    margin-top: 36%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "userInfo"
+    "lateststepsmiles"
+    "usergoalvsavg"
+    "waterconsumed"
+    "latestsleepdata"
+    "latestminactive"
+    "alltimesleepavg"
+    "activityvsuserbase"
+    "wateroverweek"
+    "latestsleepoverweek"
+    "weeklyactivitydata"
+  }
+
+  .dropdown-content {
+      transform: translate(-70px, 68px);
+  }
+
+  #weeklyactivitydata {
+    display: flex;
+    height: 600px;
+    flex-direction: column;
+  }
+
+  #weeklyactivitydata div {
+    position: relative;
+  }
+
+  #minStairsAvgChart,
+  #stepsAvgChart {
+    height: 200;
+  }
+
+}
