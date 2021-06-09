@@ -46,6 +46,8 @@ activity, sleep, and hydration analytics<br>
 -Site is responsive and will change layouts across desktop, tablet, and phone screens<br>
 ![alt text](https://media.giphy.com/media/2yn1mr4EHfQhM755a4/giphy.gif "Demo of responsiveness across media")
 
+-Site has a lighthouse accessibility rating of 100%<br>
+![alt text](https://i.ibb.co/3chcGQn/Screen-Shot-2021-06-08-at-10-25-42-PM.png "Accessibility rating")
 
 
 ## Future Additions
