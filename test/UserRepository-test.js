@@ -8,7 +8,7 @@ import Hydration from '../src/Hydration';
 import User from '../src/User';
 
 describe('UserRepository', function() {
-  let userRepo, users, user, user2, user3, sleep1, sleep2, sleep3, sleep4, activity1, activity2, hydration1, hydration2, sleepArray, sleepArray2, activityArray, hydrationArray;
+  let userRepo, users, user, user2, sleep1, sleep2, sleep3, activity1, activity2, hydration1, hydration2, sleepArray, sleepArray2, activityArray, hydrationArray;
   beforeEach(() => {
 
     sleep1 = new Sleep({
@@ -29,13 +29,6 @@ describe('UserRepository', function() {
       "userID": 2,
       "date": "2019/07/26",
       "hoursSlept": 7,
-      "sleepQuality": 3
-    })
-
-    sleep4 = new Sleep({
-      "userID": 2,
-      "date": "2019/06/25",
-      "hoursSlept": 9,
       "sleepQuality": 3
     })
 

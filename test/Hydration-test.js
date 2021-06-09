@@ -5,7 +5,7 @@ import {
 import Hydration from '../src/Hydration';
 
 describe('Hydration', function() {
-  let hydrate1, hydrate2
+  let hydrate1;
 
   beforeEach(() => {
     hydrate1 = new Hydration({
@@ -13,13 +13,6 @@ describe('Hydration', function() {
       "date": "2019/06/15",
       "numOunces": 37
     });
-
-    hydrate2 = new Hydration({
-      "userID": 1,
-      "date": "2019/06/16",
-      "numOunces": 69
-    });
-
   });
 
   it('should be a function', function() {

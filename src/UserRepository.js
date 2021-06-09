@@ -64,10 +64,10 @@ class UserRepository {
 
   getAverageStepGoalOfAllUser() {
     return this.users.reduce((stepGoal, user) => {
-      stepGoal+= user.dailyStepGoal
+      stepGoal += user.dailyStepGoal
       return stepGoal
     }, 0) / this.users.length;
-  };
+  }
 }
 
 export default UserRepository;

@@ -13,7 +13,7 @@
     <nav>
       <div class='calendar-and-add'>
         <input type='text' id='datePicker' autocomplete='off' placeholder="Select a date">
-        <button class='add-entry' id='addEntry' role='button' aria-label="add-data">
+        <button class='add-entry-btn' id='addEntryBtn' role='button' aria-label="add-data">
           <i class="fas fa-plus"></i>
         </button>
       </div>
@@ -25,6 +25,7 @@
     </nav>
     <main>
       <section class='user-input-modal' id='userInputModal'>
+
       </section>
       <section class="widgets-container">
         <article id="userinfo">
@@ -59,10 +60,10 @@
         </article>
         <article id="weeklyactivitydata" class="chart-ctr">
           <div id="min-stairs-container">
-            <canvas id="minStairsAvgChart" width="224" height="300"></canvas>
+            <canvas id="minStairsAvgChart" width="224" height="260"></canvas>
           </div>
           <div id="steps-container">
-            <canvas id="stepsAvgChart"  width="224" height="300"></canvas>
+            <canvas id="stepsAvgChart"  width="300" height="260"></canvas>
           </div>
         </article>
       </section>

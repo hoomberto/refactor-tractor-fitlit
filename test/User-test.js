@@ -1,7 +1,4 @@
-import {
-  expect
-} from 'chai';
-import dayjs from 'dayjs';
+import { expect } from 'chai';
 import Sleep from '../src/Sleep';
 import Activity from '../src/Activity';
 import Hydration from '../src/Hydration';
@@ -159,66 +156,65 @@ describe('User', function() {
   it('should have method that returns average consumed ounces over week', function() {
 
     let data = [{
-        "userID": 1,
-        "date": "2019/06/15",
-        "numOunces": 66
-      },
-      {
-        "userID": 1,
-        "date": "2019/06/16",
-        "numOunces": 69
-      },
-      {
-        "userID": 1,
-        "date": "2019/06/17",
-        "numOunces": 91
-      },
-      {
-        "userID": 1,
-        "date": "2019/06/18",
-        "numOunces": 99
-      },
-      {
-        "userID": 1,
-        "date": "2019/06/19",
-        "numOunces": 95
-      },
-      {
-        "userID": 1,
-        "date": "2019/06/20",
-        "numOunces": 79
-      },
-      {
-        "userID": 1,
-        "date": "2019/06/21",
-        "numOunces": 57
-      },
-      {
-        "userID": 1,
-        "date": "2019/06/22",
-        "numOunces": 49
-      },
-      {
-        "userID": 1,
-        "date": "2019/06/23",
-        "numOunces": 26
-      },
-      {
-        "userID": 1,
-        "date": "2019/06/24",
-        "numOunces": 98
-      },
-      {
-        "userID": 1,
-        "date": "2019/06/25",
-        "numOunces": 68
-      },
-      {
-        "userID": 1,
-        "date": "2019/06/26",
-        "numOunces": 21
-      }
-    ]
+      "userID": 1,
+      "date": "2019/06/15",
+      "numOunces": 66
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/16",
+      "numOunces": 69
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/17",
+      "numOunces": 91
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/18",
+      "numOunces": 99
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/19",
+      "numOunces": 95
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/20",
+      "numOunces": 79
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/21",
+      "numOunces": 57
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/22",
+      "numOunces": 49
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/23",
+      "numOunces": 26
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/24",
+      "numOunces": 98
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/25",
+      "numOunces": 68
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/26",
+      "numOunces": 21
+    }]
 
     data.forEach(d => {
       user.hydration.push(new Hydration(d))
@@ -228,7 +224,6 @@ describe('User', function() {
   });
 
   it('should have a method that returns average fluid oz consumption for all time for a user', function() {
-    user.hydration.push(hydration1, hydration2)
     expect(user.hydration.length).to.deep.equal(2)
     expect(user.findTotalWaterConsumption()).to.equal(53);
   });
@@ -278,9 +273,20 @@ describe('User', function() {
     expect(user.getMilesWalkedOnDay("2019/06/20")).to.equal(2.3)
   });
 
-  it('should get the miles a user has walked on a specific day', () => {
 
-    expect(user.averageMinutesActiveByWeek("2019/06/20")).to.equal(280)
+  it('should get the average stairs a user has climbed for a specified week', () => {
+
+    expect(user.getAverageStairsByWeek("2019/06/20")).to.equal(27)
+  });
+
+  it('should get the average minutes a user has been active for a specified week', () => {
+
+    expect(user.getAverageMinutesActiveByWeek("2019/06/20")).to.equal(280)
+  });
+
+  it('should get the average steps a user has taken for a specified week', () => {
+
+    expect(user.getAverageStepsByWeek("2019/06/20")).to.equal(4128)
   });
 
   it('should get the stairs climbed on a given day', () => {
@@ -288,12 +294,12 @@ describe('User', function() {
     expect(user.getStairsClimbedOnDate("2019/06/21")).to.equal(32)
   });
 
-  it('should get the all the the days of user where they reached thier daily step goals', () => {
+  it('should get the all the the days of user where they reached their daily step goals', () => {
 
     expect(user2.allDaysGoalReached("2019/06/20").length).to.equal(1)
   });
 
-  it('should get the miles a user has walked on a specific day', () => {
+  it('should specify if a user has reached their daily step goal for a provided date', () => {
 
     expect(user2.userGoalReached("2019/06/20")).to.be.false;
     expect(user2.userGoalReached("2019/06/21")).to.be.true;
