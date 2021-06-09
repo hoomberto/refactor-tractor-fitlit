@@ -71,6 +71,7 @@ export const renderPage = (currentUser, currentDate, userRepo, firstDate) => {
   user = currentUser;
 }
 
+
 const toggleFriends = () => {
   friends.classList.toggle('hidden')
 }
